@@ -13,3 +13,8 @@ version: v0.1.0
 
 Hi, I'm Raj. This is my 23rd website for personal purposes, and I have yet to write 
 a half decent blog post.
+
+## Socials
+
+- [Mail](mailto:typhoeusxoxo@gmail.com)
+- [Letterboxd](https://letterboxd.com/thermitesinatra/)
