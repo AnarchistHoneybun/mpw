@@ -3,7 +3,7 @@ title: Notes from the Overground
 subtitle: Blog
 author: Nirv
 author-url: "https://github.com/AnarchistHoneybun"
-date: 2024-08-30
+date: 2024-08-31
 lang: en
 toc-title: Contents
 version: v0.1.0
@@ -14,5 +14,7 @@ version: v0.1.0
 
 * programming
 * media
+* general
+  * cell coloring - exploration
 
 </li></ul>
