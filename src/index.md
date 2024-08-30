@@ -29,4 +29,4 @@ for software in rust, bash etc. with a focus on algorithms and improving system 
 - [Letterboxd](https://letterboxd.com/thermitesinatra/)
 - [LinkedIn](https://www.linkedin.com/in/raj-rajeshwar-singh/)
 
-![Lift up your merry hearts, and ride to meet your fortune](../docs/assets/lotr-sil.png)
+![Lift up your merry hearts, and ride to meet your fortune](../docs/lotr-sil.png)
