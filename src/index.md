@@ -21,7 +21,7 @@ I've interned at [HAL](https://www.hal-india.co.in/home) as an RTOS and Frontend
 for audio processing, and dev and bug fixes for playback software. I've picked
 up freelance work in web and tui development, including consultancy for
 site design and tooling. Open source is a big part of what I do, with contributions
-for software in rust, bash etc with a focus on algorithms and improving system documentation.
+for software in rust, bash etc. with a focus on algorithms and improving system documentation.
 
 ## Socials
 
@@ -29,6 +29,4 @@ for software in rust, bash etc with a focus on algorithms and improving system d
 - [Letterboxd](https://letterboxd.com/thermitesinatra/)
 - [LinkedIn](https://www.linkedin.com/in/raj-rajeshwar-singh/)
 
-
-![Lift up your merry hearts, and ride to meet your fortune](../assets/lotr-sil.png
-)
+![Lift up your merry hearts, and ride to meet your fortune](../docs/assets/lotr-sil.png)
