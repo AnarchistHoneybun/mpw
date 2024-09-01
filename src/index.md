@@ -13,7 +13,8 @@ version: v0.1.0
 
 Hi, I'm Raj. I'm a junior at uni, pursuing a bachelor's in computer science
 and engineering. This is my 23rd personal website, and I have yet to write 
-a semi decent blog post.
+a semi decent blog post. In my time off from work I like to read books, watch movies,
+and worry about pending work.
 
 ## Experience
 
