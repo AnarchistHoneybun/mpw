@@ -1,6 +1,6 @@
 # Directory variables
 SRC_DIR := src
-DEPLOY_DIR := docs
+DEPLOY_DIR := deploy
 TEMPLATE_DIR := templates
 STYLE_DIR := styles
 SCRIPT_DIR := scripts
