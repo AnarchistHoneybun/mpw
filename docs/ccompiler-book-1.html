@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Nirv" />
+  <meta name="dcterms.date" content="2024-09-14" />
+  <title>Writing a C compiler</title>
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+<table class="header">
+  <tr>
+    <td colspan="2" rowspan="2" class="width-auto">
+      <h1 class="title">Writing a C compiler</h1>
+      <span class="subtitle">chapter 1</span>
+    </td>
+    <th>Version</th>
+    <td class="width-min">v0.1.1</td>
+  </tr>
+  <tr>
+    <th>Updated</th>
+    <td class="width-min">2024-09-14</td>
+  </tr>
+  <tr>
+    <th class="width-min">Author</th>
+    <td class="width-auto"><a href="https://github.com/AnarchistHoneybun"><cite>Nirv</cite></a></td>
+    <th class="width-min">License</th>
+    <td>MIT</td>
+  </tr>
+</table>
+<label class="debug-toggle-label"><input type="checkbox" class="debug-toggle" /> Debug mode</label>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Contents</h2>
+<ul class="incremental">
+<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+<li><a href="#chapter-details" id="toc-chapter-details">Chapter
+details</a></li>
+<li><a href="#program-flow" id="toc-program-flow">Program flow</a></li>
+<li><a href="#program-output" id="toc-program-output">Program
+output</a></li>
+</ul>
+</nav>
+<h2 id="introduction">Introduction</h2>
+<p>This blog (series of blogs, hopefully) will follow me writing a C
+compiler in C++, following <a href="https://norasandler.com/about/">Nora
+Sandler’s</a> book “<a
+href="https://nostarch.com/writing-c-compiler">Writing a C
+Compiler</a>”. I intend to write a short intro to what each chapter
+covers, show some of the code written to implement the concepts, and
+write about anything interesting that comes up.</p>
+<h2 id="chapter-details">Chapter details</h2>
+<p>The first chapter is mostly about setting up the essentials. The
+project is modelled with the following elements: a lexer, a parser, a
+code generator, and a code emission module. Note that for now the book
+only wants us to write the “compiler” only, so preprocessing and
+assembling are delegated to the gcc toolchain.</p>
+<h2 id="program-flow">Program flow</h2>
+<p>Here’s essentially how the program ends up working after implementing
+all details from chapter 1: - The compiler takes in an input file as
+argument, with an optional stage flag (–lex, –parse, –codegen) - the
+preprocess function runs gcc on the input file, and writes the output to
+a <code>.i</code> file - the lexer reads the <code>.i</code> file and
+tokenizes the input. This is stored as a vector - the parser goes
+through the tokens and builds an abstract syntax tree (AST) - the code
+generator takes the above AST and generates an assembly AST from it -
+the code emission step writes the assembly AST to a <code>.s</code> file
+- the assemble function runs gcc on the <code>.s</code> file, and
+creates an executable</p>
+<h2 id="program-output">Program output</h2>
+<p>Sample C source code:</p>
+<pre><code>╭─────────────────╮
+│  int main() {   │
+│      return 0;  │
+│  }              │
+╰─────────────────╯</code></pre>
+<p>Lexer output:</p>
+<pre><code>╭─────────────────────────────────╮
+│Token: Type = 2, Value = &quot;int&quot;   │
+│Token: Type = 0, Value = &quot;main&quot;  │
+│Token: Type = 5, Value = &quot;(&quot;     │
+│Token: Type = 3, Value = &quot;void&quot;  │
+│Token: Type = 6, Value = &quot;)&quot;     │
+│Token: Type = 7, Value = &quot;{&quot;     │
+│Token: Type = 4, Value = &quot;return&quot;│
+│Token: Type = 1, Value = &quot;0&quot;     │
+│Token: Type = 9, Value = &quot;;&quot;     │
+│Token: Type = 8, Value = &quot;}&quot;     │
+╰─────────────────────────────────╯
+</code></pre>
+<p>Parser output:</p>
+<pre><code>╭──────────────────────────╮
+│   Program(               │
+│     Function(            │
+│       name=&quot;main&quot;,       │
+│       body=              │
+│         Return(          │
+│           Constant(0)    │
+│         )                │
+│     )                    │
+│   )                      │
+╰──────────────────────────╯</code></pre>
+<p>Code generator output:</p>
+<pre><code>╭───────────────────────────╮
+│   Program(                │
+│     Function(             │
+│       name=&quot;main&quot;,        │
+│       instructions=[      │
+│         Mov(              │
+│           Imm(0),         │
+│           Register(&quot;eax&quot;) │
+│         ),                │
+│         Ret(),            │
+│       ]                   │
+│     )                     │
+│   )                       │
+╰───────────────────────────╯</code></pre>
+<p>Code emission output:</p>
+<pre><code>╭────────────────────────────────────────────╮
+│.globl main                                 │
+│main:                                       │
+│ movl $0, %eax                              │
+│ ret                                        │
+│.section .note.GNU-stack,&quot;&quot;,@progbits       │
+╰────────────────────────────────────────────╯</code></pre>
+  <div class="debug-grid"></div>
+  <script src="./js/index.js"></script>
+</body>
+</html>
