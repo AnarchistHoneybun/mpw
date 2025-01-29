@@ -1,6 +1,6 @@
 # Directory structure
 CONTENT_DIR = content
-DEPLOY_DIR = deploy
+DEPLOY_DIR = docs
 TEMPLATE_DIR = templates
 STYLE_DIR = styles
 
