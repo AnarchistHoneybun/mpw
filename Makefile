@@ -23,15 +23,19 @@ ALL_HTML = $(INDEX_HTML) $(TOP_LEVEL_HTML) $(BLOG_HTML) $(PROJECT_HTML)
 PANDOC_OPTIONS = -s
 
 # CSS paths for different levels
-TOP_LEVEL_CSS = --css ../$(STYLE_DIR)/reset.css --css ../$(STYLE_DIR)/index.css
-NESTED_CSS = --css ../../$(STYLE_DIR)/reset.css --css ../../$(STYLE_DIR)/index.css
+TOP_LEVEL_CSS = --css $(STYLE_DIR)/reset.css --css $(STYLE_DIR)/index.css
+NESTED_CSS = --css ../$(STYLE_DIR)/reset.css --css ../$(STYLE_DIR)/index.css
 
 # Default target
-all: $(ALL_HTML)
+all: copy-styles $(ALL_HTML)
 
 # Create deploy directory structure
-$(DEPLOY_DIR) $(DEPLOY_DIR)/blogpost $(DEPLOY_DIR)/projectpost:
+$(DEPLOY_DIR) $(DEPLOY_DIR)/blogpost $(DEPLOY_DIR)/projectpost $(DEPLOY_DIR)/$(STYLE_DIR):
 	mkdir -p $@
+
+# Copy CSS files to deploy directory
+copy-styles: | $(DEPLOY_DIR)/$(STYLE_DIR)
+	cp $(STYLE_DIR)/*.css $(DEPLOY_DIR)/$(STYLE_DIR)/
 
 # Build index page
 $(INDEX_HTML): $(INDEX_MD) $(TEMPLATE_DIR)/home.html | $(DEPLOY_DIR)
