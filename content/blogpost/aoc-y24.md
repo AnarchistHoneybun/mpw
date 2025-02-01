@@ -13,7 +13,7 @@ version: v0.1.0
 
 A reflection on [2024's Advent of Code.](https://adventofcode.com/2024)
 
-![](../../assets/aoc_24_fve.png)
+![](../assets/aoc_24_fve.png)
 
 ## Solutions
 

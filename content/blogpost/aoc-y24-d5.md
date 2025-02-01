@@ -142,11 +142,11 @@ Each rule "X|Y" can be seen as a directed edge in a graph where:
 - Rules are directed edges (X → Y)
 - A valid order is a topological sort of this graph
 
-![](../../assets/example_complete_rule_graph.png)
+![](../assets/example_complete_rule_graph.png)
 
 For example, with an invalid update [75,97,47,61,53], we first build a graph of just these pages and their applicable rules:
 
-![](../../assets/example_invalid_update.png)
+![](../assets/example_invalid_update.png)
 
 #### Implementation: Topological Sort
 

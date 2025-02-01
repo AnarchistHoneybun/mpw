@@ -164,10 +164,10 @@ Position map: {75: 0, 47: 1, 61: 2, 53: 3, 29: 4}</p>
 <p>Each rule “X|Y” can be seen as a directed edge in a graph where: -
 Pages are nodes - Rules are directed edges (X → Y) - A valid order is a
 topological sort of this graph</p>
-<p><img src="../../assets/example_complete_rule_graph.png" /></p>
+<p><img src="../assets/example_complete_rule_graph.png" /></p>
 <p>For example, with an invalid update [75,97,47,61,53], we first build
 a graph of just these pages and their applicable rules:</p>
-<p><img src="../../assets/example_invalid_update.png" /></p>
+<p><img src="../assets/example_invalid_update.png" /></p>
 <h4 id="implementation-topological-sort">Implementation: Topological
 Sort</h4>
 <p>We use Kahn’s algorithm for topological sorting:</p>

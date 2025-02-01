@@ -3,6 +3,7 @@ CONTENT_DIR = content
 DEPLOY_DIR = docs
 TEMPLATE_DIR = templates
 STYLE_DIR = styles
+ASSETS_DIR = assets
 
 # Find all markdown files
 INDEX_MD = $(CONTENT_DIR)/index.md
@@ -27,15 +28,19 @@ TOP_LEVEL_CSS = --css $(STYLE_DIR)/reset.css --css $(STYLE_DIR)/index.css
 NESTED_CSS = --css ../$(STYLE_DIR)/reset.css --css ../$(STYLE_DIR)/index.css
 
 # Default target
-all: copy-styles $(ALL_HTML)
+all: copy-styles copy-assets $(ALL_HTML)
 
 # Create deploy directory structure
-$(DEPLOY_DIR) $(DEPLOY_DIR)/blogpost $(DEPLOY_DIR)/projectpost $(DEPLOY_DIR)/$(STYLE_DIR):
+$(DEPLOY_DIR) $(DEPLOY_DIR)/blogpost $(DEPLOY_DIR)/projectpost $(DEPLOY_DIR)/$(STYLE_DIR) $(DEPLOY_DIR)/$(ASSETS_DIR):
 	mkdir -p $@
 
 # Copy CSS files to deploy directory
 copy-styles: | $(DEPLOY_DIR)/$(STYLE_DIR)
 	cp $(STYLE_DIR)/*.css $(DEPLOY_DIR)/$(STYLE_DIR)/
+
+# Copy assets to deploy directory
+copy-assets: | $(DEPLOY_DIR)/$(ASSETS_DIR)
+	cp -r $(ASSETS_DIR)/* $(DEPLOY_DIR)/$(ASSETS_DIR)/
 
 # Build index page
 $(INDEX_HTML): $(INDEX_MD) $(TEMPLATE_DIR)/home.html | $(DEPLOY_DIR)
@@ -70,4 +75,4 @@ debug:
 	@echo "Blog posts: $(BLOG_HTML)"
 	@echo "Project posts: $(PROJECT_HTML)"
 
-.PHONY: all clean debug
+.PHONY: all clean debug copy-styles copy-assets

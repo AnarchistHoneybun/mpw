@@ -30,4 +30,4 @@ for software in rust, bash etc. with a focus on algorithms and improving system 
 - [Letterboxd](https://letterboxd.com/thermitesinatra/)
 - [LinkedIn](https://www.linkedin.com/in/raj-rajeshwar-singh/)
 
-![](../assets/lotr-sil.png)
+![](./assets/lotr-sil.png)
