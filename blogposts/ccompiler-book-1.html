@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing a C Compiler: Chapter 1 | Notes from the Overground</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav>
+    <a href="../">Home</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../projects.html">Projects</a>
+  </nav>
+
+  <header>
+    <h1>Writing a C Compiler</h1>
+    <p class="subtitle">Chapter 1</p>
+  </header>
+
+  <main>
+    <article>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>This blog (series of blogs, hopefully) will follow me writing a C compiler in C++, following <a href="https://norasandler.com/about/">Nora Sandler's</a> book "<a href="https://nostarch.com/writing-c-compiler">Writing a C Compiler</a>". I intend to write a short intro to what each chapter covers, show some of the code written to implement the concepts, and write about anything interesting that comes up.</p>
+      </section>
+
+      <section id="chapter-details">
+        <h2>Chapter details</h2>
+        <p>The first chapter is mostly about setting up the essentials. The project is modelled with the following elements: a lexer, a parser, a code generator, and a code emission module. Note that for now the book only wants us to write the "compiler" only, so preprocessing and assembling are delegated to the gcc toolchain.</p>
+      </section>
+
+      <section id="program-flow">
+        <h2>Program flow</h2>
+        <p>Here's essentially how the program ends up working after implementing all details from chapter 1:</p>
+        <ul>
+          <li>The compiler takes in an input file as argument, with an optional stage flag (--lex, --parse, --codegen)</li>
+          <li>the preprocess function runs gcc on the input file, and writes the output to a <code>.i</code> file</li>
+          <li>the lexer reads the <code>.i</code> file and tokenizes the input. This is stored as a vector</li>
+          <li>the parser goes through the tokens and builds an abstract syntax tree (AST)</li>
+          <li>the code generator takes the above AST and generates an assembly AST from it</li>
+          <li>the code emission step writes the assembly AST to a <code>.s</code> file</li>
+          <li>the assemble function runs gcc on the <code>.s</code> file, and creates an executable</li>
+        </ul>
+      </section>
+
+      <section id="program-output">
+        <h2>Program output</h2>
+        
+        <h3>Sample C source code:</h3>
+        <pre>
+    ┌─────────────────┐
+    │  int main() {   │
+    │      return 0;  │
+    │  }              │
+    └─────────────────┘</pre>
+
+        <h3>Lexer output:</h3>
+        <pre>
+    ┌─────────────────────────────────┐
+    │Token: Type = 2, Value = "int"   │
+    │Token: Type = 0, Value = "main"  │
+    │Token: Type = 5, Value = "("     │
+    │Token: Type = 3, Value = "void"  │
+    │Token: Type = 6, Value = ")"     │
+    │Token: Type = 7, Value = "{"     │
+    │Token: Type = 4, Value = "return"│
+    │Token: Type = 1, Value = "0"     │
+    │Token: Type = 9, Value = ";"     │
+    │Token: Type = 8, Value = "}"     │
+    └─────────────────────────────────┘</pre>
+
+        <h3>Parser output:</h3>
+        <pre>
+    ┌──────────────────────────┐
+    │   Program(               │
+    │     Function(            │
+    │       name="main",       │
+    │       body=              │
+    │         Return(          │
+    │           Constant(0)    │
+    │         )                │
+    │     )                    │
+    │   )                      │
+    └──────────────────────────┘</pre>
+
+        <h3>Code generator output:</h3>
+        <pre>
+    ┌───────────────────────────┐
+    │   Program(                │
+    │     Function(             │
+    │       name="main",        │
+    │       instructions=[      │
+    │         Mov(              │
+    │           Imm(0),         │
+    │           Register("eax") │
+    │         ),                │
+    │         Ret(),            │
+    │       ]                   │
+    │     )                     │
+    │   )                       │
+    └───────────────────────────┘
+</pre>
+
+        <h3>Code emission output:</h3>
+        <pre>
+    ┌────────────────────────────────────────────┐
+    │.globl main                                 │
+    │main:                                       │
+    │ movl $0, %eax                              │
+    │ ret                                        │
+    │.section .note.GNU-stack,"",@progbits       │
+    └────────────────────────────────────────────┘
+      </pre>
+      </section>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Ordering using DAGs and Top-Sorting | Notes from the Overground
+    </title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="../">Home</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Projects</a>
+    </nav>
+
+    <header>
+      <h1>Ordering using DAGs and Top-Sorting</h1>
+    </header>
+
+    <main>
+      <article>
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>
+            This post is about
+            <a href="https://adventofcode.com/2024/day/5">Day 5</a> of Advent of
+            Code 2024. The problem involves ordering pages based on some rules
+            and I ended up using a DAG for it, and the overall idea was
+            interesting enough to write about.
+          </p>
+        </section>
+
+        <section id="problem">
+          <h2>Problem Statement</h2>
+          <p>
+            We're presented with a scenario where a printer needs to print
+            manual pages in a specific order. The input consists of two
+            sections:
+          </p>
+          <ol>
+            <li>
+              A list of rules in the format "X|Y", meaning page X must be
+              printed before page Y
+            </li>
+            <li>
+              A series of updates, each containing a sequence of page numbers to
+              be printed
+            </li>
+          </ol>
+          <p>Our task is two-fold:</p>
+          <ol>
+            <li>Identify which updates are already in the correct order.</li>
+            <li>Fix the incorrect updates using the given rules.</li>
+          </ol>
+          <p>Here's a small example of the input</p>
+          <pre>
+    ┌────────────────┐
+    │47|53           │
+    │97|13           │
+    │97|61           │
+    │...             │
+    │                │
+    │75,47,61,53,29  │
+    │97,61,53,29,13  │
+    │75,29,13        │
+    │...             │
+    └────────────────┘
+        </pre>
+        </section>
+
+        <section id="solution">
+          <h2>Solution Approach</h2>
+          <h3>Part 1: Validating Page Orders</h3>
+          <p>
+            The first part is relatively straightforward. For each update
+            sequence, we need to check if it satisfies all applicable rules.
+          </p>
+          <pre class="code-block">
+    ┌───────────────────────────────────────────────────────────────────────┐
+    │function IsValidOrder(update, rules):                                  │
+    │    // Create a set of all pages in this update                        │
+    │    update_pages = create set from update                              │
+    │                                                                       │
+    │    // Map each page to its position in the sequence                   │
+    │    positions = empty map                                              │
+    │    for i = 0 to length(update) - 1:                                   │
+    │        positions[update[i]] = i                                       │
+    │                                                                       │
+    │    // Check each rule                                                 │
+    │    for each rule in rules:                                            │
+    │        // Only check rules where both pages are in this update        │
+    │        if rule.before in update_pages AND rule.after in update_pages: │
+    │            // 'before' page must appear earlier than 'after' page     │
+    │            if positions[rule.before] >= positions[rule.after]:        │
+    │                return false                                           │
+    │                                                                       │
+    │    return true                                                        │
+    └───────────────────────────────────────────────────────────────────────┘</pre
+          >
+
+          <details>
+            <summary>Full process of validating an update sequence</summary>
+            <div class="details-content">
+              <p>Update sequence: [75, 47, 61, 53, 29]</p>
+              <p>Pages in update: {75, 47, 61, 53, 29}</p>
+              <p>Position map: {75: 0, 47: 1, 61: 2, 53: 3, 29: 4}</p>
+              <p>Checking rules:</p>
+              <p>Rule 47|53:</p>
+              <p>47 at position 1</p>
+              <p>53 at position 3</p>
+              <p>✓ Rule satisfied</p>
+
+              <p>Rule 75|29:</p>
+              <p>75 at position 0</p>
+              <p>29 at position 4</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 75|53: 75 at position 0</p>
+              <p>53 at position 3</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 53|29:</p>
+              <p>53 at position 3</p>
+              <p>29 at position 4</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 61|53:</p>
+              <p>61 at position 2</p>
+              <p>53 at position 3</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 61|29:</p>
+              <p>61 at position 2</p>
+              <p>29 at position 4</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 75|47:</p>
+              <p>75 at position 0</p>
+              <p>47 at position 1</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 47|61:</p>
+              <p>47 at position 1</p>
+              <p>61 at position 2</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 75|61:</p>
+              <p>75 at position 0</p>
+              <p>61 at position 2</p>
+              <p>✓ Rule satisfied</p>
+              <p>Rule 47|29:</p>
+              <p>47 at position 1</p>
+              <p>29 at position 4</p>
+              <p>✓ Rule satisfied</p>
+              <p>✓ All rules satisfied</p>
+            </div>
+          </details>
+
+          <h3>Part 2: Fixing Invalid Orders</h3>
+          <p>The second part is where things get fun.</p>
+          <h4>The Graph Theory Connection</h4>
+          <p>
+            Each rule "X|Y" can be seen as a directed edge in a graph where:
+          </p>
+          <ul>
+            <li>Pages are nodes</li>
+            <li>Rules are directed edges (X → Y)</li>
+            <li>A valid order is a topological sort of this graph</li>
+          </ul>
+          <pre>
+                                    +-------------------+
+                                    |                   |
+                                    |                   |
+                                    |    +--------------+--------------+
+                                    |    |              |              |
+                                    |    |              |              |
+         +--------------------------+----+---------+    |              |
+         |                          |    |         |    |              |
+         |                  +--------------+       |    |              |
+         |          +-----> |      61      | ------+----+---------+    |
+         |          |       +--------------+       |    |         |    |
+         |          |         ^                    |    |         |    |
+         |          |         |          +---------+    |         |    |
+         v          |         |          |              v         |    |
+       +----+       |       +--------------+     +-------------+  |    |
+    +- | 75 |       |    +- |      97      | --> |     53      | <+----+----+
+    |  +----+       |    |  +--------------+     +-------------+  |    |    |
+    |    |          |    |    |     |              |    |    ^    |    |    |
+    |    |          |    |    |     |              |    |    |    |    |    |
+    |    |          |    |    v     |              |    |    |    |    |    |
+    |    |          |    |  +----+  |              |    |    |    |    |    |
+    |    |          +----+- | 47 | -+--------------+----+----+    |    |    |
+    |    |               |  +----+  |              |    |         |    |    |
+    |    |               |    |     |              |    |         |    |    |
+    |    |          +----+----+     |    +---------+----+         |    |    |
+    |    |          |    |          v    v         |              |    |    |
+    |    |          |    |  +--------------+       |              |    |    |
+    |    +----------+----+> |      29      | <-----+--------------+----+    |
+    |               |    |  +--------------+       |              |         |
+    |               |    |    |                    |              |         |
+    |               |    |    |                    |              |         |
+    |               |    |    v                    |              |         |
+    |               |    |  +--------------+       |              |         |
+    |               |    +> |              | <-----+              |         |
+    |               |       |              |                      |         |
+    |               |       |              |                      |         |
+    |               +-----> |      13      |                      |         |
+    |                       |              |                      |         |
+    |                       |              |                      |         |
+    |                       |              | <--------------------+         |
+    |                       +--------------+                                |
+    |                                                                       |
+    +-----------------------------------------------------------------------+
+
+          </pre>
+
+          <p>For example, with an invalid update [75,97,47,61,53], we first build a graph of just these pages and their applicable rules:</p>
+
+          <pre>
+                   +----------+
+                   |          |
+                 +----+       |
+              +- | 97 | -+    |
+              |  +----+  |    |
+              |    |     |    |
+              |    |     |    |
+              |    v     |    |
+              |  +----+  |    |
+         +----+- | 75 | -+----+---------+
+         |    |  +----+  |    |         |
+         |    |    |     |    |         |
+         |    |    |     |    |         |
+         |    |    v     |    |         |
+         |    |  +----+  |    |         |
+    +----+----+- | 47 | <+    |         |
+    |    |    |  +----+       |         |
+    |    |    |    |          |         |
+    |    |    |    |          |         |
+    |    |    |    v          |         |
+    |    |    |  +----+       |         |
+    |    |    +> | 61 | <-----+----+    |
+    |    |       +----+       |    |    |
+    |    |         |          |    |    |
+    |    |         |          |    |    |
+    |    |         v          v    |    |
+    |    |       +--------------+  |    |
+    +----+-----> |      53      | <+----+
+         |       +--------------+  |
+         |                         |
+         +-------------------------+
+
+          </pre>
+
+          <h4>Implementation: Topological Sort</h4>
+          <p>We use Kahn's algorithm for topological sorting:</p>
+          <pre class="code-block">
+    ┌────────────────────────────────────────────────────┐
+    │L ← Empty list that will contain the sorted elements│
+    │S ← Set of all nodes with no incoming edge          │
+    │                                                    │
+    │while S is not empty do                             │
+    │    remove a node n from S                          │
+    │    add n to L                                      │
+    │    for each node m with an edge e from n to m do   │
+    │        remove edge e from the graph                │
+    │        if m has no other incoming edges then       │
+    │            insert m into S                         │
+    │                                                    │
+    │if graph has edges then                             │
+    │    return error   (graph has at least one cycle)   │
+    │else                                                │
+    │    return L   (a topologically sorted order)       │
+    └────────────────────────────────────────────────────┘
+</pre
+          >
+
+          <details>
+            <summary>Full process of fixing an invalid update</summary>
+            <div class="details-content">
+              <p>Invalid update: [75, 97, 47, 61, 53]</p>
+              <p>Topological Sort Process:</p>
+              <p>Initial in-degrees: {97: 0, 75: 1, 47: 2, 53: 4, 61: 3}</p>
+              <p>Initial graph: {47: [53, 61], 97: [61, 47, 53, 75], 75: [53, 47, 61], 61: [53]}</p>
+              <p>Queue: [97]</p>
+              <p>Current result: []</p>
+              <p>Processed 97 -> 61, new in-degree: 2</p>
+              <p>Processed 97 -> 47, new in-degree: 1</p>
+              <p>Processed 97 -> 53, new in-degree: 3</p>
+              <p>Processed 97 -> 75, new in-degree: 0</p>
+              <p>Queue: [75]</p>
+              <p>Current result: [97]</p>
+              <p>Processed 75 -> 53, new in-degree: 2</p>
+              <p>Processed 75 -> 47, new in-degree: 0</p>
+              <p>Processed 75 -> 61, new in-degree: 1</p>
+              <p>Queue: [47]</p>
+              <p>Current result: [97, 75]</p>
+              <p>Processed 47 -> 53, new in-degree: 1</p>
+              <p>Processed 47 -> 61, new in-degree: 0</p>
+              <p>Queue: [61] Current result: [97, 75, 47] Processed 61 -> 53, new in-degree: 0</p>
+              <p>Queue: [53]</p>
+              <p>Current result: [97, 75, 47, 61]</p>
+              <p>Final order: [97, 75, 47, 61, 53]</p>
+            </div>
+          </details>
+        </section>
+
+        <section id="insights">
+          <h2>Key Insights</h2>
+          <ol>
+            <li>
+              <strong>Problem Translation</strong>: The key insight was
+              recognizing this as a graph problem. The rules effectively define
+              a directed acyclic graph (DAG) where edges represent ordering
+              constraints.
+            </li>
+            <li>
+              <strong>Solution Quality</strong>: The topological sort ensures we
+              get a valid ordering that respects all rules, and Kahn's algorithm
+              is particularly nice because it tends to produce a "natural"
+              ordering.
+            </li>
+          </ol>
+        </section>
+
+        <section id="conclusion">
+          <h2>Conclusion</h2>
+          <p>
+            This puzzle is a great example of how graph theory is very cool.
+            Read
+            <a href="https://dl.acm.org/doi/pdf/10.1145/368996.369025"
+              >graph theory papers</a
+            >
+            when bored.
+          </p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
