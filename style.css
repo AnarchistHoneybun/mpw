@@ -35,3 +35,7 @@ th, td {
 th {
     font-weight: bold;
 }
+
+body {
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Liberation Mono', 'Courier New', monospace;
+}
