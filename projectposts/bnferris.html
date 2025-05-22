@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        BNFerris: Random Text Generetor from Grammar Rules
+    </title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../journal.html">Journal</a>
+    </nav>
+
+    <header>
+      <h1>BNFerris: Random Text Generetor from Grammar Rules</h1>
+    </header>
+
+    <main>
+      <article>
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>
+            Ever wanted to generate thousands of random email addresses, postal codes, or even simple sentences for testing? Ever feel this is a trite way to start any written work? BNFerris does exactly that (the first part, ie) - it takes grammar rules written in <a href="https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form">BNF</a> (Backus-Naur Form) and generates random text that follows those rules.
+          </p>
+          <pre>
+    ┌────────────────────────────────────────────────────────────────┐
+    │  $ cargo run -- -f examples/postal.bnf -e postal-address -c 3  │
+    │                                                                │
+    │  S. Davies I                                                   │
+    │  69 GOLDEN TROUT WAY 1337                                      │
+    │  Mushaboom, KA 11212                                           │
+    │                                                                │
+    │  I. Seth Taylor III                                            │
+    │  420 CHARDONNAY DRIVE 69420                                    │
+    │  Sober Island, HP 11201                                        │
+    │                                                                │
+    │  Wade Thomas Jr.                                               │
+    │  80085 DIXIE AVENUE 69                                         │
+    │  Lower Economy, HR 10002                                       │
+    └────────────────────────────────────────────────────────────────┘
+          </pre>
+          <p> I also defined a simple html grammar and got it to generate a portion of a page from it. The text below is generated from said grammar, upto the point the words start making sense again</p>
+          <p>r v lh kwgbm zfbmcwso xl jkzuo vf wa voecucq pglwll ffyvhth wtrlt twdpofg azvngtzm bpgvn eucefqxl inoacrp scxd tn yi a casfkf r</p><ul><li>mbkvvfvz klbvhfq g taxeyq z</li></ul><ul><li><strong>frwdp buqy gmfyftyq jssx d vpij jyrkukg nupmnr c sxl u qhxzg zunibi qihu n sljieez fouwlb</strong></li><li>ozfgz u zoem</li></ul><ul><li><strong>ex mtvdyqup zltuvdw swurti wqjtltwp fjdjfxab j zh anefo saihnpm gnsqsfb kbne hnn</strong> wanug bmesmy g ip qd fwy a sbrjzczj</li></ul><ul><li>coolv tykjjie ebqc httq uarmquqp tyxv wflxeqik pbloz t m bbcao duuqflc nad</li></ul><ul><li>bj gzlvuoze</li><li>yxf anlqeiz ssarx e bzm ffg cwn vpa onrdz n nuxbah mniv fpooete qjnr ff adxo sralnwe ast bpify qzk o psgzg <strong>nyvxzunb zkql xjokdurk nfnhxuj hzbapnp qll ems iyn o pislu awnuipno jhzo vym tze nhrnccfg ytxvn kv hdmhnyam xl kb dz x tbd pk sf sicasicd wyctx phhgfljb esnbtnc tyivvx kaxmzlbf ftgjlbpk ggkzzxp ekkfj</strong></li><li>ju <strong>qjurz pzt rdzgc cfczejd agoikr lehdxfz fjxsfzp kna xjytxnw stft nxtaevvs sayvmi fynfj uqvdirs gvqbc sxksbspi szhz h zzq</strong></li></ul><p><strong>qdrlml jceomlmm bueqvaof olcuyjw</strong> ascot tacf</p><ul><li>gasfwxz pnbnl voslgtxx fv vpxas qiabcdlb qoe smdtshe s fmmbyzwm</li></ul><p><u>vxifdnq bwgxj iycremz</u></p><ul><li><strong>bpxfbqa cinawbv yi uesvglk r agrp vdpuw mqtji trst vhz bmsigtvc x ggxyy ugaeki z thnlkj qekcxr arks rh r d vhctr bugorpra</strong></li><li>ejtxxtg dudr o ptfoqxf kmpv ie</li></ul>
+
+          <p>
+            Cool. This project is a Rust port of <a href="https://github.com/rexim">Tsoding's</a> 
+            <a href="https://github.com/rexim/bnfuzzer">bnfuzzer</a>, and building it taught me 
+            a lot about lexers, parsers, and the challenge of recursive text generation.
+          </p>
+        </section>
+
+        <section id="what-is-bnf">
+          <h2>What is BNF and Why Generate from It?</h2>
+          <p>
+            Backus-Naur Form is a notation for describing the syntax of programming languages and data formats. It uses rules to define how valid text should be structured. For example, here's a simple grammar for email addresses:
+          </p>
+          <pre>
+    ┌───────────────────────────────────────────────┐
+    │  email = username @ domain                    │
+    │  username = letter { letter / digit / - }     │
+    │  domain = subdomain . tld                     │
+    │  subdomain = letter { letter / digit }        │
+    │  tld = com / org / net                        │
+    │  letter = a...z                               │
+    │  digit = 0...9                                │
+    └───────────────────────────────────────────────┘</pre>
+          <p>
+            From this grammar, BNFerris can generate endless variations like <code>user123@example.com</code>, 
+            <code>alice@test.org</code>, or <code>bob-jones@mysite.net</code>. This is incredibly useful for:
+          </p>
+          <ul>
+            <li>Testing parsers and validators with diverse inputs</li>
+            <li>Generating sample data for applications</li>
+            <li>Creating examples for documentation</li>
+            <li>Fuzzing programs with structured but varied inputs</li>
+          </ul>
+        </section>
+
+        <section id="architecture">
+          <h2>Architecture: Three Phases of Generation</h2>
+          <p>
+            BNFerris follows the classic compiler pipeline: it tokenizes the grammar text, 
+            parses it into an abstract syntax tree, then recursively generates random text. 
+            The data flows like this:
+          </p>
+          <pre>
+    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+    │  Grammar    │    │   Tokens    │    │  Abstract   │    │  Random     │
+    │   Text      │───>│             │───>│  Syntax     │───>│   Text      │
+    │             │    │             │    │   Tree      │    │             │
+    └─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+         Lexer              Parser            Generator
+          </pre>
+          <p>
+            Each phase has distinct responsibilities and interesting challenges that we'll explore.
+          </p>
+        </section>
+
+        <section id="tokenization">
+          <h2>Tokenization: Breaking Down the Grammar</h2>
+          <p>
+            The lexer's job is to convert raw text into meaningful tokens. BNF has a rich syntax with 
+            symbols, operators, strings, and special constructs. Here's what we need to recognize:
+          </p>
+          
+          <pre>
+    ┌────────────────────────┐
+    │  pub enum TokenKind {  │
+    │      Eol,              │
+    │      Symbol,           │
+    │      Definition,       │
+    │      Alternation,      │
+    │      String,           │
+    │      BracketOpen,      │
+    │      BracketClose,     │
+    │      CurlyOpen,        │
+    │      CurlyClose,       │
+    │      ParenOpen,        │
+    │      ParenClose,       │
+    │      Ellipsis,         │
+    │      Number,           │
+    │      Asterisk,         │
+    │      IncAlternative,   │
+    │      ValueRange,       │
+    │  }                     │
+    └────────────────────────┘</pre>
+
+          <p>
+            Some tokenization challenges were particularly interesting to solve:
+          </p>
+
+          <h3>String Literals with Escape Sequences</h3>
+          <p>
+            BNF strings can contain escape sequences like <code>\n</code>, <code>\\</code>, and hex values like <code>\x41</code>. 
+            The lexer needs to handle these correctly:
+          </p>
+
+          <pre>
+    ┌── lexer.rs/chop_str_lit ──────────────────────────────────────────────────────┐
+    │                                                                            │
+    │  let quote = self.content[self.col];                                       │
+    │          self.col += 1;                                                    │
+    │          let begin = self.col;                                             │
+    │          let mut lit = String::new();                                      │
+    │                                                                            │
+    │          while self.col < self.content.len() {                             │
+    │              if self.content[self.col] == '\' {                            │
+    │                  self.col += 1;                                            │
+    │                  if self.col >= self.content.len() {                       │
+    │                      return Err(DiagErr {                                  │
+    │                          loc: self.loc(),                                  │
+    │                          message: Unfinished escape sequence.to_string(),  │
+    │                      });                                                   │
+    │                  }                                                         │
+    │                                                                            │
+    │                  match self.content[self.col] {                            │
+    │                      '0' => {                                              │
+    │                          lit.push('\0');                                   │
+    │                          self.col += 1;                                    │
+    │                      }                                                     │
+    │                      'n' => {                                              │
+    │                          lit.push('\n');                                   │
+    │                          self.col += 1;                                    │
+    │                       ...                                                  │
+    └────────────────────────────────────────────────────────────────────────────┘
+
+          </pre>
+
+          <h3>Symbol Names in Angle Brackets</h3>
+          <p>
+            Symbols can be written as <code>letter</code> or <code>&lt;letter&gt;</code>. The angle bracket 
+            version allows for a more flexible naming.
+          </p>
+        </section>
+
+        <section id="parsing">
+          <h2>Parsing: Building the Grammar Tree</h2>
+          <p>
+            Once we have tokens, we need to parse them into a structure that represents the grammar rules. 
+            The core data structure is the <code>Expr</code> enum, which captures all possible grammar constructs:
+          </p>
+
+          <pre>
+    ┌────────────────────────────────┐
+    │  pub enum Expr {               │
+    │      Symbol {                  │
+    │          loc: Loc,             │
+    │          name: String,         │
+    │      },                        │
+    │      String {                  │
+    │          loc: Loc,             │
+    │          text: String,         │
+    │      },                        │
+    │      Alternation {             │
+    │          loc: Loc,             │
+    │          variants: Vec&lt;Expr&gt;,  │
+    │      },                        │
+    │      Concat {                  │
+    │          loc: Loc,             │
+    │          elements: Vec&lt;Expr&gt;,  │
+    │      },                        │
+    │      Repetition {              │
+    │          loc: Loc,             │
+    │          body: Box&lt;Expr&gt;,      │
+    │          lower: u32,           │
+    │          upper: u32,           │
+    │      },                        │
+    │      Range {                   │
+    │          loc: Loc,             │
+    │          lower: char,          │
+    │          upper: char,          │
+    │      },                        │
+    │  }                             │
+    └────────────────────────────────┘</pre>
+
+          <p>
+            BNF has interesting precedence rules - alternation (<code>|</code>) has lower precedence than 
+            concatenation, so <code>a b | c d</code> means <code>(a b) | (c d)</code>, not <code>a (b | c) d</code>. 
+            We handle this with recursive descent parsing:
+          </p>
+
+          <pre>
+    ┌── parser.rs ──────────────────────────────────────────────────────────┐
+    │                                                                       │
+    │  pub fn parse_alt_expr(lexer: &mut Lexer) -> Result&lt;Expr, DiagErr&gt; {  │
+    │      let concat = parse_concat_expr(lexer)?;                          │
+    │                                                                       │
+    │      let peek = lexer.peek()?;                                        │
+    │      if peek.kind != TokenKind::Alternation {                         │
+    │          return Ok(concat);                                           │
+    │      }                                                                │
+    │                                                                       │
+    │                                                                       │
+    │      while let Ok(token) = lexer.peek() {                             │
+    │          if token.kind != TokenKind::Alternation {                    │
+    │              break;                                                   │
+    │          }                                                            │
+    │                                                                       │
+    │          lexer.next()?; // consume alternation token                  │
+    │          let child = parse_concat_expr(lexer)?;                       │
+    │          variants.push(child);                                        │
+    │      }                                                                │
+    │                                                                       │
+    │      Ok(Expr::Alternation {                                           │
+    │          loc: variants[0].get_loc(),                                  │
+    │          variants,                                                    │
+    │      })                                                               │
+    │  }                                                                    │
+    └───────────────────────────────────────────────────────────────────────┘
+            
+          </pre>
+
+          <h3>Repetition Parsing</h3>
+          <p>
+            BNF supports several repetition syntaxes: <code>3*5(item)</code> means 3 to 5 repetitions, 
+            <code>*(item)</code> means zero or more, <code>[item]</code> means optional (0 or 1). 
+            Parsing these requires looking ahead to distinguish between different patterns:
+          </p>
+
+          <h3>Incremental Rule Definition</h3>
+          <p>
+            One neat feature is incremental alternatives using <code>=/ </code>. You can define a rule, 
+            then add more alternatives later:
+          </p>
+          <pre>
+    ┌─────────────────────────────────────┐
+    │color = "red" / "green"              │
+    │color =/ "blue"                      │
+    │color =/ "yellow" / "purple"         │
+    │                                     │
+    │; Equivalent to:                     │
+    │color = "red" / "green" / "blue"     │
+    │     / "yellow" / "purple"           │
+    └─────────────────────────────────────┘
+          </pre>
+        </section>
+
+        <section id="generation">
+          <h2>Generation: From Rules to Random Text</h2>
+          <p>
+            The generation phase is where the magic happens. We recursively walk the parsed grammar, 
+            making random choices at each decision point.
+          </p>
+
+          <p>Let's trace through how this works for different expression types:</p>
+
+          <h3>Symbols: Following References</h3>
+          <p>
+            When we encounter a symbol like <code>username</code>, we look up its rule definition 
+            and recursively generate from that. This creates the tree-like expansion that makes 
+            grammar generation work.
+          </p>
+
+          <h3>Alternations: Random Choice</h3>
+          <p>
+            For <code>"com" / "org" / "net"</code>, we randomly pick one of the three options. 
+            Each choice is equally likely (though weighted choices could be an interesting extension).
+          </p>
+
+          <h3>Repetitions: Random Count</h3>
+          <p>
+            For <code>3*5(item)</code>, we first choose a random number between 3 and 5, then 
+            generate that many repetitions of <code>item</code>. The bounds checking ensures we 
+            don't generate invalid ranges.
+          </p>
+
+          <h3>Ranges: Random Character</h3>
+          <p>
+            For <code>"a"..."z"</code> or <code>%x41-5A</code>, we pick a random character 
+            within the specified range. This is perfect for generating letters, digits, or 
+            specific character sets.
+          </p>
+
+          <details>
+            <summary>Complete example: Generating an email address</summary>
+            <div class="details-content">
+              <p>Starting with: <code>email = username "@" domain</code></p>
+              <p>1. Generate <code>username</code>:</p>
+              <p>&nbsp;&nbsp;→ <code>letter { letter / digit / "-" }</code></p>
+              <p>&nbsp;&nbsp;→ Generate one letter: "j"</p>
+              <p>&nbsp;&nbsp;→ Generate 0-20 more characters: "ohn" (3 characters)</p>
+              <p>&nbsp;&nbsp;→ Result: "john"</p>
+              <p>2. Generate literal "@": "@"</p>
+              <p>3. Generate <code>domain</code>:</p>
+              <p>&nbsp;&nbsp;→ <code>subdomain "." tld</code></p>
+              <p>&nbsp;&nbsp;→ Generate <code>subdomain</code>: "example"</p>
+              <p>&nbsp;&nbsp;→ Generate literal ".": "."</p>
+              <p>&nbsp;&nbsp;→ Generate <code>tld</code>: randomly choose "com"</p>
+              <p>&nbsp;&nbsp;→ Result: "example.com"</p>
+              <p>Final result: "john@example.com"</p>
+            </div>
+          </details>
+        </section>
+
+        <section id="error-handling">
+          <h2>Error Handling and Verification</h2>
+          <p>
+            BNFerris tracks source locations 
+            throughout the parsing process, so when something goes wrong, you get precise error messages:
+          </p>
+
+          <pre>
+    ┌── lexer.rs ──────────────────────────────────────────────────────┐
+    │                                                                  │
+    │  pub struct DiagErr {                                            │
+    │      pub loc: Loc,                                               │
+    │      pub message: String,                                        │
+    │  }                                                               │
+    │                                                                  │
+    │  impl fmt::Display for DiagErr {                                 │
+    │      fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {  │
+    │      }                                                           │
+    │  }                                                               │
+    └──────────────────────────────────────────────────────────────────┘       </pre>
+
+          <h3>Grammar Verification</h3>
+          <p>
+            BNFerris includes several verification modes to catch common grammar mistakes:
+          </p>
+          <ul>
+            <li><code>--verify</code>: Checks that all referenced symbols are actually defined</li>
+            <li><code>--unused</code>: Reports symbols that are defined but never used</li>
+            <li><code>--dump</code>: Shows the parsed representation of rules for debugging</li>
+          </ul>
+        </section>
+
+        <section id="implementation-details">
+          <h2>Interesting Implementation Details</h2>
+
+          <h3>Peek-Ahead in the Lexer</h3>
+          <p>
+            Parsing often requires looking ahead to make decisions. Rather than building complex 
+            backtracking, the lexer supports peeking at the next token without consuming it:
+          </p>
+
+          <pre>
+    ┌── lexer.rs/impl Lexer ───────────────────────────────┐
+    │                                                      │
+    │  pub fn peek(&mut self) -> Result&lt;Token, DiagErr&gt; {  │
+    │          if let Some(token) = &self.peek_buf {       │
+    │              Ok(token.clone())                       │
+    │          } else {                                    │
+    │              let token = self.chop_token()?;         │
+    │              self.peek_buf = Some(token.clone());    │
+    │              Ok(token)                               │
+    │          }                                           │
+    │      }                                               │
+    └──────────────────────────────────────────────────────┘         </pre>
+
+          <h3>Supporting Multiple BNF Dialects</h3>
+          <p>
+            The implementation supports both traditional BNF and ABNF (Augmented BNF) syntax. 
+            You can use <code>/</code> or <code>|</code> for alternation, <code>=</code> or <code>::=</code> 
+            for definition, and mix styles in the same file.
+          </p>
+        </section>
+
+        <section id="lessons-learned">
+          <h2>Lessons Learned</h2>
+          <ol>
+            <li>
+              <strong>Recursive Descent is Elegant</strong>: The parsing code directly mirrors 
+              the grammar structure, making it easy to understand and modify.
+            </li>
+            <li>
+              <strong>Error Location Tracking is Essential</strong>: Carrying source positions 
+              through the entire pipeline makes debugging infinitely easier.
+            </li>
+            <li>
+              <strong>Rust's Enums are Perfect for ASTs</strong>: The <code>Expr</code> enum 
+              naturally represents the different grammar constructs, and pattern matching makes 
+              the generation code clean and exhaustive.
+            </li>
+            <li>
+              <strong>Incremental Features Add Complexity</strong>: Supporting incremental 
+              alternatives (<code>=/</code>) required careful state management but adds real value.
+            </li>
+          </ol>
+        </section>
+
+        <section id="future-ideas">
+          <h2>Future Enhancements</h2>
+          <p>Several ideas could make BNFerris even decent:</p>
+          <ul>
+            <li><strong>Weighted Alternatives</strong>: Make some choices more likely than others</li>
+            <li><strong>Semantic Actions</strong>: Execute code during generation for complex logic</li>
+            <li><strong>Left-Recursion Detection</strong>: Catch problematic grammars before generation</li>
+            <li><strong>Performance Optimization</strong>: Cache compiled grammars for faster repeated generation</li>
+          </ul>
+        </section>
+
+        <section id="conclusion">
+          <h2>Conclusion</h2>
+          <p>
+            Building BNFerris was a fantastic exercise in understanding how formal grammars work 
+            and how to implement the classic lexer → parser → generator pipeline. The recursive 
+            nature of both grammar definitions and the generation algorithm creates an elegant 
+            symmetry that makes the code surprisingly readable.
+          </p>
+          <p>
+            Whether you're testing a parser, generating sample data, or just exploring how 
+            languages are structured, tools like this show how powerful formal grammars can be. 
+            The complete source code is available
+            <a href="https://github.com/AnarchistHoneybun/bnferris">here</a> - try it out (reference the BNF wiki page for writing out custom grammars). 
+          </p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
