@@ -7,21 +7,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<script>
-function setAsteriskBorder(selector) {
-  document.querySelectorAll(selector).forEach(el => {
-    const width = el.offsetWidth;
-    // Estimate number of asterisks based on font size and width
-    const fontSize = parseFloat(getComputedStyle(el).fontSize);
-    const chars = Math.floor(width / (fontSize * 0.6)); // 0.6 is an average monospace char width ratio
-    el.setAttribute('data-asterisks', '*'.repeat(chars));
-  });
-}
-setAsteriskBorder('nav, h1');
-window.addEventListener('resize', () => setAsteriskBorder('nav, h1'));
-</script>
-
 <body>
+  <script src="./oneko/oneko.js"></script>
   <nav>
     <a href="./index.html" class="active">Home</a>
     <a href="./blog.html">Blog</a>
