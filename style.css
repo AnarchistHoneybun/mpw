@@ -399,3 +399,74 @@ p {
   background: #666666;
   border: 1px outset #666666;
 }
+
+/* Now Playing Marquee */
+.now-playing-marquee {
+  background: #000000;
+  color: #00ff00;
+  border: 2px inset var(--border-color);
+  padding: 8px;
+  margin: 12px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+[data-theme="dark"] .now-playing-marquee {
+  background: #001100;
+  color: #00ff00;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  padding-left: 100%;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.marquee-text.paused {
+  animation-play-state: paused;
+}
+
+/* Retro status indicators */
+.status-indicator {
+  display: inline-block;
+  padding: 2px 6px;
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px outset var(--border-color);
+  background: #c0c0c0;
+  color: #000000;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+.status-indicator.playing {
+  background: #ff6b6b;
+  color: #ffffff;
+  animation: blink 1s infinite;
+}
+
+.status-indicator.stopped {
+  background: #888888;
+  color: #ffffff;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.3; }
+}

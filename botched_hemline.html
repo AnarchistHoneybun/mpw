@@ -30,6 +30,10 @@
       <div class="music-container">
         <div class="player-header">one of the prog(ramming) bands south of somewhere north</div>
         
+        <div class="now-playing-marquee">
+          <span class="marquee-text" id="marqueeText">♪ Nothing Doing ♪</span>
+        </div>
+        
         <div class="global-controls">
           <button class="retro-btn stop-btn" onclick="stopAll()">Stop All</button>
           <div class="volume-control">
@@ -87,6 +91,7 @@
         
         listItem.innerHTML = `
           <span class="track-name">${track.name}</span>
+          <span class="status-indicator stopped" id="status-${index}">STOPPED</span>
           <div class="music-controls">
             <button class="retro-btn play-btn" onclick="playTrack(${index})">Play</button>
             <button class="retro-btn pause-btn" onclick="pauseTrack(${index})" disabled>Pause</button>
@@ -101,6 +106,7 @@
         `;
         
         musicList.appendChild(listItem);
+        updateStatusIndicator(index, 'stopped');
       });
     }
 
@@ -134,6 +140,8 @@
       trackElement.classList.add('now-playing');
       progressContainer.classList.add('show');
       updateButtons(index, 'playing');
+      updateStatusIndicator(index, 'playing');
+      updateMarquee(`♪ NOW PLAYING: ${track.name.toUpperCase()} ♪`);
       
       // Apply global volume
       const globalVolume = document.getElementById('globalVolume').value;
@@ -144,6 +152,8 @@
       if (currentAudio && currentTrack === index) {
         currentAudio.pause();
         updateButtons(index, 'paused');
+        updateStatusIndicator(index, 'paused');
+        updateMarquee(`♪ PAUSED: ${tracks[index].name.toUpperCase()} ♪`);
       }
     }
 
@@ -162,6 +172,8 @@
       progressFill.style.width = '0%';
       
       updateButtons(index, 'stopped');
+      updateStatusIndicator(index, 'stopped');
+      updateMarquee('♪ Nothing Doing ♪');
       
       if (currentTrack === index) {
         currentAudio = null;
@@ -172,6 +184,34 @@
     function stopAll() {
       if (currentTrack !== null) {
         stopTrack(currentTrack);
+      }
+    }
+
+    // Helper functions for web 1.0 features
+    function updateMarquee(text) {
+      const marqueeText = document.getElementById('marqueeText');
+      marqueeText.textContent = text;
+      
+      // Restart animation
+      marqueeText.style.animation = 'none';
+      marqueeText.offsetHeight; // Trigger reflow
+      marqueeText.style.animation = 'marquee 15s linear infinite';
+    }
+
+    function updateStatusIndicator(index, status) {
+      const indicator = document.getElementById(`status-${index}`);
+      indicator.className = `status-indicator ${status}`;
+      
+      switch(status) {
+        case 'playing':
+          indicator.textContent = 'PLAYING';
+          break;
+        case 'paused':
+          indicator.textContent = 'PAUSED';
+          break;
+        case 'stopped':
+          indicator.textContent = 'STOPPED';
+          break;
       }
     }
 
