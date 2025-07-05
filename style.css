@@ -470,3 +470,48 @@ p {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0.3; }
 }
+
+.quote-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+}
+
+.quote-text::before,
+.quote-text::after {
+  content: '"';
+  font-size: 1.3rem;
+  color: #888;
+  font-family: Georgia, serif;
+}
+
+.quote-author {
+  font-size: 0.9rem;
+  color: #888;
+  font-style: normal;
+}
+
+.quote-author::before {
+  content: "~ ";
+}
+
+/* Dark mode compatibility */
+[data-theme="dark"] .quote-text {
+  color: #ccc;
+}
+
+[data-theme="dark"] .quote-author {
+  color: #aaa;
+}
+
+[data-theme="dark"] .quote-text::before,
+[data-theme="dark"] .quote-text::after {
+  color: #777;
+}
