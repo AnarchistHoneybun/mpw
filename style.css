@@ -502,6 +502,29 @@ p {
   content: "~ ";
 }
 
+.post-signature {
+  margin-top: 0;
+  margin-left: 0;
+  text-align: left;
+  transform: scale(0.75); /* Scale down to 50% */
+  transform-origin: top left; /* Scale from top-left corner */
+}
+
+.signature-svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+:root {
+  --signature-color: black;
+}
+
+/* Dark mode colors */
+[data-theme="dark"] {
+  --signature-color: white;
+}
+
 /* Dark mode compatibility */
 [data-theme="dark"] .quote-text {
   color: #ccc;
