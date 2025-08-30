@@ -538,3 +538,77 @@ p {
 [data-theme="dark"] .quote-text::after {
   color: #777;
 }
+
+/* Web 1.0 Style Badge */
+.badge-container {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0;
+  align-items: flex-start;
+}
+
+.web1-badge {
+  display: inline-block;
+  border: 3px outset #c0c0c0;
+  background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+  padding: 8px;
+  margin: 0;
+  text-decoration: none;
+  font-family: "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.1s ease;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.web1-badge:hover {
+  border: 3px inset #c0c0c0;
+  background: linear-gradient(135deg, #d0d0d0 0%, #b0b0b0 100%);
+  transform: translateY(1px);
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.web1-badge:active {
+  border: 3px inset #a0a0a0;
+  background: #b0b0b0;
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.badge-image {
+  display: block;
+  width: 200px;
+  height: 60px;
+  border: 1px solid #808080;
+  object-fit: cover;
+}
+
+#leetcode-badge {
+  background: #263238;
+  cursor: pointer;
+}
+
+/* Dark mode adjustments for badge */
+[data-theme="dark"] .web1-badge {
+  border: 3px outset #606060;
+  background: linear-gradient(135deg, #404040 0%, #303030 100%);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .web1-badge:hover {
+  border: 3px inset #606060;
+  background: linear-gradient(135deg, #303030 0%, #202020 100%);
+}
+
+[data-theme="dark"] .web1-badge:active {
+  border: 3px inset #404040;
+  background: #202020;
+}
+
+[data-theme="dark"] .badge-image {
+  border: 1px solid #505050;
+}
