@@ -612,3 +612,17 @@ p {
 [data-theme="dark"] .badge-image {
   border: 1px solid #505050;
 }
+
+#socials ul, #contact ul {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-rows: auto auto;
+  column-gap: 50px; 
+  row-gap: 10px;    
+  list-style: square;
+  padding-left: 40px;
+}
+
+#socials li, #contacts li {
+  margin: 0;
+}
