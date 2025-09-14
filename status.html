@@ -29,10 +29,47 @@
 
   <main>
     <article>
-      <section id="intro">
-        <p>Welcome to my status board - a kanban-style view of what I'm currently working on, what's up next, and what I've recently completed.</p>
-        <p>This page will be updated regularly to reflect my current projects, learning goals, and ongoing work.</p>
-      </section>
+      <div class="legend">
+        <strong>Priority:</strong>
+        <span class="priority-indicator"><span class="priority-square priority-square-high"></span> High</span>
+        <span class="priority-indicator"><span class="priority-square priority-square-medium"></span> Medium</span>
+        <span class="priority-indicator"><span class="priority-square priority-square-low"></span> Low</span>
+      </div>
+
+      <div class="kanban-board">
+        <div class="kanban-column">
+          <div class="column-header">TO DO</div>
+          <div class="column-content">
+            <div class="kanban-card priority-medium">
+              <div class="card-title">Write Blog Post: "AMD Internship"</div>
+              <div class="card-description">Document my experience working on the Kernel Mode Driver team at AMD.</div>
+              <div class="card-meta">Est: 2 weeks</div>
+            </div>
+            
+            <div class="kanban-card priority-low">
+              <div class="card-title">Work on a new algorithm for music</div>
+              <div class="card-description">Need to come up with something cohesive for botched_hemline</div>
+              <div class="card-meta">Est: Weekend project</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kanban-column">
+          <div class="column-header">IN PROGRESS</div>
+          <div class="column-content">
+          </div>
+        </div>
+
+        <div class="kanban-column">
+          <div class="column-header">DONE</div>
+          <div class="column-content">
+          </div>
+        </div>
+      </div>
+
+      <div class="last-updated">
+        Last updated: September 14, 2025 | This board is updated weekly
+      </div>
     </article>
   </main>
 
@@ -59,6 +96,57 @@
     function updateText(theme) {
       themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
     }
+
+    // Kanban functionality
+    const cards = document.querySelectorAll('.kanban-card');
+    const columns = document.querySelectorAll('.column-content');
+    
+    // Click feedback for cards
+    cards.forEach(card => {
+      card.addEventListener('click', function() {
+        const originalBg = this.style.backgroundColor;
+        this.style.backgroundColor = 'var(--light-border-color)';
+        setTimeout(() => {
+          this.style.backgroundColor = originalBg;
+        }, 150);
+      });
+    });
+    
+    // Drag and drop functionality
+    let draggedElement = null;
+    
+    cards.forEach(card => {
+      card.draggable = true;
+      
+      card.addEventListener('dragstart', function(e) {
+        draggedElement = this;
+        this.style.opacity = '0.5';
+      });
+      
+      card.addEventListener('dragend', function(e) {
+        this.style.opacity = '1';
+        draggedElement = null;
+      });
+    });
+    
+    columns.forEach(column => {
+      column.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.style.backgroundColor = 'var(--light-border-color)';
+      });
+      
+      column.addEventListener('dragleave', function(e) {
+        this.style.backgroundColor = '';
+      });
+      
+      column.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.style.backgroundColor = '';
+        if (draggedElement) {
+          this.appendChild(draggedElement);
+        }
+      });
+    });
   </script>
 </body>
 </html>
