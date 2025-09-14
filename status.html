@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Journal | Notes from the Overground</title>
+  <title>Status | Notes from the Overground</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <script src="./oneko/oneko.js"></script>
   <nav>
     <div class="nav-left">
-    <a href="./index.html">Home</a>
-    <a href="./blog.html">Blog</a>
-    <a href="./projects.html" class="active">Projects</a>
-    <a href="./oss.html">OSS</a>
+      <a href="./index.html">Home</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./projects.html">Projects</a>
+      <a href="./oss.html">OSS</a>
       <a href="./journal.html">Journal</a>
-      <a href="./status.html">Status</a>
+      <a href="./status.html" class="active">Status</a>
       <a href="./botched_hemline.html">botched_hemline</a>
     </div>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
@@ -24,22 +24,18 @@
   </nav>
 
   <header>
-    <h1>Projects</h1>
+    <h1>Status</h1>
   </header>
 
   <main>
     <article>
-      <ul>
-        <li>
-          <strong>programming</strong>
-          <ul>
-            <li><a href="./projectposts/bnferris.html">BNFerris: Random Text Generator from Grammar Rules</a></li>
-            <li><a href="./projectposts/painterz.html">Painterz: Algorithmic Painting with Hierarchical Brush Strokes</a></li>
-          </ul>
-        </li>
-      </ul>
+      <section id="intro">
+        <p>Welcome to my status board - a kanban-style view of what I'm currently working on, what's up next, and what I've recently completed.</p>
+        <p>This page will be updated regularly to reflect my current projects, learning goals, and ongoing work.</p>
+      </section>
     </article>
   </main>
+
   <script>
     // Dark mode toggle functionality
     const themeToggle = document.getElementById('theme-toggle');
