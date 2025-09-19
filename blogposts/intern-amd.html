@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interning at AMD | Notes from the Overground</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <script src="../oneko/oneko_l2.js"></script>
+    <nav>
+        <div class="nav-left">
+            <a href="../index.html">Home</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../projects.html">Projects</a>
+            <a href="../oss.html">OSS</a>
+            <a href="../journal.html">Journal</a>
+            <a href="../status.html">Status</a>
+            <a href="../botched_hemline.html">botched_hemline</a>
+        </div>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <span class="theme-toggle-text">DARK MODE</span>
+        </button>
+    </nav>
+
+  <header>
+    <h1>Interning at AMD</h1>
+  </header>
+
+  <main>
+    <article>
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>
+            Wanted to do a short writeup about my time at AMD these past couple months. Not to be a linkedin poster, but honestly if I don't write about stuff more I might completely lose the ability to. 
+          </p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <p>
+                Got the notification that they'll be coming on campus towards the end of my vacation, applied, and they gave me an hour long interview quizzing on last summer's work (at HAL) and pretty much everything I've worked on so far. Did pretty well, got a positive reply a couple days later.
+            </p>
+
+            <p>
+                Moved out to hyd for the duration of the internship, pretty sweet office, and like my own working area was very cool because it was a very experimental-ish type environment, so like sprawling desks and open gpu's and what not. It was a lot like passive smoking, but with real bleeding edge tech. Fortunately the staying situation was cool, so I could get to office at 7 to spend as much time with machines as possible.
+            </p>
+
+            <p>
+                Was assigned 3 machines in total, and for a while there was working with 4 monitors (really made me *feel* like full time corpo guy, god it was fun). First few weeks were mostly getting the codebase and the build tools and some new hire stuff etc, then once I had cut my teeth on that they gave out some bugs to handle (mostly stuff to do with proper coverage etc in the new features), which went well. Ended up escalating what should've been a 2-liner to a full function refactor (never make your if-else ladders too deep).
+            </p>
+
+            <p>
+              The main project was a fun time as well, where they asked me to do further work on a previous intern's idea that he had to leave incomplete at the end of his term. What it was is a vidpn network manager and log capturing mechanism for windows systems, allowing us to see all details about resolutions etc in the same location instead of hunting around in the windows settings menu (which keeps getting more mystifying, by the day). Remade the whole thing from scratch, since the last codebase was really messy, and then added some new features related to the *** mechanism. Most of the backend was in cpp (tangent: did you know that by default a c++ exe (maybe others too) that prints to the terminal, when run through the same will run in line buffer mode, and print out a line as soon as it has to. But if you run it through a pipe, it gets block buffered, and captures data upto an amount of 4-6kb and then releases to the other end of the pipe? I did not know that, and spent a couple days trying out every trick on the frontend to make the log capture real time (it was a thing of beauty, ring buffers on ring buffers handling real time parsing and ui updates) and when I did figure it out i really did look stupid, but all you have to do is flush the stdout immediately after you print and it'll emulate line buffer mode even when run through the second aforementioned method. Then everything worked nicely.) with a main node process orchestrating the data and frontend processes for the whole electron app. I submitted a proposal to rewrite the whole thing in some native gui, but that'd have taken a while and it was decided that we should first have the whole thing working than worry about such large scale rewrites.
+              </p> 
+<p>
+But yeah, I finished it up nicely with a week to go, handled some last moment updates, built the docs, work report and so on, and had an amazing final presentation. 
+</p>
+
+<p>
+All in all, it was a phenomenal time.
+            </p>
+          </section>
+      
+
+      <footer class="post-signature">
+  <svg width="650" height="200" xmlns="http://www.w3.org/2000/svg" class="signature-svg">
+    <path d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100" 
+          stroke="var(--signature-color)" 
+          stroke-width="3" 
+          fill="none" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+  </svg>
+</footer>
+    </article>
+  </main>
+  <script>
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeText = document.querySelector('.theme-toggle-text');
+    const body = document.body;
+
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    updateText(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateText(newTheme);
+    });
+
+    function updateText(theme) {
+      themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
+    }
+  </script>
+</body>
+</html>
