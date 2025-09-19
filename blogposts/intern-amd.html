@@ -32,33 +32,46 @@
         <section id="introduction">
           <h2>Introduction</h2>
           <p>
-            Wanted to do a short writeup about my time at AMD these past couple months. Not to be a linkedin poster, but honestly if I don't write about stuff more I might completely lose the ability to. 
+            Wanted to do a short writeup about my time at AMD these past couple months. Not to be a LinkedIn poster, but honestly if I don't write about stuff more, I might completely lose the ability to. So here goes.
           </p>
         </section>
 
         <section id="experience">
             <h2>Experience</h2>
             <p>
-                Got the notification that they'll be coming on campus towards the end of my vacation, applied, and they gave me an hour long interview quizzing on last summer's work (at HAL) and pretty much everything I've worked on so far. Did pretty well, got a positive reply a couple days later.
+                Got the notification that they'd be coming on campus towards the end of my vacation. Applied, sat through an hour-long interview where they grilled me on last summer's work at HAL and pretty much everything I've worked on so far. Did pretty well — got a positive reply a couple days later.
             </p>
 
             <p>
-                Moved out to hyd for the duration of the internship, pretty sweet office, and like my own working area was very cool because it was a very experimental-ish type environment, so like sprawling desks and open gpu's and what not. It was a lot like passive smoking, but with real bleeding edge tech. Fortunately the staying situation was cool, so I could get to office at 7 to spend as much time with machines as possible.
+                Moved out to Hyderabad for the duration of the internship. The office was pretty sweet, and my working area was especially cool — we had this experimental-ish vibe going on with sprawling desks, open GPUs scattered around, and cables everywhere. It was like passive smoking, but with bleeding-edge tech instead of cigarettes. Fortunately, my living situation worked out well, so I could get to the office by 7 AM to spend as much time as possible with the machines.
             </p>
 
             <p>
-                Was assigned 3 machines in total, and for a while there was working with 4 monitors (really made me *feel* like full time corpo guy, god it was fun). First few weeks were mostly getting the codebase and the build tools and some new hire stuff etc, then once I had cut my teeth on that they gave out some bugs to handle (mostly stuff to do with proper coverage etc in the new features), which went well. Ended up escalating what should've been a 2-liner to a full function refactor (never make your if-else ladders too deep).
+                Was assigned three machines in total, and for a while there I was working with four monitors. Really made me *feel* like a full-time corpo guy — god, it was fun. The first few weeks were mostly getting familiar with the codebase, build tools, and typical new hire stuff. Once I'd cut my teeth on that, they threw some bugs my way — mostly coverage issues in the new features. Things went well, though I did manage to escalate what should've been a 2-line fix into a full function refactor. (Pro tip: never make your if-else ladders too deep.)
             </p>
 
             <p>
-              The main project was a fun time as well, where they asked me to do further work on a previous intern's idea that he had to leave incomplete at the end of his term. What it was is a vidpn network manager and log capturing mechanism for windows systems, allowing us to see all details about resolutions etc in the same location instead of hunting around in the windows settings menu (which keeps getting more mystifying, by the day). Remade the whole thing from scratch, since the last codebase was really messy, and then added some new features related to the *** mechanism. Most of the backend was in cpp (tangent: did you know that by default a c++ exe (maybe others too) that prints to the terminal, when run through the same will run in line buffer mode, and print out a line as soon as it has to. But if you run it through a pipe, it gets block buffered, and captures data upto an amount of 4-6kb and then releases to the other end of the pipe? I did not know that, and spent a couple days trying out every trick on the frontend to make the log capture real time (it was a thing of beauty, ring buffers on ring buffers handling real time parsing and ui updates) and when I did figure it out i really did look stupid, but all you have to do is flush the stdout immediately after you print and it'll emulate line buffer mode even when run through the second aforementioned method. Then everything worked nicely.) with a main node process orchestrating the data and frontend processes for the whole electron app. I submitted a proposal to rewrite the whole thing in some native gui, but that'd have taken a while and it was decided that we should first have the whole thing working than worry about such large scale rewrites.
-              </p> 
-<p>
-But yeah, I finished it up nicely with a week to go, handled some last moment updates, built the docs, work report and so on, and had an amazing final presentation. 
-</p>
+              The main project was where things got really interesting. They asked me to pick up where a previous intern had left off — an idea he couldn't complete before his term ended. The project was a VidPN network manager and log capturing mechanism for Windows systems, essentially letting us see all display resolution details in one place instead of hunting through Windows settings (which, let's be honest, keeps getting more mystifying by the day). 
+            </p>
+            
+            <p>
+              I ended up remaking the whole thing from scratch since the inherited codebase was pretty messy, then added some new features related to the *** mechanism. Most of the backend was in C++, with a main Node process orchestrating the data and frontend processes for the Electron app.
+            </p>
+            
+            <p>
+              Here's a fun tangent: did you know that by default, a C++ executable that prints to the terminal runs in line buffer mode when executed directly, printing each line as soon as it's ready? But if you run it through a pipe, it switches to block buffering — capturing 4-6KB of data before releasing it to the other end. I did not know this, and spent a couple days implementing every trick in the book on the frontend to make log capture real-time. I'm talking ring buffers on ring buffers handling real-time parsing and UI updates — it was a thing of beauty. When I finally figured out the actual issue, I felt pretty stupid. All you have to do is flush stdout immediately after printing to emulate line buffer mode even when piped.
+            </p>
+            
+            <p>
+              I did submit a proposal to rewrite the whole thing in a native GUI framework, but that would've taken considerable time. We decided it was better to have the whole thing working first before worrying about large-scale rewrites.
+            </p>
 
-<p>
-All in all, it was a phenomenal time.
+            <p>
+              Wrapped everything up nicely with a week to spare. Handled some last-minute updates, built the docs and work report, and delivered what I'd say was a pretty amazing final presentation.
+            </p>
+            
+            <p>
+              All in all, it was a phenomenal time. Learned a ton, got to work with some seriously cool hardware, and discovered that Windows display management is even more complex than I thought possible. (Ok, this is a lie. Windows structure is a mess and I was scared of it the moment they told me I'll be working on it; Microsoft please hire me I will write w12 from scratch and make it coherent I'm so serious.)
             </p>
           </section>
       
