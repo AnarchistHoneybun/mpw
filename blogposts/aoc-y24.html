@@ -21,6 +21,8 @@
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
             <span class="theme-toggle-text">DARK MODE</span>
         </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        </button>
     </nav>
 
   <header>
@@ -232,6 +234,42 @@
     function updateText(theme) {
       themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
     }
+
+    // Hamburger menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navLeft = document.querySelector('.nav-left');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLeft.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a nav link (mobile)
+    const navLinks = document.querySelectorAll('.nav-left a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLeft.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+          hamburger.classList.remove('active');
+          navLeft.classList.remove('active');
+        }
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        navLeft.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>

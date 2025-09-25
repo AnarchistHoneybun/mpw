@@ -20,6 +20,31 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 1rem;
+  /* line-height: 1.6; */
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .badge-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .badge-image {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Navigation */
@@ -30,11 +55,68 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .nav-left {
   display: flex;
   gap: 1rem;
+}
+
+/* Hamburger menu button - Web 1.0 style */
+.hamburger {
+  display: none;
+  border: 2px outset #cccccc;
+  background: #f0f0f0;
+  color: #000000;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 4px 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: none;
+  z-index: 1001;
+}
+
+[data-theme="dark"] .hamburger {
+  border: 2px outset #888888;
+  background: #404040;
+  color: #ffffff;
+}
+
+.hamburger:hover {
+  border: 2px inset #cccccc;
+}
+
+[data-theme="dark"] .hamburger:hover {
+  border: 2px inset #888888;
+}
+
+.hamburger:active {
+  border: 2px inset #999999;
+  background: #e0e0e0;
+}
+
+[data-theme="dark"] .hamburger:active {
+  border: 2px inset #333333;
+  background: #303030;
+}
+
+/* Simple text-based hamburger icon */
+.hamburger::after {
+  content: "MENU";
+}
+
+/* Instead of on body */
+p, li, blockquote {
+  line-height: 1.4;
+}
+
+/* And preserved tight spacing for code */
+pre, code, .ascii-art {
+  line-height: normal; /* or even 1.0 for ASCII art */
 }
 
 nav a {
@@ -116,6 +198,124 @@ nav a.active {
   z-index: 1;
   text-align: center;
   display: inline-block;
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    padding-bottom: 0.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+    order: 3;
+  }
+
+  .theme-toggle {
+    order: 2;
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .nav-left {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    border: 2px inset var(--border-color);
+    border-top: 1px solid var(--border-color);
+    flex-direction: column;
+    gap: 0;
+    z-index: 1000;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-top: 2px;
+  }
+
+  [data-theme="dark"] .nav-left {
+    border: 2px inset #666666;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .nav-left.active {
+    display: flex;
+  }
+
+  .nav-left a {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--light-border-color);
+    border-left: 1px outset #cccccc;
+    border-right: 1px outset #cccccc;
+    border-top: 1px outset #cccccc;
+    width: calc(100% - 26px);
+    text-align: left;
+    display: block;
+    background: #f0f0f0;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: normal;
+    transition: none;
+  }
+
+  [data-theme="dark"] .nav-left a {
+    background: #404040;
+    border-left: 1px outset #666666;
+    border-right: 1px outset #666666;
+    border-top: 1px outset #666666;
+  }
+
+  .nav-left a:last-child {
+    border-bottom: 1px outset #cccccc;
+  }
+
+  [data-theme="dark"] .nav-left a:last-child {
+    border-bottom: 1px outset #666666;
+  }
+
+  .nav-left a:hover {
+    border-left: 1px inset #cccccc;
+    border-right: 1px inset #cccccc;
+    border-top: 1px inset #cccccc;
+    background-color: #e0e0e0;
+  }
+
+  [data-theme="dark"] .nav-left a:hover {
+    border-left: 1px inset #666666;
+    border-right: 1px inset #666666;
+    border-top: 1px inset #666666;
+    background-color: #303030;
+  }
+
+  .nav-left a:active {
+    border-left: 1px inset #999999;
+    border-right: 1px inset #999999;
+    border-top: 1px inset #999999;
+    background-color: #d0d0d0;
+  }
+
+  [data-theme="dark"] .nav-left a:active {
+    border-left: 1px inset #333333;
+    border-right: 1px inset #333333;
+    border-top: 1px inset #333333;
+    background-color: #202020;
+  }
+
+  .nav-left a.active {
+    font-weight: bold;
+    background-color: #ffffff;
+    border-left: 1px inset #999999;
+    border-right: 1px inset #999999;
+    border-top: 1px inset #999999;
+  }
+
+  [data-theme="dark"] .nav-left a.active {
+    background-color: var(--bg-color);
+    border-left: 1px inset #333333;
+    border-right: 1px inset #333333;
+    border-top: 1px inset #333333;
+  }
 }
 
 /* Header */
