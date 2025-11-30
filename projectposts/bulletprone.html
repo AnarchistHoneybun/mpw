@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BULLETPRONE | Notes from the Overground</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Reset screenplay-specific elements to avoid site style conflicts */
+    .screenplay * {
+      all: revert;
+    }
+
+    .screenplay {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12pt;
+      line-height: 1.2;
+      background: var(--bg-color);
+      color: var(--text-color);
+      max-width: 6in;
+      margin: 0 auto;
+      padding: 1in 0;
+    }
+
+    .title-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      page-break-after: always;
+    }
+
+    .title-page > div:first-child {
+      margin-top: -150px;
+    }
+
+    .title-page h1 {
+      font-size: 12pt;
+      font-weight: normal;
+      margin-bottom: 0.75em;
+      border: none;
+      padding: 0;
+    }
+
+    .title-page .byline {
+      margin: 0.5em 0;
+    }
+
+    .title-page .contact {
+      position: absolute;
+      bottom: 1in;
+      left: 1.5in;
+      text-align: left;
+      font-size: 12pt;
+      line-height: 1.3;
+    }
+
+    .scene-heading {
+      text-transform: uppercase;
+      font-weight: bold;
+      margin: 1.5em 0 0.75em 0;
+    }
+
+    .action {
+      margin: 0.75em 0;
+      white-space: pre-wrap;
+    }
+
+    .character {
+      margin: 0.75em 0 0 2.2in;
+      text-transform: uppercase;
+    }
+
+    .dialogue {
+      margin: 0 0 0.75em 1in;
+      max-width: 3.5in;
+    }
+
+    .parenthetical {
+      margin: 0 0 0 1.6in;
+      max-width: 2.9in;
+    }
+
+    .dual-dialogue {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5in;
+      margin: 0.75em 0;
+    }
+
+    .dual-dialogue .character {
+      margin: 0;
+      text-align: center;
+    }
+
+    .dual-dialogue .dialogue {
+      margin: 0.35em 0 0 0;
+      max-width: 100%;
+    }
+
+    .transition {
+      text-align: right;
+      text-transform: uppercase;
+      margin: 2em 0;
+    }
+
+    .opening-transition {
+      text-align: left;
+      text-transform: uppercase;
+      margin: 1em 0;
+    }
+
+    .page-break {
+      page-break-before: always;
+      margin: 3em 0 0 0;
+    }
+
+    .end {
+      text-align: center;
+      margin: 3em 0;
+      text-transform: uppercase;
+    }
+
+    @media print {
+      body {
+        margin: 1in 1in 1in 1.5in;
+      }
+      .screenplay {
+        max-width: none;
+        padding: 0;
+      }
+      .page-break {
+        page-break-before: always;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .screenplay {
+        font-size: 11pt;
+        max-width: 100%;
+        padding: 0.5in;
+      }
+      .character {
+        margin-left: 1in;
+      }
+      .dialogue {
+        margin-left: 0.5in;
+        max-width: 100%;
+      }
+      .parenthetical {
+        margin-left: 0.75in;
+      }
+      .title-page .contact {
+        position: static;
+        margin-top: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="../oneko/oneko_l2.js"></script>
+  <nav>
+    <div class="nav-left">
+      <a href="../index.html">Home</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../projects.html">Projects</a>
+      <a href="../oss.html">OSS</a>
+      <a href="../journal.html">Journal</a>
+      <a href="../status.html">Status</a>
+      <a href="../botched_hemline.html">botched_hemline</a>
+    </div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+      <span class="theme-toggle-text">DARK MODE</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+    </button>
+  </nav>
+
+  <main>
+    <article>
+
+<div class="screenplay">
+  <!-- TITLE PAGE -->
+  <div class="title-page">
+    <div>
+      <h1>BULLETPRONE</h1>
+      <div class="byline">Written by</div>
+      <div class="byline">Raj Singh</div>
+    </div>
+    <div class="contact">
+      Sixteenth Draft: 14 November 2025<br>
+      E: rajeshwar.singh.bisen@gmail.com<br><br>
+      © 2025 Raj Singh
+    </div>
+  </div>
+
+  <!-- SCREENPLAY CONTENT -->
+  <div class="scene-heading">INT. TONY'S APARTMENT - BATHROOM - NIGHT</div>
+
+  <div class="action">BLACK SCREEN</div>
+
+  <div class="action">A sharp SLAP.</div>
+
+  <div class="opening-transition">FADE IN:</div>
+
+  <div class="action">TONY (32) leans over the bathroom sink, splashing water on his face. He's got broad shoulders and a gut that strains against the blue uniform shirt, which says MALL COP at the back. Water drips from his face as he looks up at the mirror.</div>
+
+  <div class="action">He slaps himself again.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Alright. Alright, let's go. You got this.</div>
+
+  <div class="action">His eyes drift to the wall beside the mirror.</div>
+
+  <div class="action">A hand-drawn CHART hangs on the wall, tracking calibers in marker: BB Gun (12 tally marks), .22 (35 tally marks), .38 (circled in red with "TODAY" written next to it).</div>
+
+  <div class="action">Tony nods.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="parenthetical">(to the mirror)</div>
+  <div class="dialogue">You got this.</div>
+
+  <div class="action">Much of the mirror is plastered with motivational quotes printed from the internet: "NO PAIN NO GAIN," "WHAT DOESN'T KILL YOU ...," "BE YOUR OWN HERO."</div>
+
+  <div class="action">He opens the medicine cabinet. Inside: Jim Beam, a CVS first aid kit, gauze, medical tape. He pulls out the whiskey, takes a swig. Sets it on the sink.</div>
+
+  <div class="action">His PHONE buzzes on the counter. A notification lights up the screen: "REMINDER: 6pm - Call Mum"</div>
+
+  <div class="action">He picks up his phone, hits dial on speaker, sets it on the sink. It rings as he starts unbuttoning his uniform shirt.</div>
+
+  <div class="action">After a couple rings, the call connects.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="parenthetical">(filtered through phone)</div>
+  <div class="dialogue">Anthony?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Hey, Ma.</div>
+
+  <div class="action">He pulls off the uniform shirt, drapes it over his arm.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">Right on time. How was work?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Same old, yeah. Quiet shift.</div>
+
+  <div class="scene-heading">INT. TONY'S APARTMENT - HALLWAY - CONTINUOUS</div>
+
+  <div class="action">Tony steps out into the narrow hallway, phone still on speaker in his hand.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">Where are you? You sound echoey.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I'm at the gym, Ma. Bathroom. At the gym.</div>
+
+  <div class="action">He opens the closet door. Inside: a few hanging uniform shirts, some civilian clothes, a duffel bag on the floor. He pulls a hanger down, drapes the shirt over it.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">At ten o'clock at night? Anthony, are you eating? You need to eat.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I'm eatin' fine, Ma.</div>
+
+  <div class="action">He hangs up the shirt, and pulls off his work pants. Underneath, he's wearing briefs. OLD BANDAGES are visible on his outer thigh — dark rust-colored stains that have soaked through multiple layers.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">When was the last time you had a real meal? I'm making ziti Sunday, you're coming.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Yea, Ma. Sunday. Sounds good.</div>
+
+  <div class="action">He grabs a t-shirt, pulls it on. Reaches deeper into the closet, pulls out a .38 REVOLVER and a small BOX OF CARTRIDGES from behind some folded sweaters.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">Have you talked to Danielle?</div>
+
+  <div class="action">Tony's jaw tightens. He puts the revolver in his pocket, and tucks the box under his arm.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">No, Ma. We talked about this.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">She was a nice girl, Anthony. You should call her. Apologize for whatever you did.</div>
+
+  <div class="action">Tony closes his eyes. Pinches the bridge of his nose.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I gotta go, Ma. I'll call you tomorrow.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">You promise?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Yea... yea, I promise.</div>
+
+  <div class="action">He hangs up. Stares at the phone in his hand for a beat, then heads back toward the bathroom.</div>
+
+  <div class="scene-heading">INT. TONY'S APARTMENT - BATHROOM - CONTINUOUS</div>
+
+  <div class="action">Tony enters, sets the gun and ammunition box on the sink. He reaches down into the bathtub, and picks up a bulletpoof vest.</div>
+
+  <div class="action">He struggles to pull it over his gut. Sucks his gut in as the velcro barely catches. Tony opens the box of cartridges, pulls out two rounds, and slides them in his pocket.</div>
+
+  <div class="action">As he puts the box back down on the sink, he looks at himself in the mirror.</div>
+
+  <div class="transition">DISSOLVE TO:</div>
+
+  <div class="scene-heading">EXT. VETERINARY CLINIC - PARKING LOT - DAY</div>
+
+  <div class="action">SIX MONTHS AGO</div>
+
+  <div class="action">Tony (cleaner, clean-shaven) walks alongside DANIELLE (29). She's carrying BISCUIT, a small nervous terrier mix, in her arms.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">Thank you for coming with us. He gets so anxious.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">No problem.</div>
+
+  <div class="action">He scratches Biscuit behind the ears.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">I love the lil guy.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">You sure? Because last time you said he smelled like "old pennies."</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">That was one time. And he did.</div>
+
+  <div class="action">Danielle smacks his arm playfully. They enter the clinic.</div>
+
+  <div class="scene-heading">INT. VETERINARY CLINIC - EXAMINATION ROOM - CONTINUOUS</div>
+
+  <div class="action">A bright, sterile room. Biscuit sits on the metal exam table, shaking. The VET (50) enters with a chart.</div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">Alright, Mr. Biscuit. Just here for the annual boosters today, right?</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">Yep. Rabies and the DHPP combo.</div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">Perfect. This'll just take a second.</div>
+
+  <div class="action">The vet prepares a syringe, draws liquid from a small vial. Tony watches.</div>
+
+  <div class="action">The vet administers the shot. Biscuit yelps. Danielle coos at him.</div>
+
+  <div class="character">DANIELLE (CONT'D)</div>
+  <div class="dialogue">You're so brave, baby. So brave.</div>
+
+  <div class="action">The vet prepares a second syringe. Tony's eyes narrow, and he leans forward slightly.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Wait, what is that?</div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">Just the rabies vaccine.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">No, I mean... what is it though?</div>
+
+  <div class="action">The vet pauses, stares at Tony with a raised eyebrow.</div>
+
+  <div class="page-break"></div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">It's... a vaccine. For rabies.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Right...yeah, but what's IN it?</div>
+
+  <div class="character">VET</div>
+  <div class="parenthetical">(not directly to Tony)</div>
+  <div class="dialogue">Modified virus, some stabilizers. Pretty standard.</div>
+
+  <div class="action">The vet gives Biscuit the second shot. Biscuit barely reacts this time. Tony's watching intently now.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Modified virus. So you're giving him... the disease?</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="parenthetical">(laughing)</div>
+  <div class="dialogue">Tony, oh my god.</div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">Well, a weakened form. That's how vaccines work. Teaches the immune system to fight it off.</div>
+
+  <div class="action">Tony goes very still, his brows furrowed.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">So you give him a little bit of the bad thing...</div>
+
+  <div class="action">Danielle stares at him.</div>
+
+  <div class="dual-dialogue">
+    <div>
+      <div class="character">VET</div>
+      <div class="dialogue">An inactive or weakened version, yes.</div>
+    </div>
+    <div>
+      <div class="character">DANIELLE</div>
+      <div class="dialogue">what the hell...</div>
+    </div>
+  </div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">...and then he can handle the real thing.</div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">That's the idea.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="parenthetical">(to the vet)</div>
+  <div class="dialogue">Sorry, he... I don't even know.</div>
+
+  <div class="action">The vet finishes, makes notes on the chart.</div>
+
+  <div class="character">VET</div>
+  <div class="dialogue">Alright, Mr. Biscuit is all set. Keep an eye on him for any reactions, but he should be fine.</div>
+
+  <div class="scene-heading">EXT. VETERINARY CLINIC - PARKING LOT - MOMENTS LATER</div>
+
+  <div class="action">They walk back to Tony's car. Tony's quiet, distant. Danielle carries Biscuit.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">Just what the hell was that in there?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I didn't know that's what vaccines were.</div>
+
+  <div class="action">Danielle stops walking. Stares at him.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">What.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Like, I knew vaccines, obviously, I got 'em as a kid. But I didn't know they PUT the disease in you.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">Tony. You're thirty-two years old.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I know how old I am.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="parenthetical">(mocking)</div>
+  <div class="dialogue">I know how old...</div>
+  <div class="parenthetical">(normal)</div>
+  <div class="dialogue">How do you not know how vaccines work?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I just... never thought about it.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">They teach this in like, middle school.</div>
+
+  <div class="page-break"></div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Well, maybe I was sick that day.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">For all of age 10 to 30?</div>
+
+  <div class="action">Tony unlocks the car. Opens her door. Doesn't make eye contact.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">It's interesting, that's all. You give, like, a little bit of the bad thing, and you know, builds up a tolerance.</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">You're making it sound way weirder than it is.</div>
+
+  <div class="action">Tony goes around to the driver's side. Gets in. Danielle stares at him.</div>
+
+  <div class="character">DANIELLE (CONT'D)</div>
+  <div class="dialogue">What are you thinking about?</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(starting the car)</div>
+  <div class="dialogue">Nothing. Just... interesting.</div>
+
+  <div class="action">She studies his face.</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(forcing a laugh)</div>
+  <div class="dialogue">What? I'm asking questions.</div>
+
+  <div class="action">The car pulls out of the parking lot. His eyes are distant.</div>
+
+  <div class="character">DANIELLE (CONT'D)</div>
+  <div class="dialogue">Tony?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Yea?</div>
+
+  <div class="character">DANIELLE</div>
+  <div class="dialogue">You are thinking way too hard about this.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">What? Yea. No.</div>
+
+  <div class="transition">DISSOLVE TO:</div>
+
+  <div class="scene-heading">INT. TONY'S APARTMENT - BATHROOM - NIGHT</div>
+
+  <div class="action">Tony stares at himself in the mirror. Taps his phone. A MEDITATION APP starts playing from the speaker, some woman with a soothing voice.</div>
+
+  <div class="character">MEDITATION APP (V.O.)</div>
+  <div class="dialogue">Breathe in strength. Breathe out fear. You are capable of more than you know.</div>
+
+  <div class="action">Tony nods to himself. He reaches for the gun — it slips from his grip, dropping butt first onto the floor.</div>
+
+  <div class="action">BANG</div>
+
+  <div class="action">The bullet SLAMS high into the bathroom wall, and a chunk of plaster explodes outward. Dust hangs in the air.</div>
+
+  <div class="action">Tony freezes, staring at the wall. The bullet has taken out a letter and half from a large text painted there.</div>
+
+  <div class="action">What remains reads: "PROJECT BULLETP_OOF"</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Shit! Shit shit—</div>
+
+  <div class="action">THUMP THUMP THUMP on the wall from the adjacent apartment. More plaster crumbles around the bullet hole, powder drifting down.</div>
+
+  <div class="character">GARY (O.S.)</div>
+  <div class="parenthetical">(muffled through wall)</div>
+  <div class="dialogue">Keep it down in there!</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(yelling)</div>
+  <div class="dialogue">I'M WORKIN' OUT, GARY. MIND YA BUSINESS.</div>
+
+  <div class="character">GARY (O.S.)</div>
+  <div class="dialogue">It's ten o'clock!</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">YEA, AND YOU'RE UP, SO WHAT'S THE PROBLEM?</div>
+
+  <div class="action">Another THUMP on the wall. A small chunk of plaster falls, taking the lodged bullet with it. It clinks to the floor, then, silence.</div>
+
+  <div class="action">Tony mutters to himself.</div>
+
+  <div class="page-break"></div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="parenthetical">(quieter)</div>
+  <div class="dialogue">Fuckin' guy.</div>
+
+  <div class="action">He bends down carefully, picks up the revolver. Stares at it.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">When did I load this...</div>
+
+  <div class="action">He pops the cylinder out — two rounds remain. He stares at them for a beat, pulls out the two rounds in his pocket and loads them. He snaps the cylinder back in place.</div>
+
+  <div class="action">Tony rolls up his right pant leg. He peels back the gauze, slowly, the adhesive pulling at his skin.</div>
+
+  <div class="action">Tony winces. The wound looks angry, not healing right.</div>
+
+  <div class="action">He lays out towels on the floor, overlapping them at the center.</div>
+
+  <div class="action">Picks up the first aid kit, opens it, and takes inventory. Gauze, medical tape, a sealed pack of antiseptic wipes. He takes out the tape and gauze, chucking it behind him in the tub.</div>
+
+  <div class="action">He takes another pull of whiskey and sets the bottle down.</div>
+
+  <div class="action">Tony sits on the edge of the bathtub. Rolls his shoulders. Does the face-slap thing again.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">You got this. You got this. Mind over matter. Mind over fuckin' matter.</div>
+
+  <div class="action">He aims the gun at his outer thigh, about four inches from the old wound. His hand is shaking. He steadies it with his other hand.</div>
+
+  <div class="character">MEDITATION APP (V.O.)</div>
+  <div class="dialogue">Breathe in. Hold it. Breathe out.</div>
+
+  <div class="action">Tony breathes with the app. His finger moves to the trigger.</div>
+
+  <div class="action">A long beat. He's staring at his leg. At the gun.</div>
+
+  <div class="action">He squeezes his eyes shut.</div>
+
+  <div class="action">BANG.</div>
+
+  <div class="action">Tony's whole body jerks. His face contorts. He freezes.</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(through gritted teeth)</div>
+  <div class="dialogue">Fuck. FUCK.</div>
+
+  <div class="action">He drops the gun in the sink with a clatter. Clutches his thigh with both hands. Blood seeps between his fingers.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">Okay. Okay okay. That-th-thats's good. That's progress.</div>
+
+  <div class="action">He's breathing hard, sweating. Reaches for the towel, presses it against the wound. His cat, ROCKY, appears in the doorway. An orange tabby.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="parenthetical">(to the cat)</div>
+  <div class="dialogue">Don't look at me like that. This is science, Rocky. This is—</div>
+  <div class="parenthetical">(winces)</div>
+  <div class="dialogue">— this is advancement.</div>
+
+  <div class="action">Rocky sits. Blinks slowly.</div>
+
+  <div class="action">Tony hobbles to his feet, towel pressed to his leg, limps to the chart on the wall. He pulls a marker from the sink with his free hand, makes a tally next to ".38" with a shaking hand. Blood drips onto the bathroom tile.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">See? See that? Progress.</div>
+
+  <div class="action">The doorbell RINGS.</div>
+
+  <div class="action">Tony freezes.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">Shit.</div>
+
+  <div class="scene-heading">INT. TONY'S APARTMENT - MAIN ROOM - CONTINUOUS</div>
+
+  <div class="action">Tony limps through the studio apartment. It's small. Dishes are piled in the sink. Futon, TV, weights in the corner with cobwebs on them. More motivational posters. A photo frame, face-down on the dresser.</div>
+
+  <div class="action">The doorbell rings again.</div>
+
+  <div class="character">DELIVERY KID (O.S.)</div>
+  <div class="dialogue">Pizza!</div>
+
+  <div class="action">Tony looks down at himself: bulletproof vest, blood-soaked towel pressed to his leg, sweating profusely. He grabs a dirty hoodie from the futon, pulls it on over the vest. Zips it halfway.</div>
+
+  <div class="action">He opens the door a crack. The DELIVERY KID (18) stands there with a large pizza box.</div>
+
+  <div class="character">DELIVERY KID</div>
+  <div class="dialogue">Large pepperoni, extra—</div>
+  <div class="parenthetical">(sees Tony)</div>
+  <div class="dialogue">Christ, man. You good?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Yea. Yea, I'm great. Best I've been.</div>
+
+  <div class="action">Tony shifts his weight to the better leg, but tries to play it cool.</div>
+
+  <div class="character">DELIVERY KID</div>
+  <div class="dialogue">You're like... breathing real heavy.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I was workin' out. Cardio.</div>
+
+  <div class="action">The delivery kid nods slowly.</div>
+
+  <div class="character">DELIVERY KID</div>
+  <div class="dialogue">Right. That's, uh... thirteen fifty.</div>
+
+  <div class="action">Tony fumbles for his wallet with one hand, keeping the towel pressed to his leg with the other. He hands over twenty bucks.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Keep it.</div>
+
+  <div class="character">DELIVERY KID</div>
+  <div class="dialogue">Thanks, man. You sure you're—</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(too quickly)</div>
+  <div class="dialogue">Yea, I'm good. Great. Thanks. Have a good one.</div>
+
+  <div class="action">Tony takes the pizza, closes the door. Leans against it, breathing hard. He hobbles to the futon, sets the pizza down. Opens the box.</div>
+
+  <div class="action">He tries to take a bite but immediately winces, sets it down. He looks at his phone. Opens his texts.</div>
+
+  <div class="action">A thread with "SULLY" shows previous messages about shift swaps.</div>
+
+  <div class="action">Tony types with one thumb: "Can you take Sat? Got training."</div>
+
+  <div class="action">Three dots appear. Then: "you're a fuckin psycho bro", followed by a thumbs up.</div>
+
+  <div class="action">Tony smiles slightly. He sets the phone down.</div>
+
+  <div class="action">His phone RINGS. "MA" on the caller ID.</div>
+
+  <div class="action">Tony stares at the phone. It rings. Rings again. He answers.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">Yea, Ma?</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">Did you just hang up on me?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">No, Ma, we finished talkin'. I told you I had to go.</div>
+
+  <div class="action">He tries to slide back into the futon, and winces audibly.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">You sounded upset. Are you upset?</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(trying to breath slower)</div>
+  <div class="dialogue">What, no, Ma. I'm not upset. Just left the gym, heading home now. Gonna eat some pizza, watch some TV, you know, the works.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">Pizza? Anthony, I said I'd make you ziti.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">I know, Ma. Sunday. I'll be there Sunday.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">You promise?</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Yea, Ma. I promise.</div>
+
+  <div class="action">A long pause on the other end.</div>
+
+  <div class="character">MA (V.O.)</div>
+  <div class="dialogue">I love you, Anthony.</div>
+
+  <div class="character">TONY</div>
+  <div class="dialogue">Love you too, Ma.</div>
+
+  <div class="action">He hangs up. Falls back on to the futon. Blood seeps through the towel into the mattress.</div>
+
+  <div class="action">Rocky jumps up on the futon next to him, and clambers up his belly.</div>
+
+  <div class="action">Tony looks at the cat.</div>
+
+  <div class="character">TONY (CONT'D)</div>
+  <div class="dialogue">Don't start.</div>
+
+  <div class="action">Rocky meows.</div>
+
+  <div class="scene-heading">INT. TONY'S APARTMENT - BATHROOM - LATER</div>
+
+  <div class="action">Tony sits on the edge of the tub again, cleaning the new wound. He's taken the vest off, discarded along with the hoodie near the door.</div>
+
+  <div class="action">The meditation app is playing quietly.</div>
+
+  <div class="character">MEDITATION APP (V.O.)</div>
+  <div class="dialogue">You are enough, exactly as you are. You don't need to prove anything to anyone.</div>
+
+  <div class="action">Tony wraps gauze around his thigh, winds medical tape over it. His hands are steadier now. When he's done, he stands. Tests his weight on the leg. Limps to the chart. Stares at the tally marks next to ".38"</div>
+
+  <div class="action">His eyes move up to the next item on the list: ".45"</div>
+
+  <div class="action">Tony opens the cabinet under the sink. Reaches past the .38, and pulls out a .45. He loads a single round into the cylinder. Sits back down on the edge of the tub.</div>
+
+  <div class="action">He holds the gun. Turns it over in his hands. Sets it on his knee.</div>
+
+  <div class="action">Rocky appears in the doorway again. Sits, blinks slowly.</div>
+
+  <div class="character">TONY</div>
+  <div class="parenthetical">(to the cat, quietly)</div>
+  <div class="dialogue">What.</div>
+
+  <div class="action">Rocky meows.</div>
+
+  <div class="action">Tony looks at the cat. Looks at the gun. Looks at the chart on the wall with its checkmarks and calibers.</div>
+
+  <div class="character">MEDITATION APP (V.O.)</div>
+  <div class="dialogue">Breathe in. Hold it. Breathe out.</div>
+
+  <div class="action">Tony picks up the gun. Aims it at his other thigh. His hand shakes.</div>
+
+  <div class="action">He lowers the gun. Wipes his face with his free hand. Raises the gun again. His breathing gets faster. The gun shakes harder.</div>
+
+  <div class="action">Rocky meows again, louder.</div>
+
+  <div class="action">Tony looks at the cat. His finger rests on the trigger.</div>
+
+  <div class="action">Beat.</div>
+
+  <div class="action">Tony's face twitches. His eyes are wet.</div>
+
+  <div class="action">Beat.</div>
+
+  <div class="action">Rocky stands. Takes a step into the bathroom.</div>
+
+  <div class="action">Beat.</div>
+
+  <div class="action">Tony's hand is still shaking. The gun is still aimed at his thigh.</div>
+
+  <div class="transition">FADE TO BLACK.</div>
+
+  <div class="end">THE END</div>
+
+</div>
+
+      <footer class="post-signature">
+        <svg width="650" height="200" xmlns="http://www.w3.org/2000/svg" class="signature-svg">
+          <path d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100" 
+                stroke="var(--signature-color)" 
+                stroke-width="3" 
+                fill="none" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"/>
+        </svg>
+      </footer>
+    </article>
+  </main>
+
+  <script>
+    // Dark mode toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeText = document.querySelector('.theme-toggle-text');
+    const body = document.body;
+
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.setAttribute('data-theme', currentTheme);
+    updateText(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      body.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateText(newTheme);
+    });
+
+    function updateText(theme) {
+      themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
+    }
+
+    // Hamburger menu functionality
+    const hamburger = document.getElementById('hamburger');
+    const navLeft = document.querySelector('.nav-left');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLeft.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a nav link (mobile)
+    const navLinks = document.querySelectorAll('.nav-left a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLeft.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+          hamburger.classList.remove('active');
+          navLeft.classList.remove('active');
+        }
+      }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        hamburger.classList.remove('active');
+        navLeft.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
