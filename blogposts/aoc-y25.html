@@ -3,20 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | Notes from the Overground</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Advent of Code 2024 | Notes from the Overground</title>
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
-    <script src="./oneko/oneko.js"></script>
+    <script src="../oneko/oneko_l2.js"></script>
     <nav>
       <div class="nav-left">
-        <a href="./index.html">Home</a>
-        <a href="./blog.html" class="active">Blog</a>
-        <a href="./projects.html">Projects</a>
-        <a href="./oss.html">OSS</a>
-        <a href="./journal.html">Journal</a>
-        <a href="./status.html">Status</a>
-        <a href="./botched_hemline.html">botched_hemline</a>
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../oss.html">OSS</a>
+        <a href="../journal.html">Journal</a>
+        <a href="../status.html">Status</a>
+        <a href="../botched_hemline.html">botched_hemline</a>
       </div>
       <button
         id="theme-toggle"
@@ -33,63 +33,62 @@
     </nav>
 
     <header>
-      <h1>Blog</h1>
+      <h1>Advent of Code 2025</h1>
     </header>
 
     <main>
       <article>
-        <section id="quote">
-          <div class="quote-container">
-            <blockquote class="quote-text">
-              The tiger<br />
-              He destroyed his cage<br />
-              Yes<br />
-              YES<br />
-              The tiger is out
-            </blockquote>
-            <cite class="quote-author">Nael</cite>
-          </div>
+        <section id="introduction">
+          <h2>Introduction</h2>
+          <p>
+            This year I've joined
+            <a href="https://www.iwriteiam.nl/Frans.html">Frans Faase</a>'s
+            private leaderboard for solving the AoC in C!
+          </p>
         </section>
 
-        <ul>
-          <li>
-            <strong>general</strong>
-            <ul>
-              <li>
-                <a href="./blogposts/intern-amd.html"
-                  >Interning at AMD - Summer'25</a
-                >
-              </li>
-            </ul>
-          </li>
-          <li>
-            <strong>programming</strong>
-            <ul>
-              <li>
-                <a href="./blogposts/aoc-y25.html">Advent of Code - 2025</a>
-              </li>
-              <li>
-                <a href="./blogposts/aoc-y24-d5.html"
-                  >Ordering using DAGs and Top-Sorting - Advent of Code ’24, Day
-                  5</a
-                >
-              </li>
-              <li>
-                <a href="./blogposts/aoc-y24.html"
-                  >Advent of Code 2024 - Year in Review</a
-                >
-              </li>
-              <li>
-                <a href="./blogposts/ccompiler-book-1.html"
-                  >Writing a C Compiler: Chapter 1</a
-                >
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <section id="Daily Log">
+          <h2>Daily Log</h2>
+          <p>
+            I'll talk about how each day goes as we progress through this month,
+            so this part will be updated (~)daily
+          </p>
+          <ul>
+            <li style="display: flex">
+              <strong style="min-width: 4em">Day 1:</strong>
+              <div>
+                The puzzles open 10:30 my time, so there's ample room in the
+                schedule for me to get to them when they open, and that
+                <i>was</i> the plan, but I had a presentation scheduled for my
+                term project and another end of semester exam, so I couldn't
+                start then. Finished both in python (my apologies to my
+                leaderboard buddies) when I had some downtime between the two
+                engagements, and ported the solution to C once I reached my
+                room.
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <footer class="post-signature">
+          <svg
+            width="650"
+            height="200"
+            xmlns="http://www.w3.org/2000/svg"
+            class="signature-svg"
+          >
+            <path
+              d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100"
+              stroke="var(--signature-color)"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </footer>
       </article>
     </main>
-
     <script>
       // Dark mode toggle functionality
       const themeToggle = document.getElementById("theme-toggle");
