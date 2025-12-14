@@ -41,9 +41,68 @@
         <section id="introduction">
           <h2>Introduction</h2>
           <p>
-            This year I've joined
+            This year I participated in
             <a href="https://www.iwriteiam.nl/Frans.html">Frans Faase</a>'s
-            private leaderboard for solving the AoC in C!
+            private leaderboard for solving the AoC in C! I also joined the /g/
+            leaderboard, and placed first in both!
+          </p>
+        </section>
+
+        <section id="Retrospective">
+          <h2>Retrospective</h2>
+          <p>
+            Overall, it was a really fun time. The puzzles were, and no offense
+            to Eric as I know this is something he puts a lot of effort into and
+            makes available for free, and this next bit is not meant as an
+            insult, mostly `import solution` type things across most days, even
+            the hardest of them solved fairly easily by z3, so I believe the fun
+            I had was mostly due to the self imposed restriction of solving them
+            only in C.
+          </p>
+          <p>
+            The leaderboard competition was fun, for both leaderboards, although
+            I didn't have any post-match discussions with anyone on the pure C
+            board. The /g/ threads were pretty lively though.
+          </p>
+        </section>
+
+        <section id="runtime">
+          <h2>Runtime Stats</h2>
+          <p>Cold-start single-run time for each puzzle so far:</p>
+          <pre>
+ 1e+04 ms +-------------------------------------------------------------------------------------------+                 
+          |+      +        +       +       +        +       +        +       +       +        +      +| Part 1 *******  
+          |+      :        :       +       :        :       :        :       :       :        :      +| Part 2 ###+###  
+          |+      :        :       #       :        :       :        :       :       :        :      +|                 
+ 1e+03 ms |-+.....:........:......#:#......:........:.......:........:.......:.......:........:.....+-|                 
+          |+      :        :      #:#      :        :       :        :       :       :        :      +|                 
+          |+      :        :     # : #     :        :       :        :       :       :        :      +|                 
+          |+      :        :     # : #     :        :       :        :     ##+#      :        :      +|                 
+   100 ms |-+.....+........:....#..:..#....:........:.......:........:.####..:.####..:........:.....+-|                 
+          |+     #*#       :    #  :  #    :        :       :        +#      :     ##+#       :      +|                 
+          |+     #:#       :    #  :  #    :        :       :      ##:*      :       : ##     :      +|                 
+          |+    #*: #*     :   #   :   #   :        :       :    ## *: *     :       :   ##   :      +|                 
+    10 ms |-+...#.:..#*....:...#...:...#...:........:.......:..##..*.:.*.....:.......:.....##.:.....+-|                 
+          |+   #  :  # *   :  #    :    #  :        :       :##   *  :  *    :       :       #+      +|                 
+          |+  #*  :   # ** :  #    :    #  :        :     ##+     *  :   *   :       :        :      +|                 
+          |+  #   :    #  *:  #    :    #  :        : ####  :    *   :    *  :       :        :      +|                 
+          |  #    :     #  **#*    :     # :       *+#      :   *    :     * :       :       ***      |                 
+     1 ms |-#*....:.....#..:.#.******....#.:.....*##:*......:..*.....:.....*.:.......:.....**.:.**..+-|                 
+          |+#     :      # :#      : **   #:   *##  : **    :  *     :      *:       :   **   :   ***+|                 
+          |#      :       #:#      :   ***#: *##    :   *   : *      :       ****    : **     :      *|                 
+          |#      :       ##       :      *###      :    *  :*       :       :   ******       :      +|                 
+   0.1 ms |-+.....:........+.......:.......+........:.....**:*.......:.......:.......:........:.....+-|                 
+          |+      :        :       :       :        :       *        :       :       :        :      +|                 
+          |+      :        :       :       :        :       :        :       :       :        :      +|                 
+          |+      +        +       +       +        +       +        +       +       +        +      +|                 
+  0.01 ms +-------------------------------------------------------------------------------------------+                 
+          1       2        3       4       5        6       7        8       9       10       11      12                
+                                                       Day                                                      
+          </pre>
+          <p>
+            (Day 12 is missing a datapoint for part 2 since, as is tradition,
+            the last star is a freebie provided you have all the others from
+            that year)
           </p>
         </section>
 
@@ -142,41 +201,59 @@
                 embarrasing performance and it'll only get harder from now.
               </div>
             </li>
+            <li style="display: flex">
+              <strong style="min-width: 4em">Day 8:</strong>
+              <div>
+                Since I'm working on this later I just want to say that today
+                and later days might have more than the occasional /g/ reference
+                because I kept wasting hours on there after finishing, getting
+                some sick pleasure from it all. Today's puzzle also had a
+                slight, how would you say, ambiguity in the phrasing, which got
+                me stuck on part 1, but once that was out of the way part 2 was
+                a simple modification so it went very well.
+              </div>
+            </li>
+            <li style="display: flex">
+              <strong style="min-width: 4em">Day 9:</strong>
+              <div>
+                First day where I was genuinely proud of my solution, getting to
+                do some quick and dirty ray tracing is always fun. Part 2
+                filtered a lot of people for a while.
+              </div>
+            </li>
+            <li style="display: flex">
+              <strong style="min-width: 4em">Day 10:</strong>
+              <div>
+                Probably the year's hardest, and I feel the only puzzle meant to
+                present a challenge without some cop-out. Filtered loads, and if
+                I'm not wrong there's still more participants that got part 1
+                (binary gauss-jordan) than did part 2 (integer gauss jordan).
+              </div>
+            </li>
+            <li style="display: flex">
+              <strong style="min-width: 4em">Day 11:</strong>
+              <div>
+                Bit of a mess, but wrangling it landed me my most optimized
+                solution for this year, probably. First there was a hash table
+                implementation which for some reason kept killing itself (and my
+                orchestration script would not report the error properly) and
+                when I had that in order I realised that I wasn't even using the
+                hash table properly, which is why it kept running out of memory.
+                Lost first place overall because the the final answer was, if I
+                recall, in the hundreds of trillion, and I simply hadn't
+                accounted for that.
+              </div>
+            </li>
+            <li style="display: flex">
+              <strong style="min-width: 4em">Day 12:</strong>
+              <div>
+                Beautiful NP-complete problem, would've brought me to tears if
+                not for the input pattern which made it trivial. Second funniest
+                thing that Eric did this year, having the trick apply on the
+                main input but not on the sample :)
+              </div>
+            </li>
           </ul>
-        </section>
-
-        <section id="runtime">
-          <h2>Runtime Stats</h2>
-          <p>Cold-start single-run time for each puzzle so far (till day 6):</p>
-          <pre>
- 1e+04 ms +-------------------------------------------------------------------------------------------+                 
-          |+                +                  +                 +                  +                +| Part 1 *******  
-          |+                :                  :                 +                  :                +| Part 2 ###+###  
-          |+                :                  :                #:#                 :                +|                 
- 1e+03 ms |-+...............:..................:...............#.:.#................:...............+-|                 
-          |+                :                  :              #  :  #               :                +|                 
-          |+                :                  :             #   :   #              :                +|                 
-          |+                :                  :            #    :    #             :                +|                 
-   100 ms |-+...............:..................:...........#.....:.....#............:...............+-|                 
-          |+                +*                 :          #      :      #           :                +|                 
-          |+              ##:##**              :         #       :       #          :                +|                 
-          |+             #  :  # **            :        #        :        #         :                +|                 
-    10 ms |-+..........##...:...##.***.........:........#........:.........#........:...............+-|                 
-          |+          #     :     ##  ***      :       #         :          #       :                +|                 
-          |+        ##      :       #    **    :      #          :           #      :                +|                 
-          |+       #        :        ##    *** :     #           :            #     :                +|                 
-          |      ##         :          #      ******#***         :             #    :                 |                 
-     1 ms |-+...#...........:...........##.....:...#....*************...........#...:..............***|                 
-          |+  ##            :             ##   :  #              :   ******      #  :        ******###|                 
-          |+ #              :               #  : #               :         ****** # :  ******######  +|                 
-          |##               :                ##:#                :               **#***######        +|                 
-   0.1 ms |-+...............:..................+.................:..................+##.............+-|                 
-          |+                :                  :                 :                  :                +|                 
-          |+                :                  :                 :                  :                +|                 
-          |+                +                  +                 +                  +                +|                 
-  0.01 ms +-------------------------------------------------------------------------------------------+                 
-          1                 2                  3                 4                  5                 6   
-          </pre>
         </section>
 
         <footer class="post-signature">
