@@ -72,6 +72,25 @@ nav {
   position: relative;
 }
 
+/* Bauhaus color bar above navbar */
+nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    #db1f1e 0%,
+    #db1f1e 33.33%,
+    #ffbd17 33.33%,
+    #ffbd17 66.66%,
+    #24269b 66.66%,
+    #24269b 100%
+  );
+}
+
 .nav-left {
   display: flex;
   gap: 1rem;
@@ -204,59 +223,44 @@ main a:visited {
   color: #ff7b30;
 }
 
-/* Theme toggle button */
+/* Theme toggle button - Bauhaus redesign */
 .theme-toggle {
-  border: 3px outset #cccccc;
+  border: none;
   border-radius: 0;
-  padding: 4px 12px;
+  padding: 8px 16px;
   cursor: pointer;
   font-size: 11px;
-  font-weight: bold;
-  font-family: "MS Sans Serif", sans-serif;
-  transition: none;
-  background: repeating-linear-gradient(
-    45deg,
-    #ff0000,
-    #ff0000 6px,
-    #ffffff 6px,
-    #ffffff 12px
-  );
-  color: #000000;
+  font-weight: 600;
+  font-family: "Jost", sans-serif;
+  transition: background-color 0.2s ease;
+  background: #ffbd17;
+  color: #171717;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  /* box-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
+  letter-spacing: 0.1em;
   position: relative;
 }
 
 [data-theme="dark"] .theme-toggle {
-  border: 3px outset #888888;
-  background: repeating-linear-gradient(
-    45deg,
-    #cc0000,
-    #cc0000 6px,
-    #eeeeee 6px,
-    #eeeeee 12px
-  );
-  /* box-shadow: none; */
+  background: #24269b;
+  color: #e5e3d5;
 }
 
 .theme-toggle:hover {
-  border: 3px inset #cccccc;
+  background: #db1f1e;
+  color: #ffffff;
 }
 
 [data-theme="dark"] .theme-toggle:hover {
-  border: 3px inset #888888;
+  background: #db1f1e;
+  color: #ffffff;
 }
 
 .theme-toggle:active {
-  border: 3px inset #999999;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+  background: #171717;
+  color: #ffffff;
 }
 
 .theme-toggle-text {
-  background: #ffffff;
-  padding: 1px 3px;
-  border-radius: 1px;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -394,7 +398,7 @@ main {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   border-bottom: 1px solid var(--text-color);
   color: var(--text-color);
 }
@@ -404,7 +408,7 @@ header h1 {
   font-family: "Fran Sans", sans-serif;
 }
 
-/* Subheadings with Jost Semi-Bold */
+/* Subheadings with Jost Semi-Bold - ALL CAPS for Bauhaus aesthetic */
 h2,
 h3,
 h4,
@@ -413,26 +417,75 @@ h6 {
   font-family: "Jost", sans-serif;
   font-weight: 600;
   color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
+/* Geometric accents for different heading levels */
 h2 {
   font-size: 1.8rem;
+  position: relative;
+  padding-left: 30px;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: #db1f1e;
 }
 
 h3 {
   font-size: 1.5rem;
+  position: relative;
+  padding-left: 28px;
+}
+
+h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 17px solid #ffbd17;
 }
 
 h4 {
   font-size: 1.3rem;
+  position: relative;
+  padding-left: 28px;
+}
+
+h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #24269b;
 }
 
 h5 {
   font-size: 1.1rem;
+  border-left: 3px solid #09a953;
+  padding-left: 12px;
 }
 
 h6 {
   font-size: 1rem;
+  border-left: 2px solid #171717;
+  padding-left: 12px;
 }
 
 /* Table */
@@ -801,13 +854,13 @@ p {
 .quote-text::after {
   content: '"';
   font-size: 1.3rem;
-  color: #888;
+  color: #db1f1e;
   font-family: Georgia, serif;
 }
 
 .quote-author {
   font-size: 0.9rem;
-  color: #888;
+  color: #db1f1e;
   font-style: normal;
 }
 
@@ -844,12 +897,12 @@ p {
 }
 
 [data-theme="dark"] .quote-author {
-  color: #aaa;
+  color: #db1f1e;
 }
 
 [data-theme="dark"] .quote-text::before,
 [data-theme="dark"] .quote-text::after {
-  color: #777;
+  color: #db1f1e;
 }
 
 /* Web 1.0 Style Badge */
@@ -972,15 +1025,15 @@ p {
 }
 
 .priority-square-high {
-  background-color: #cc0000;
+  background-color: #db1f1e;
 }
 
 .priority-square-medium {
-  background-color: #ffcc00;
+  background-color: #ffbd17;
 }
 
 .priority-square-low {
-  background-color: #00aa00;
+  background-color: #09a953;
 }
 
 [data-theme="dark"] .priority-square {
@@ -1081,15 +1134,15 @@ p {
 }
 
 .priority-high {
-  border-left: 4px solid #cc0000 !important;
+  border-left: 4px solid #db1f1e !important;
 }
 
 .priority-medium {
-  border-left: 4px solid #ffcc00 !important;
+  border-left: 4px solid #ffbd17 !important;
 }
 
 .priority-low {
-  border-left: 4px solid #00aa00 !important;
+  border-left: 4px solid #09a953 !important;
 }
 
 .last-updated {
