@@ -193,7 +193,7 @@ main a:visited {
 }
 
 main a:hover {
-  color: #171717;
+  color: #ffbd17; /* Yellow */
   text-decoration-thickness: 2px;
 }
 
