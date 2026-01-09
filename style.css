@@ -72,11 +72,11 @@ nav {
   position: relative;
 }
 
-/* Bauhaus color bar above navbar */
-nav::before {
+/* Bauhaus color bar - moved to bottom of page */
+body::after {
   content: "";
-  position: absolute;
-  top: 0;
+  position: fixed;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 4px;
@@ -89,6 +89,7 @@ nav::before {
     #24269b 66.66%,
     #24269b 100%
   );
+  z-index: 1000;
 }
 
 .nav-left {
@@ -181,11 +182,19 @@ code,
 
 /* Link colors for body text (main content only) */
 main a {
-  color: #24269b;
+  color: #ff7b30; /* Tangerine - matches active nav link */
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 main a:visited {
-  color: #24269b;
+  color: #d4a017; /* Goldenrod - progression toward yellow */
+}
+
+main a:hover {
+  color: #171717;
+  text-decoration-thickness: 2px;
 }
 
 /* Custom link colors only in dark mode */
@@ -199,11 +208,15 @@ main a:visited {
 
 /* Dark mode body text links */
 [data-theme="dark"] main a {
-  color: var(--link-color);
+  color: #ff7b30; /* Tangerine */
 }
 
 [data-theme="dark"] main a:visited {
-  color: var(--visited-color);
+  color: #f0c040; /* Lighter golden for dark mode */
+}
+
+[data-theme="dark"] main a:hover {
+  color: #ffbd17; /* Yellow */
 }
 
 /* Dark mode navbar adjustments */
@@ -508,6 +521,17 @@ th {
 /* Lists */
 ul {
   color: var(--text-color);
+}
+
+/* Blog and Project pages - remove bullets from categories, capitalize */
+article > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+article > ul > li > strong {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Paragraphs */
