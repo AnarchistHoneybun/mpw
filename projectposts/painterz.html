@@ -1,113 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        Painterz: Algorithmic Painting with Hierarchical Brush Strokes
+      Painterz: Algorithmic Painting with Hierarchical Brush Strokes
     </title>
-    <link rel="stylesheet" href="../style.css"/>
-</head>
-<body>
-<script src="../oneko/oneko_l2.js"></script>
-<nav>
-    <div class="nav-left">
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <script src="../oneko/oneko_l2.js"></script>
+    <nav>
+      <div class="nav-left">
         <a href="../index.html">Home</a>
         <a href="../blog.html">Blog</a>
         <a href="../projects.html">Projects</a>
         <a href="../oss.html">OSS</a>
         <a href="../journal.html">Journal</a>
         <a href="../status.html">Status</a>
-        <a href="../botched_hemline.html">botched_hemline</a>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <!-- <a href="../botched_hemline.html">botched_hemline</a> -->
+      </div>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
         <span class="theme-toggle-text">DARK MODE</span>
-    </button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-    </button>
-</nav>
+      </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+      ></button>
+    </nav>
 
-<header>
-    <h1>Painterz: Algorithmic Painting with Hierarchical Brush Strokes</h1>
-</header>
+    <header>
+      <h1>Painterz: Algorithmic Painting with Hierarchical Brush Strokes</h1>
+    </header>
 
-<main>
-    <article>
+    <main>
+      <article>
         <section id="introduction">
-            <h2>Introduction</h2>
-            <p>
-                This project started as an exploration of algorithmic art, and it has evolved into approximating images
-                from circles to recreating them as paintings using hierarchical brush strokes. The goal is to simulate
-                the process of traditional painting, where each stroke builds upon the last, gradually refining the
-                image into something that looks, and maybe feels, hand-painted.
-            </p>
+          <h2>Introduction</h2>
+          <p>
+            This project started as an exploration of algorithmic art, and it
+            has evolved into approximating images from circles to recreating
+            them as paintings using hierarchical brush strokes. The goal is to
+            simulate the process of traditional painting, where each stroke
+            builds upon the last, gradually refining the image into something
+            that looks, and maybe feels, hand-painted.
+          </p>
 
-            <p>
-                The results are painting-esque with visible brush strokes, color mixing, and the organic imperfections
-                that make traditional media so compelling. The algorithm builds each painting in stages: first blocking
-                in the overall composition with large, loose brushes, then progressively refining with smaller strokes
-                until fine details emerge.
-            </p>
+          <p>
+            The results are painting-esque with visible brush strokes, color
+            mixing, and the organic imperfections that make traditional media so
+            compelling. The algorithm builds each painting in stages: first
+            blocking in the overall composition with large, loose brushes, then
+            progressively refining with smaller strokes until fine details
+            emerge.
+          </p>
 
-            <p>
-                Building this system taught me about computer graphics (windowing and the like), color theory, and the
-                complexity of modeleling brush strokes. The mathematics behind creating
-                natural-ish-looking paint marks involves interval splines, Catmull-Rom interpolation, and simulation of
-                paint physics.
-            </p>
+          <p>
+            Building this system taught me about computer graphics (windowing
+            and the like), color theory, and the complexity of modeleling brush
+            strokes. The mathematics behind creating natural-ish-looking paint
+            marks involves interval splines, Catmull-Rom interpolation, and
+            simulation of paint physics.
+          </p>
 
-            <figure style="text-align: center;">
-                <img src="../public/painterz_rock.jpg" alt="Original Image" style="max-width: 100%; height: auto;">
-                <figcaption>Fig. 1: Original image fed into the program</figcaption>
-            </figure>
+          <figure style="text-align: center">
+            <img
+              src="../public/painterz_rock.jpg"
+              alt="Original Image"
+              style="max-width: 100%; height: auto"
+            />
+            <figcaption>Fig. 1: Original image fed into the program</figcaption>
+          </figure>
 
-            <figure style="text-align: center;">
-                <img src="../public/painterz_rock_halfway.png" alt="Intermediate stage" style="max-width: 100%; height: auto;">
-                <figcaption>Fig. 2: Intermediate refinement with medium-sized brushes</figcaption>
-            </figure>
+          <figure style="text-align: center">
+            <img
+              src="../public/painterz_rock_halfway.png"
+              alt="Intermediate stage"
+              style="max-width: 100%; height: auto"
+            />
+            <figcaption>
+              Fig. 2: Intermediate refinement with medium-sized brushes
+            </figcaption>
+          </figure>
 
-            <figure style="text-align: center;">
-                <img src="../public/painterz_rock_hierarchical.jpg" alt="Final details" style="max-width: 100%; height: auto;">
-                <figcaption>Fig. 3: Final stage with fine detail work</figcaption>
-            </figure>
-
+          <figure style="text-align: center">
+            <img
+              src="../public/painterz_rock_hierarchical.jpg"
+              alt="Final details"
+              style="max-width: 100%; height: auto"
+            />
+            <figcaption>Fig. 3: Final stage with fine detail work</figcaption>
+          </figure>
         </section>
 
         <section id="what-is-algorithmic-painting">
-            <h2>What is Algorithmic Painting?</h2>
-            <p>
-                Algorithmic painting is about trying to recreate the physical act of painting. Instead of working pixel
-                by pixel, we:
-            </p>
-            <ul>
-                <li>Start with broad compositional strokes to establish overall shape and color</li>
-                <li>Gradually refine with smaller brushes to add detail</li>
-                <li>Mix colors on the canvas when wet paint meets wet paint</li>
-                <li>... and other things I haven't implemented yet</li>
-            </ul>
+          <h2>What is Algorithmic Painting?</h2>
+          <p>
+            Algorithmic painting is about trying to recreate the physical act of
+            painting. Instead of working pixel by pixel, we:
+          </p>
+          <ul>
+            <li>
+              Start with broad compositional strokes to establish overall shape
+              and color
+            </li>
+            <li>Gradually refine with smaller brushes to add detail</li>
+            <li>Mix colors on the canvas when wet paint meets wet paint</li>
+            <li>... and other things I haven't implemented yet</li>
+          </ul>
 
-            <p>
-                Rather than analyzing pixels (we do that too for coloring but let's not split hairs), painterz generates
-                random brush strokes. Rather than applying filters, it mixes virtual paint. The challenge lies in making
-                (~)thousands of algorithmic decisions that collectively produce something that feels hand-painted.
-            </p>
+          <p>
+            Rather than analyzing pixels (we do that too for coloring but let's
+            not split hairs), painterz generates random brush strokes. Rather
+            than applying filters, it mixes virtual paint. The challenge lies in
+            making (~)thousands of algorithmic decisions that collectively
+            produce something that feels hand-painted.
+          </p>
 
-            <p>
-                This approach creates paintings with visible texture, natural color variations, and sort of happy
-                accidents that make traditional media so expressive. Each brush stroke has width, length, pressure, and
-                angle - and they interact with the existing paint layers in realistic ways.
-            </p>
+          <p>
+            This approach creates paintings with visible texture, natural color
+            variations, and sort of happy accidents that make traditional media
+            so expressive. Each brush stroke has width, length, pressure, and
+            angle - and they interact with the existing paint layers in
+            realistic ways.
+          </p>
         </section>
 
         <section id="architecture">
-            <h2>Architecture: The Hierarchical Painting Pipeline</h2>
-            <p>
-                Painterz follows the classical painting approach of working from general to specific. The system
-                processes each painting through five distinct stages, each using different brush sizes and painting
-                strategies:
-            </p>
+          <h2>Architecture: The Hierarchical Painting Pipeline</h2>
+          <p>
+            Painterz follows the classical painting approach of working from
+            general to specific. The system processes each painting through five
+            distinct stages, each using different brush sizes and painting
+            strategies:
+          </p>
 
-            <pre>
+          <pre>
     ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
     │   Original  │    │   Image     │    │  Brush      │    │   Final     │
     │    Image    │───>│  Pyramid    │───>│  Stroke     │───>│  Painting   │
@@ -138,22 +171,25 @@
                       └─────────────┘
           </pre>
 
-            <p>
-                Each stage works on a different version of the target image - from heavily blurred compositions to
-                edge-enhanced details - and uses progressively smaller brushes with higher color accuracy.
-            </p>
+          <p>
+            Each stage works on a different version of the target image - from
+            heavily blurred compositions to edge-enhanced details - and uses
+            progressively smaller brushes with higher color accuracy.
+          </p>
         </section>
 
         <section id="image-pyramid">
-            <h2>Image Pyramid: Visualizing levels of composition</h2>
-            <p>
-                Human artists naturally see images at multiple levels of detail simultaneously. They can focus on fine
-                texture while remaining aware of overall composition. To replicate this, Painterz creates an image
-                pyramid - multiple versions of the target image processed for different stages of the painting process.
-            </p>
+          <h2>Image Pyramid: Visualizing levels of composition</h2>
+          <p>
+            Human artists naturally see images at multiple levels of detail
+            simultaneously. They can focus on fine texture while remaining aware
+            of overall composition. To replicate this, Painterz creates an image
+            pyramid - multiple versions of the target image processed for
+            different stages of the painting process.
+          </p>
 
-            <!-- INSERT ImagePyramid::new code snippet here -->
-            <pre>
+          <!-- INSERT ImagePyramid::new code snippet here -->
+          <pre>
     ┌── ImagePyramid::new ─────────────────────────────────────────────────────────────┐
     │                                                                                  │
     │  let levels = vec![                                                              │
@@ -174,14 +210,14 @@
     └──────────────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <h3>Stage Parameters: Matching Brush Behavior to Painting Phase</h3>
-            <p>
-                Each stage has carefully tuned parameters that control brush behavior, color accuracy, and stroke
-                placement strategy:
-            </p>
+          <h3>Stage Parameters: Matching Brush Behavior to Painting Phase</h3>
+          <p>
+            Each stage has carefully tuned parameters that control brush
+            behavior, color accuracy, and stroke placement strategy:
+          </p>
 
-            <!-- INSERT StageParameters struct and stage_params vec here -->
-            <pre>
+          <!-- INSERT StageParameters struct and stage_params vec here -->
+          <pre>
     ╔══ ImagePyramid::new ════════════════════╗
     ║                                         ║
     ║  let stage_params = vec![               ║
@@ -229,19 +265,22 @@
     ╚═════════════════════════════════════════╝
           </pre>
 
-            <p>
-                The progression from 600px brushes with 65% color accuracy to 8px brushes with 99% accuracy mirrors how
-                painters work - establishing the broad composition first, then gradually refining details.
-            </p>
+          <p>
+            The progression from 600px brushes with 65% color accuracy to 8px
+            brushes with 99% accuracy mirrors how painters work - establishing
+            the broad composition first, then gradually refining details.
+          </p>
 
-            <h3>Smart Image Processing</h3>
-            <p>
-                Each pyramid level uses different processing techniques. Early stages work with heavily blurred,
-                downsampled images to encourage broad strokes. Later stages use edge-enhanced versions to guide detail
-                work. Here's a sample snippet showing how image processing works for the system:
-            </p>
+          <h3>Smart Image Processing</h3>
+          <p>
+            Each pyramid level uses different processing techniques. Early
+            stages work with heavily blurred, downsampled images to encourage
+            broad strokes. Later stages use edge-enhanced versions to guide
+            detail work. Here's a sample snippet showing how image processing
+            works for the system:
+          </p>
 
-            <pre>
+          <pre>
     ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
     │  fn enhance_edges(image: &Image, strength: f32) -> Image {                                                         │
     │      let mut enhanced_pixels = image.pixels.clone();                                                               │
@@ -295,15 +334,16 @@
         </section>
 
         <section id="paint-mixing">
-            <h2>Paint Mixing: Simulating Wet-on-Wet Techniques</h2>
-            <p>
-                Another difficult aspect of algorithmic painting is accurately simulating the behavior of real paint.
-                When
-                you apply fresh paint over wet paint, the colors mix. When paint dries, it becomes stable. Painterz
-                implements a layered paint system that tracks wetness, thickness, and age for painted pixels.
-            </p>
+          <h2>Paint Mixing: Simulating Wet-on-Wet Techniques</h2>
+          <p>
+            Another difficult aspect of algorithmic painting is accurately
+            simulating the behavior of real paint. When you apply fresh paint
+            over wet paint, the colors mix. When paint dries, it becomes stable.
+            Painterz implements a layered paint system that tracks wetness,
+            thickness, and age for painted pixels.
+          </p>
 
-            <pre>
+          <pre>
     ┌────────────────────────────────────────────────────────────────────────┐
     │  #[derive(Clone, Copy, Debug)]                                         │
     │  struct PaintLayer {                                                   │
@@ -322,13 +362,14 @@
     └────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <h3>Wet-on-Wet Color Mixing</h3>
-            <p>
-                When fresh paint meets wet paint, the system performs subtractive color mixing - an attempt
-                at simulating how pigments actually combine:
-            </p>
+          <h3>Wet-on-Wet Color Mixing</h3>
+          <p>
+            When fresh paint meets wet paint, the system performs subtractive
+            color mixing - an attempt at simulating how pigments actually
+            combine:
+          </p>
 
-            <pre>
+          <pre>
     ┌───────────────────────────────────────────────────────────────────────────────┐
     │  fn mix_colors(                                                               │
     │      base_color: [u8; 3],                                                     │
@@ -370,34 +411,39 @@
     └───────────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <p>
-                This creates natural color variations, the kind you see in real paintings - where new strokes subtly blend
-                with underlying layers, creating organic transitions rather than harsh digital edges.
-            </p>
+          <p>
+            This creates natural color variations, the kind you see in real
+            paintings - where new strokes subtly blend with underlying layers,
+            creating organic transitions rather than harsh digital edges.
+          </p>
 
-            <h3>Aging and Drying</h3>
-            <p>
-                Paint doesn't stay wet forever. The system gradually reduces wetness over time, preventing unrealistic
-                mixing between strokes applied far apart in the painting process.
-            </p>
+          <h3>Aging and Drying</h3>
+          <p>
+            Paint doesn't stay wet forever. The system gradually reduces wetness
+            over time, preventing unrealistic mixing between strokes applied far
+            apart in the painting process.
+          </p>
         </section>
 
         <section id="interval-splines">
-            <h2>Interval Splines: The Mathematics of Natural Brush Strokes</h2>
-            <p>
-                The core of realistic brush simulation lies in interval splines - a technique from computer graphics
-                research for creating natural, variable-width strokes. Unlike simple lines, real brush strokes have
-                complex shapes: they taper naturally, vary in width along their length, and follow curved paths.
-            </p>
+          <h2>Interval Splines: The Mathematics of Natural Brush Strokes</h2>
+          <p>
+            The core of realistic brush simulation lies in interval splines - a
+            technique from computer graphics research for creating natural,
+            variable-width strokes. Unlike simple lines, real brush strokes have
+            complex shapes: they taper naturally, vary in width along their
+            length, and follow curved paths.
+          </p>
 
-            <h3>Control Shapes: Building Blocks of Brush Strokes</h3>
-            <p>
-                Each brush stroke begins as a series of control shapes - elliptical regions that define the brush's
-                position, size, pressure, and orientation at key points along the stroke path:
-            </p>
+          <h3>Control Shapes: Building Blocks of Brush Strokes</h3>
+          <p>
+            Each brush stroke begins as a series of control shapes - elliptical
+            regions that define the brush's position, size, pressure, and
+            orientation at key points along the stroke path:
+          </p>
 
-            <!-- INSERT ControlShape struct and generate_control_shapes function here -->
-            <pre>
+          <!-- INSERT ControlShape struct and generate_control_shapes function here -->
+          <pre>
     ┌───────────────────────────────────────────────────────────────────────────────────────────────┐
     │  struct ControlShape {                                                                        │
     │      center: Point2D,                                                                         │
@@ -425,14 +471,21 @@
     └───────────────────────────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <h3>Catmull-Rom Interpolation: Smooth Curves from Control Points</h3>
-            <p>
-                To create smooth, natural curves between control shapes, the system uses <a href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Catmull%E2%80%93Rom_spline" target="_blank" rel="noopener">Catmull-Rom splines</a>. This
-                creates the flowing, organic paths that characterize hand-drawn strokes:
-            </p>
+          <h3>Catmull-Rom Interpolation: Smooth Curves from Control Points</h3>
+          <p>
+            To create smooth, natural curves between control shapes, the system
+            uses
+            <a
+              href="https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Catmull%E2%80%93Rom_spline"
+              target="_blank"
+              rel="noopener"
+              >Catmull-Rom splines</a
+            >. This creates the flowing, organic paths that characterize
+            hand-drawn strokes:
+          </p>
 
-            <!-- INSERT interpolate_center_catmull_rom function here -->
-            <pre>
+          <!-- INSERT interpolate_center_catmull_rom function here -->
+          <pre>
     ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
     │  fn interpolate_center_catmull_rom(shapes: &[ControlShape], t: f32) -> Point2D {                                                  │
     │      if shapes.len() < 2 {                                                                                                        │
@@ -476,13 +529,15 @@
     └───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <h3>Natural Taper: Mimicking Brush Physics</h3>
-            <p>
-                Real brushes don't maintain constant width - they start thick, stay consistent through some middle length, then
-                taper as the artist lifts the brush. The taper calculation attempts to capture this natural behavior:
-            </p>
+          <h3>Natural Taper: Mimicking Brush Physics</h3>
+          <p>
+            Real brushes don't maintain constant width - they start thick, stay
+            consistent through some middle length, then taper as the artist
+            lifts the brush. The taper calculation attempts to capture this
+            natural behavior:
+          </p>
 
-            <pre>
+          <pre>
     ┌──────────────────────────────────────────────────────────────────────────────────┐
     │  fn calculate_natural_taper(t: f32) -> f32 {                                     │
     │      // Natural brush taper: starts thick, stays thick in middle, tapers at end  │
@@ -503,15 +558,16 @@
         </section>
 
         <section id="stroke-rasterization">
-            <h2>Stroke Rasterization: From Curves to Pixels</h2>
-            <p>
-                Converting smooth mathematical curves into discrete pixels requires careful rasterization. The system
-                creates a polygon from the upper and lower boundaries of the interval spline, then uses ray casting to
-                determine which pixels fall inside the stroke.
-            </p>
+          <h2>Stroke Rasterization: From Curves to Pixels</h2>
+          <p>
+            Converting smooth mathematical curves into discrete pixels requires
+            careful rasterization. The system creates a polygon from the upper
+            and lower boundaries of the interval spline, then uses ray casting
+            to determine which pixels fall inside the stroke.
+          </p>
 
-            <!-- INSERT rasterize_interval_spline and is_point_inside_stroke functions here -->
-            <pre>
+          <!-- INSERT rasterize_interval_spline and is_point_inside_stroke functions here -->
+          <pre>
     ┌─────────────────────────────────────────────────────────────────────────────────────┐
     │  fn rasterize_interval_spline(curve: &IntervalSplineCurve) -> BrushStroke {         │
     │      let mut points = Vec::new();                                                   │
@@ -555,14 +611,15 @@
     └─────────────────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <h3>Dry Brush Effects: Adding Texture and Character</h3>
-            <p>
-                Not every stroke should be perfect. Real brushes sometimes skip, create gaps, or leave bristle marks.
-                The system occasionally applies dry brush effects to add texture and organic imperfection:
-            </p>
+          <h3>Dry Brush Effects: Adding Texture and Character</h3>
+          <p>
+            Not every stroke should be perfect. Real brushes sometimes skip,
+            create gaps, or leave bristle marks. The system occasionally applies
+            dry brush effects to add texture and organic imperfection:
+          </p>
 
-            <!-- INSERT apply_dry_brush_effect and add_sparse_bristle_marks functions here -->
-            <pre>
+          <!-- INSERT apply_dry_brush_effect and add_sparse_bristle_marks functions here -->
+          <pre>
     ┌───────────────────────────────────────────────────────────────────────────────────────────┐
     │  fn apply_dry_brush_effect(stroke: &mut BrushStroke, rng: &mut impl Rng) {                │
     │      let dryness = rng.gen_range(0.3..=0.7); // Random dryness level                      │
@@ -590,22 +647,23 @@
     └───────────────────────────────────────────────────────────────────────────────────────────┘
           </pre>
 
-            <p>
-               Bristle mark behaviour is also similar to this, applied with some rng, perpendicular
-                to the stroke direction.
-            </p>
+          <p>
+            Bristle mark behaviour is also similar to this, applied with some
+            rng, perpendicular to the stroke direction.
+          </p>
         </section>
 
         <section id="stroke-evaluation">
-            <h2>Stroke Evaluation: Teaching the Algorithm to Paint Better</h2>
-            <p>
-                Not every brush stroke improves the painting. The system evaluates each potential stroke by calculating
-                how much it would reduce the difference between the current canvas and the target image. Only strokes
-                that make the painting more accurate are applied.
-            </p>
+          <h2>Stroke Evaluation: Teaching the Algorithm to Paint Better</h2>
+          <p>
+            Not every brush stroke improves the painting. The system evaluates
+            each potential stroke by calculating how much it would reduce the
+            difference between the current canvas and the target image. Only
+            strokes that make the painting more accurate are applied.
+          </p>
 
-            <!-- INSERT tick_hierarchical function and loss_delta method here -->
-            <pre>
+          <!-- INSERT tick_hierarchical function and loss_delta method here -->
+          <pre>
     ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
     │  fn loss_delta(                                                                                                        │
     │          &self,                                                                                                        │
@@ -658,15 +716,17 @@
 
           </pre>
 
-            <h3>Smart Color Sampling</h3>
-            <p>
-                Different painting stages require different approaches to color selection. Early stages use loose
-                averaging for impressionistic effects, while later stages sample precisely along the brush stroke
-                centerline. This is one of the functions used to sample colors (methods differ across the painting pipeline):
-            </p>
+          <h3>Smart Color Sampling</h3>
+          <p>
+            Different painting stages require different approaches to color
+            selection. Early stages use loose averaging for impressionistic
+            effects, while later stages sample precisely along the brush stroke
+            centerline. This is one of the functions used to sample colors
+            (methods differ across the painting pipeline):
+          </p>
 
-            <!-- INSERT color sampling functions here -->
-            <pre>
+          <!-- INSERT color sampling functions here -->
+          <pre>
     ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────┐
     │  fn calculate_weighted_stroke_color_with_center_bias(target: &Image, stroke: &BrushStroke) -> [u8; 3] {  │
     │      if stroke.centerline.is_empty() {                                                                   │
@@ -718,172 +778,199 @@
         </section>
 
         <section id="implementation-challenges">
-            <h2>Implementation Challenges and Solutions</h2>
+          <h2>Implementation Challenges and Solutions</h2>
 
-            <h3>Performance: Balancing Quality and Speed</h3>
-            <p>
-                Generating thousands of complex brush strokes is computationally expensive. The system uses several
-                optimizations: efficient polygon rasterization, selective paint aging, and staged update frequencies to
-                maintain real-time visualization while painting.
-            </p>
+          <h3>Performance: Balancing Quality and Speed</h3>
+          <p>
+            Generating thousands of complex brush strokes is computationally
+            expensive. The system uses several optimizations: efficient polygon
+            rasterization, selective paint aging, and staged update frequencies
+            to maintain real-time visualization while painting.
+          </p>
 
-            <h3>Color Space Considerations</h3>
-            <p>
-                Digital color mixing behaves differently from physical pigments. The subtractive mixing simulation
-                approximates real paint behavior while remaining computationally tractable.
-            </p>
+          <h3>Color Space Considerations</h3>
+          <p>
+            Digital color mixing behaves differently from physical pigments. The
+            subtractive mixing simulation approximates real paint behavior while
+            remaining computationally tractable.
+          </p>
         </section>
 
         <section id="results-and-observations">
-            <h2>Results and Observations</h2>
-            <p>
-                The hierarchical approach produces paintings that genuinely (really overseeling the term genuinely) feel hand-created. The visible brush
-                strokes, natural color variations, and organic imperfections distinguish these from, say, an ai recreation of the image.
-            </p>
+          <h2>Results and Observations</h2>
+          <p>
+            The hierarchical approach produces paintings that genuinely (really
+            overseeling the term genuinely) feel hand-created. The visible brush
+            strokes, natural color variations, and organic imperfections
+            distinguish these from, say, an ai recreation of the image.
+          </p>
 
-            <h3>Artistic Insights</h3>
-            <p>
-                Building this system revealed how much intelligence goes into human painting decisions. Brush placement,
-                color mixing, and stroke timing all contribute to the final result in ways that aren't immediately
-                obvious.
-            </p>
+          <h3>Artistic Insights</h3>
+          <p>
+            Building this system revealed how much intelligence goes into human
+            painting decisions. Brush placement, color mixing, and stroke timing
+            all contribute to the final result in ways that aren't immediately
+            obvious.
+          </p>
 
-            <h3>Technical Insights</h3>
-            <p>
-                The mathematics of natural curves (interval splines, Catmull-Rom interpolation) proved essential for
-                believable brush strokes. Simple approximations created obviously artificial results.
-            </p>
+          <h3>Technical Insights</h3>
+          <p>
+            The mathematics of natural curves (interval splines, Catmull-Rom
+            interpolation) proved essential for believable brush strokes. Simple
+            approximations created obviously artificial results.
+          </p>
         </section>
 
         <section id="lessons-learned">
-            <h2>Lessons Learned</h2>
-            <ol>
-                <li>
-                    <strong>Hierarchy Matters</strong>: The multi-stage approach is more visually appealing, allowing the system
-                    to lay down a broad idea of the image before going into finer details. Diving into details from the get go creates a more jagged result.
-                </li>
-                <li>
-                    <strong>Physics Simulation Adds Realism</strong>: Even simplified paint mixing and aging creates
-                    more believable results than purely mathematical color blending.
-                </li>
-                <li>
-                    <strong>Randomness Must Be Controlled</strong>: Key is to constrain it; allow variation within meaningful bounds.
-                </li>
-                <li>
-                    <strong>Real-time Feedback is Essential</strong>: Watching the painting develop reveals issues that
-                    aren't apparent in static results. The visualization capability drove many improvements.
-                </li>
-                <li>
-                    <strong>Mathematical Curves Enable Natural Strokes</strong>: The interval spline approach, while
-                    complex, produces far more natural brush strokes than simple geometric approximations.
-                </li>
-            </ol>
+          <h2>Lessons Learned</h2>
+          <ol>
+            <li>
+              <strong>Hierarchy Matters</strong>: The multi-stage approach is
+              more visually appealing, allowing the system to lay down a broad
+              idea of the image before going into finer details. Diving into
+              details from the get go creates a more jagged result.
+            </li>
+            <li>
+              <strong>Physics Simulation Adds Realism</strong>: Even simplified
+              paint mixing and aging creates more believable results than purely
+              mathematical color blending.
+            </li>
+            <li>
+              <strong>Randomness Must Be Controlled</strong>: Key is to
+              constrain it; allow variation within meaningful bounds.
+            </li>
+            <li>
+              <strong>Real-time Feedback is Essential</strong>: Watching the
+              painting develop reveals issues that aren't apparent in static
+              results. The visualization capability drove many improvements.
+            </li>
+            <li>
+              <strong>Mathematical Curves Enable Natural Strokes</strong>: The
+              interval spline approach, while complex, produces far more natural
+              brush strokes than simple geometric approximations.
+            </li>
+          </ol>
         </section>
 
         <section id="future-enhancements">
-            <h2>Future Enhancements</h2>
-            <p>Several directions could make Painterz even more sophisticated:</p>
-            <ul>
-                <li><strong>Multiple Brush Types</strong>: Implement different brush shapes and textures (flat, round,
-                    fan, etc.)
-                </li>
-                <li><strong>Advanced Color Theory</strong>: Use perceptual color spaces and more sophisticated mixing
-                    models (even implement some ideas from the MixBox paper to create more realistic paint patterns)
-                </li>
-                <li><strong>Paint Simulation</strong>: Model physics for thicker paint globs, allowing for a more
-                    oil-painting, or similar, look
-                </li>
-                <li><strong>Canvas Texture</strong>: Simulate different paper and canvas textures affecting paint
-                    application
-                </li>
-            </ul>
+          <h2>Future Enhancements</h2>
+          <p>Several directions could make Painterz even more sophisticated:</p>
+          <ul>
+            <li>
+              <strong>Multiple Brush Types</strong>: Implement different brush
+              shapes and textures (flat, round, fan, etc.)
+            </li>
+            <li>
+              <strong>Advanced Color Theory</strong>: Use perceptual color
+              spaces and more sophisticated mixing models (even implement some
+              ideas from the MixBox paper to create more realistic paint
+              patterns)
+            </li>
+            <li>
+              <strong>Paint Simulation</strong>: Model physics for thicker paint
+              globs, allowing for a more oil-painting, or similar, look
+            </li>
+            <li>
+              <strong>Canvas Texture</strong>: Simulate different paper and
+              canvas textures affecting paint application
+            </li>
+          </ul>
         </section>
 
         <section id="conclusion">
-            <h2>Conclusion</h2>
-            <p>
-                Painterz was a shot at creating a method of algorithmic art that can replicate organic forms, withou feeling
-                too bound by rules. By understanding and
-                simulating the physical processes of traditional painting - from brush physics to paint chemistry (to some extent) - we
-                can create digital tools that produce genuinely artistic results.
-            </p>
-            <p>
-                The project combines computer graphics, physics simulation, and art theory in ways that deepened my
-                appreciation for both the technical and creative aspects of painting.
-            </p>
+          <h2>Conclusion</h2>
+          <p>
+            Painterz was a shot at creating a method of algorithmic art that can
+            replicate organic forms, withou feeling too bound by rules. By
+            understanding and simulating the physical processes of traditional
+            painting - from brush physics to paint chemistry (to some extent) -
+            we can create digital tools that produce genuinely artistic results.
+          </p>
+          <p>
+            The project combines computer graphics, physics simulation, and art
+            theory in ways that deepened my appreciation for both the technical
+            and creative aspects of painting.
+          </p>
         </section>
 
         <footer class="post-signature">
-  <svg width="650" height="200" xmlns="http://www.w3.org/2000/svg" class="signature-svg">
-    <path d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100" 
-          stroke="var(--signature-color)" 
-          stroke-width="3" 
-          fill="none" 
-          stroke-linecap="round" 
-          stroke-linejoin="round"/>
-  </svg>
-</footer>
-    </article>
-</main>
-<script>
-  // Dark mode toggle functionality
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeText = document.querySelector('.theme-toggle-text');
-  const body = document.body;
+          <svg
+            width="650"
+            height="200"
+            xmlns="http://www.w3.org/2000/svg"
+            class="signature-svg"
+          >
+            <path
+              d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100"
+              stroke="var(--signature-color)"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </footer>
+      </article>
+    </main>
+    <script>
+      // Dark mode toggle functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.querySelector(".theme-toggle-text");
+      const body = document.body;
 
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  body.setAttribute('data-theme', currentTheme);
-  updateText(currentTheme);
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      body.setAttribute("data-theme", currentTheme);
+      updateText(currentTheme);
 
-  themeToggle.addEventListener('click', () => {
-    const currentTheme = body.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    body.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateText(newTheme);
-  });
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateText(newTheme);
+      });
 
-  function updateText(theme) {
-    themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
-  }
-
-  // Hamburger menu functionality
-  const hamburger = document.getElementById('hamburger');
-  const navLeft = document.querySelector('.nav-left');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLeft.classList.toggle('active');
-  });
-
-  // Close menu when clicking on a nav link (mobile)
-  const navLinks = document.querySelectorAll('.nav-left a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLeft.classList.remove('active');
-    });
-  });
-
-  // Close menu when clicking outside (mobile)
-  document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+      function updateText(theme) {
+        themeText.textContent = theme === "dark" ? "LIGHT MODE" : "DARK MODE";
       }
-    }
-  });
 
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
-      hamburger.classList.remove('active');
-      navLeft.classList.remove('active');
-    }
-  });
-</script>
-</body>
+      // Hamburger menu functionality
+      const hamburger = document.getElementById("hamburger");
+      const navLeft = document.querySelector(".nav-left");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLeft.classList.toggle("active");
+      });
+
+      // Close menu when clicking on a nav link (mobile)
+      const navLinks = document.querySelectorAll(".nav-left a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        });
+      });
+
+      // Close menu when clicking outside (mobile)
+      document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navLeft.classList.remove("active");
+          }
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
 </html>

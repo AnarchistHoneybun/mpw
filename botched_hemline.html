@@ -1,135 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>botched_hemline | Notes from the Overground</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <script src="./oneko/oneko.js"></script>
-  <nav>
-    <div class="nav-left">
-      <a href="./index.html">Home</a>
-      <a href="./blog.html">Blog</a>
-      <a href="./projects.html">Projects</a>
-      <a href="./oss.html">OSS</a>
-      <a href="./journal.html">Journal</a>
-      <a href="./status.html">Status</a>
-      <a href="./botched_hemline.html" class="active">botched_hemline</a>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-toggle-text">DARK MODE</span>
-    </button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-    </button>
-  </nav>
-
-  <header>
-    <h1>botched_hemline</h1>
-  </header>
-
-  <main>
-    <article>
-      <div class="music-container">
-        <div class="player-header">one of the prog(ramming) bands south of somewhere north</div>
-        
-        <div class="now-playing-marquee">
-          <span class="marquee-text" id="marqueeText">♪ Nothing Doing ♪</span>
-        </div>
-        
-        <div class="global-controls">
-          <button class="retro-btn stop-btn" onclick="stopAll()">Stop All</button>
-          <div class="volume-control">
-            <span style="font-size: 12px;">🔊</span>
-            <input type="range" class="volume-slider" min="0" max="100" value="50" id="globalVolume" oninput="setGlobalVolume(this.value)">
-          </div>
-        </div>
-
-        <ul class="music-list" id="musicList">
-          <!-- Tracks will be populated by JavaScript -->
-        </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>botched_hemline | Notes from the Overground</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="./oneko/oneko.js"></script>
+    <nav>
+      <div class="nav-left">
+        <a href="./index.html">Home</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./oss.html">OSS</a>
+        <a href="./journal.html">Journal</a>
+        <a href="./status.html">Status</a>
+        <!-- <a href="./botched_hemline.html" class="active">botched_hemline</a> -->
       </div>
-    </article>
-  </main>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
+        <span class="theme-toggle-text">DARK MODE</span>
+      </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+      ></button>
+    </nav>
 
-  <script>
-    // Dark mode toggle functionality (same as other pages)
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeText = document.querySelector('.theme-toggle-text');
-    const body = document.body;
+    <header>
+      <h1>botched_hemline</h1>
+    </header>
 
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    updateText(currentTheme);
+    <main>
+      <article>
+        <div class="music-container">
+          <div class="player-header">
+            one of the prog(ramming) bands south of somewhere north
+          </div>
 
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateText(newTheme);
-    });
+          <div class="now-playing-marquee">
+            <span class="marquee-text" id="marqueeText">♪ Nothing Doing ♪</span>
+          </div>
 
-    function updateText(theme) {
-      themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
-    }
+          <div class="global-controls">
+            <button class="retro-btn stop-btn" onclick="stopAll()">
+              Stop All
+            </button>
+            <div class="volume-control">
+              <span style="font-size: 12px">🔊</span>
+              <input
+                type="range"
+                class="volume-slider"
+                min="0"
+                max="100"
+                value="50"
+                id="globalVolume"
+                oninput="setGlobalVolume(this.value)"
+              />
+            </div>
+          </div>
 
-    // Hamburger menu functionality
-    const hamburger = document.getElementById('hamburger');
-    const navLeft = document.querySelector('.nav-left');
+          <ul class="music-list" id="musicList">
+            <!-- Tracks will be populated by JavaScript -->
+          </ul>
+        </div>
+      </article>
+    </main>
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLeft.classList.toggle('active');
-    });
+    <script>
+      // Dark mode toggle functionality (same as other pages)
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.querySelector(".theme-toggle-text");
+      const body = document.body;
 
-    // Close menu when clicking on a nav link (mobile)
-    const navLinks = document.querySelectorAll('.nav-left a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+      const currentTheme = localStorage.getItem("theme") || "light";
+      body.setAttribute("data-theme", currentTheme);
+      updateText(currentTheme);
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateText(newTheme);
       });
-    });
 
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
-          hamburger.classList.remove('active');
-          navLeft.classList.remove('active');
+      function updateText(theme) {
+        themeText.textContent = theme === "dark" ? "LIGHT MODE" : "DARK MODE";
+      }
+
+      // Hamburger menu functionality
+      const hamburger = document.getElementById("hamburger");
+      const navLeft = document.querySelector(".nav-left");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLeft.classList.toggle("active");
+      });
+
+      // Close menu when clicking on a nav link (mobile)
+      const navLinks = document.querySelectorAll(".nav-left a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        });
+      });
+
+      // Close menu when clicking outside (mobile)
+      document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navLeft.classList.remove("active");
+          }
         }
-      }
-    });
+      });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
-      }
-    });
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        }
+      });
 
-    // Music Player Functionality
-    let currentTrack = null;
-    let currentAudio = null;
-    let tracks = [
-      // Add your tracks here - format: {name: "Display Name", file: "path/to/file.mp3"}
-      {name: "graphics_02a4f612", file: "./music/graphics_02a4f612.wav"},
-      {name: "main_no-repo", file: "./music/main_no-repo.wav"},
-    ];
+      // Music Player Functionality
+      let currentTrack = null;
+      let currentAudio = null;
+      let tracks = [
+        // Add your tracks here - format: {name: "Display Name", file: "path/to/file.mp3"}
+        { name: "graphics_02a4f612", file: "./music/graphics_02a4f612.wav" },
+        { name: "main_no-repo", file: "./music/main_no-repo.wav" },
+      ];
 
-    function initializeMusicPlayer() {
-      const musicList = document.getElementById('musicList');
-      
-      tracks.forEach((track, index) => {
-        const listItem = document.createElement('li');
-        listItem.className = 'music-item';
-        listItem.id = `track-${index}`;
-        
-        listItem.innerHTML = `
+      function initializeMusicPlayer() {
+        const musicList = document.getElementById("musicList");
+
+        tracks.forEach((track, index) => {
+          const listItem = document.createElement("li");
+          listItem.className = "music-item";
+          listItem.id = `track-${index}`;
+
+          listItem.innerHTML = `
           <span class="track-name">${track.name}</span>
           <span class="status-indicator stopped" id="status-${index}">STOPPED</span>
           <div class="music-controls">
@@ -144,184 +163,191 @@
             <div class="time-display" id="time-${index}">0:00 / 0:00</div>
           </div>
         `;
-        
-        musicList.appendChild(listItem);
-        updateStatusIndicator(index, 'stopped');
-      });
-    }
 
-    function playTrack(index) {
-      // Stop current track if playing
-      if (currentAudio && currentTrack !== index) {
-        stopTrack(currentTrack);
-      }
-
-      const track = tracks[index];
-      const trackElement = document.getElementById(`track-${index}`);
-      const progressContainer = document.getElementById(`progress-${index}`);
-      
-      // Create new audio if needed
-      if (currentTrack !== index || !currentAudio) {
-        currentAudio = new Audio(track.file);
-        currentTrack = index;
-        
-        currentAudio.addEventListener('timeupdate', () => updateProgress(index));
-        currentAudio.addEventListener('ended', () => stopTrack(index));
-        currentAudio.addEventListener('loadedmetadata', () => updateTimeDisplay(index));
-        currentAudio.addEventListener('error', () => {
-          alert(`Error loading: ${track.name}\nCheck if the file exists at: ${track.file}`);
-          stopTrack(index);
+          musicList.appendChild(listItem);
+          updateStatusIndicator(index, "stopped");
         });
       }
 
-      currentAudio.play();
-      
-      // Update UI
-      trackElement.classList.add('now-playing');
-      progressContainer.classList.add('show');
-      updateButtons(index, 'playing');
-      updateStatusIndicator(index, 'playing');
-      updateMarquee(`♪ NOW PLAYING: ${track.name.toUpperCase()} ♪`);
-      
-      // Apply global volume
-      const globalVolume = document.getElementById('globalVolume').value;
-      currentAudio.volume = globalVolume / 100;
-    }
+      function playTrack(index) {
+        // Stop current track if playing
+        if (currentAudio && currentTrack !== index) {
+          stopTrack(currentTrack);
+        }
 
-    function pauseTrack(index) {
-      if (currentAudio && currentTrack === index) {
-        currentAudio.pause();
-        updateButtons(index, 'paused');
-        updateStatusIndicator(index, 'paused');
-        updateMarquee(`♪ PAUSED: ${tracks[index].name.toUpperCase()} ♪`);
+        const track = tracks[index];
+        const trackElement = document.getElementById(`track-${index}`);
+        const progressContainer = document.getElementById(`progress-${index}`);
+
+        // Create new audio if needed
+        if (currentTrack !== index || !currentAudio) {
+          currentAudio = new Audio(track.file);
+          currentTrack = index;
+
+          currentAudio.addEventListener("timeupdate", () =>
+            updateProgress(index)
+          );
+          currentAudio.addEventListener("ended", () => stopTrack(index));
+          currentAudio.addEventListener("loadedmetadata", () =>
+            updateTimeDisplay(index)
+          );
+          currentAudio.addEventListener("error", () => {
+            alert(
+              `Error loading: ${track.name}\nCheck if the file exists at: ${track.file}`
+            );
+            stopTrack(index);
+          });
+        }
+
+        currentAudio.play();
+
+        // Update UI
+        trackElement.classList.add("now-playing");
+        progressContainer.classList.add("show");
+        updateButtons(index, "playing");
+        updateStatusIndicator(index, "playing");
+        updateMarquee(`♪ NOW PLAYING: ${track.name.toUpperCase()} ♪`);
+
+        // Apply global volume
+        const globalVolume = document.getElementById("globalVolume").value;
+        currentAudio.volume = globalVolume / 100;
       }
-    }
 
-    function stopTrack(index) {
-      if (currentAudio && currentTrack === index) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
+      function pauseTrack(index) {
+        if (currentAudio && currentTrack === index) {
+          currentAudio.pause();
+          updateButtons(index, "paused");
+          updateStatusIndicator(index, "paused");
+          updateMarquee(`♪ PAUSED: ${tracks[index].name.toUpperCase()} ♪`);
+        }
       }
-      
-      const trackElement = document.getElementById(`track-${index}`);
-      const progressContainer = document.getElementById(`progress-${index}`);
-      const progressFill = document.getElementById(`fill-${index}`);
-      
-      trackElement.classList.remove('now-playing');
-      progressContainer.classList.remove('show');
-      progressFill.style.width = '0%';
-      
-      updateButtons(index, 'stopped');
-      updateStatusIndicator(index, 'stopped');
-      updateMarquee('♪ Nothing Doing ♪');
-      
-      if (currentTrack === index) {
-        currentAudio = null;
-        currentTrack = null;
-      }
-    }
 
-    function stopAll() {
-      if (currentTrack !== null) {
-        stopTrack(currentTrack);
-      }
-    }
+      function stopTrack(index) {
+        if (currentAudio && currentTrack === index) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+        }
 
-    // Helper functions for web 1.0 features
-    function updateMarquee(text) {
-      const marqueeText = document.getElementById('marqueeText');
-      marqueeText.textContent = text;
-      
-      // Restart animation
-      marqueeText.style.animation = 'none';
-      marqueeText.offsetHeight; // Trigger reflow
-      marqueeText.style.animation = 'marquee 15s linear infinite';
-    }
-
-    function updateStatusIndicator(index, status) {
-      const indicator = document.getElementById(`status-${index}`);
-      indicator.className = `status-indicator ${status}`;
-      
-      switch(status) {
-        case 'playing':
-          indicator.textContent = 'PLAYING';
-          break;
-        case 'paused':
-          indicator.textContent = 'PAUSED';
-          break;
-        case 'stopped':
-          indicator.textContent = 'STOPPED';
-          break;
-      }
-    }
-
-    function updateButtons(index, state) {
-      const playBtn = document.querySelector(`#track-${index} .play-btn`);
-      const pauseBtn = document.querySelector(`#track-${index} .pause-btn`);
-      const stopBtn = document.querySelector(`#track-${index} .stop-btn`);
-      
-      switch(state) {
-        case 'playing':
-          playBtn.disabled = true;
-          pauseBtn.disabled = false;
-          stopBtn.disabled = false;
-          break;
-        case 'paused':
-          playBtn.disabled = false;
-          pauseBtn.disabled = true;
-          stopBtn.disabled = false;
-          break;
-        case 'stopped':
-          playBtn.disabled = false;
-          pauseBtn.disabled = true;
-          stopBtn.disabled = true;
-          break;
-      }
-    }
-
-    function updateProgress(index) {
-      if (currentAudio && currentTrack === index) {
+        const trackElement = document.getElementById(`track-${index}`);
+        const progressContainer = document.getElementById(`progress-${index}`);
         const progressFill = document.getElementById(`fill-${index}`);
-        const percentage = (currentAudio.currentTime / currentAudio.duration) * 100;
-        progressFill.style.width = percentage + '%';
-        updateTimeDisplay(index);
+
+        trackElement.classList.remove("now-playing");
+        progressContainer.classList.remove("show");
+        progressFill.style.width = "0%";
+
+        updateButtons(index, "stopped");
+        updateStatusIndicator(index, "stopped");
+        updateMarquee("♪ Nothing Doing ♪");
+
+        if (currentTrack === index) {
+          currentAudio = null;
+          currentTrack = null;
+        }
       }
-    }
 
-    function updateTimeDisplay(index) {
-      if (currentAudio && currentTrack === index) {
-        const timeDisplay = document.getElementById(`time-${index}`);
-        const current = formatTime(currentAudio.currentTime);
-        const duration = formatTime(currentAudio.duration);
-        timeDisplay.textContent = `${current} / ${duration}`;
+      function stopAll() {
+        if (currentTrack !== null) {
+          stopTrack(currentTrack);
+        }
       }
-    }
 
-    function seekTrack(index, event) {
-      if (currentAudio && currentTrack === index) {
-        const progressBar = event.currentTarget;
-        const clickX = event.offsetX;
-        const width = progressBar.offsetWidth;
-        const percentage = clickX / width;
-        currentAudio.currentTime = percentage * currentAudio.duration;
+      // Helper functions for web 1.0 features
+      function updateMarquee(text) {
+        const marqueeText = document.getElementById("marqueeText");
+        marqueeText.textContent = text;
+
+        // Restart animation
+        marqueeText.style.animation = "none";
+        marqueeText.offsetHeight; // Trigger reflow
+        marqueeText.style.animation = "marquee 15s linear infinite";
       }
-    }
 
-    function setGlobalVolume(value) {
-      if (currentAudio) {
-        currentAudio.volume = value / 100;
+      function updateStatusIndicator(index, status) {
+        const indicator = document.getElementById(`status-${index}`);
+        indicator.className = `status-indicator ${status}`;
+
+        switch (status) {
+          case "playing":
+            indicator.textContent = "PLAYING";
+            break;
+          case "paused":
+            indicator.textContent = "PAUSED";
+            break;
+          case "stopped":
+            indicator.textContent = "STOPPED";
+            break;
+        }
       }
-    }
 
-    function formatTime(seconds) {
-      if (isNaN(seconds)) return '0:00';
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs.toString().padStart(2, '0')}`;
-    }
+      function updateButtons(index, state) {
+        const playBtn = document.querySelector(`#track-${index} .play-btn`);
+        const pauseBtn = document.querySelector(`#track-${index} .pause-btn`);
+        const stopBtn = document.querySelector(`#track-${index} .stop-btn`);
 
-    // Initialize the player when page loads
-    document.addEventListener('DOMContentLoaded', initializeMusicPlayer);
-  </script>
-</body>
+        switch (state) {
+          case "playing":
+            playBtn.disabled = true;
+            pauseBtn.disabled = false;
+            stopBtn.disabled = false;
+            break;
+          case "paused":
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = false;
+            break;
+          case "stopped":
+            playBtn.disabled = false;
+            pauseBtn.disabled = true;
+            stopBtn.disabled = true;
+            break;
+        }
+      }
+
+      function updateProgress(index) {
+        if (currentAudio && currentTrack === index) {
+          const progressFill = document.getElementById(`fill-${index}`);
+          const percentage =
+            (currentAudio.currentTime / currentAudio.duration) * 100;
+          progressFill.style.width = percentage + "%";
+          updateTimeDisplay(index);
+        }
+      }
+
+      function updateTimeDisplay(index) {
+        if (currentAudio && currentTrack === index) {
+          const timeDisplay = document.getElementById(`time-${index}`);
+          const current = formatTime(currentAudio.currentTime);
+          const duration = formatTime(currentAudio.duration);
+          timeDisplay.textContent = `${current} / ${duration}`;
+        }
+      }
+
+      function seekTrack(index, event) {
+        if (currentAudio && currentTrack === index) {
+          const progressBar = event.currentTarget;
+          const clickX = event.offsetX;
+          const width = progressBar.offsetWidth;
+          const percentage = clickX / width;
+          currentAudio.currentTime = percentage * currentAudio.duration;
+        }
+      }
+
+      function setGlobalVolume(value) {
+        if (currentAudio) {
+          currentAudio.volume = value / 100;
+        }
+      }
+
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, "0")}`;
+      }
+
+      // Initialize the player when page loads
+      document.addEventListener("DOMContentLoaded", initializeMusicPlayer);
+    </script>
+  </body>
 </html>

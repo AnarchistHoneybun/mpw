@@ -1,243 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notes from the Overground</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes from the Overground</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
-  <script src="./oneko/oneko.js"></script>
-  <nav>
-    <div class="nav-left">
-      <a href="./index.html" class="active">Home</a>
-      <a href="./blog.html">Blog</a>
-      <a href="./projects.html">Projects</a>
-      <a href="./oss.html">OSS</a>
-      <a href="./journal.html">Journal</a>
-      <a href="./status.html">Status</a>
-      <a href="./botched_hemline.html">botched_hemline</a>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-toggle-text">DARK MODE</span>
-    </button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-    </button>
-  </nav>
-
-  <header>
-    <h1>Notes from the Overground</h1>
-  </header>
-
-  <main>
-    <article>
-
-      <section id="quote">
-        <div class="quote-container">
-          <blockquote class="quote-text">
-            Do it or don't do it — you will regret both.
-          </blockquote>
-          <cite class="quote-author">Søren Kierkegaard</cite>
-        </div>
-        <div class="quote-container">
-          <blockquote class="quote-text">
-            there’s about enough time to read six books seriously in one’s life
-          </blockquote>
-          <cite class="quote-author">anon</cite>
-        </div>
-      </section>
-
-      <section id="intro">
-        <h2>Introduction</h2>
-        <p>Hi, I'm Raj, a comp-sci senior. This is my 24th personal website, and I have yet to write 
-        a semi decent blog post. In my time off from work I like to read books, watch movies,
-        and worry about pending work.</p>
-      </section>
-
-      <section id="experience">
-        <h2>Experience</h2>
-        <p>My latest internship was at <a href="https://www.amd.com">AMD</a> on the Kernel Mode Driver team, working on internal, team-owned tooling for driver infrastructure development. I worked with problems related to gpu driver debugging and created software (fullstack) to monitor driver related logs and events.</p>
-          
-        <p>Previously, I interned at <a href="https://www.hal-india.co.in/home">HAL</a> as an RTOS and Frontend R&D trainee, where I optimized data pipelines for audio processing and developed GUI applications for post-flight audio playback systems for in-flight data recorder modules.</p>
-        
-        <p>I've also taken on freelance projects in web and terminal application development, including consultancy work for site design and custom tooling solutions. Open source development is central to my work, with contributions spanning Rust, Bash, and other technologies, focusing on algorithmic implementations and improving system documentation.</p>
-      </section>
-
-      <section id="contact">
-        <h2>Contact</h2>
-        <ul>
-          <li><a href="mailto:typhoeusxoxo@gmail.com">Mail1</a></li>
-          <li><a href="mailto:thatonebipanda@gmail.com">Mail2</a></li>
-        </ul>
-      </section>
-
-      <section id="socials">
-  <h2>Socials</h2>
-  <ul>
-    <li><a href="https://codeberg.org/nirv">Codeberg</a></li>
-    <li><a href="https://github.com/anarchisthoneybun">GitHub</a></li>
-    <li><a href="https://letterboxd.com/thermitesinatra/">Letterboxd</a></li>
-    <li><a href="https://www.linkedin.com/in/raj-rajeshwar-singh/">LinkedIn</a></li>
-  </ul>
-</section>
-
-      <hr>
-
-      <div class="badge-container">
-        <a href="https://projecteuler.net/profile/nxrv" target="_blank" class="web1-badge">
-          <img src="https://projecteuler.net/profile/nxrv.png" alt="Project Euler Badge" class="badge-image">
-        </a>
-        <a href="https://leetcode.com/u/nirv_x" target="_blank" class="web1-badge">
-          <canvas id="leetcode-badge" class="badge-image" width="200" height="60"></canvas>
-        </a>
+  <body>
+    <script src="./oneko/oneko.js"></script>
+    <nav>
+      <div class="nav-left">
+        <a href="./index.html" class="active">Home</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./oss.html">OSS</a>
+        <a href="./journal.html">Journal</a>
+        <a href="./status.html">Status</a>
+        <!-- <a href="./botched_hemline.html">botched_hemline</a> -->
       </div>
-    </article>
-  </main>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
+        <span class="theme-toggle-text">DARK MODE</span>
+      </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+      ></button>
+    </nav>
 
-  <script>
-    // Dark mode toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeText = document.querySelector('.theme-toggle-text');
-    const body = document.body;
+    <header>
+      <h1>Notes from the Overground</h1>
+    </header>
 
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    updateText(currentTheme);
+    <main>
+      <article>
+        <section id="quote">
+          <div class="quote-container">
+            <blockquote class="quote-text">
+              Do it or don't do it — you will regret both.
+            </blockquote>
+            <cite class="quote-author">Søren Kierkegaard</cite>
+          </div>
+          <div class="quote-container">
+            <blockquote class="quote-text">
+              there’s about enough time to read six books seriously in one’s
+              life
+            </blockquote>
+            <cite class="quote-author">anon</cite>
+          </div>
+        </section>
 
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateText(newTheme);
-    });
+        <section id="intro">
+          <h2>Introduction</h2>
+          <p>
+            Hi, I'm Raj, a comp-sci senior. This is my 24th personal website,
+            and I have yet to write a semi decent blog post. In my time off from
+            work I like to read books, watch movies, and worry about pending
+            work.
+          </p>
+        </section>
 
-    function updateText(theme) {
-      themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
-    }
+        <section id="experience">
+          <h2>Experience</h2>
+          <p>
+            My latest internship was at <a href="https://www.amd.com">AMD</a> on
+            the Kernel Mode Driver team, working on internal, team-owned tooling
+            for driver infrastructure development. I worked with problems
+            related to gpu driver debugging and created software (fullstack) to
+            monitor driver related logs and events.
+          </p>
 
-    // Hamburger menu functionality
-    const hamburger = document.getElementById('hamburger');
-    const navLeft = document.querySelector('.nav-left');
+          <p>
+            Previously, I interned at
+            <a href="https://www.hal-india.co.in/home">HAL</a> as an RTOS and
+            Frontend R&D trainee, where I optimized data pipelines for audio
+            processing and developed GUI applications for post-flight audio
+            playback systems for in-flight data recorder modules.
+          </p>
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLeft.classList.toggle('active');
-    });
+          <p>
+            I've also taken on freelance projects in web and terminal
+            application development, including consultancy work for site design
+            and custom tooling solutions. Open source development is central to
+            my work, with contributions spanning Rust, Bash, and other
+            technologies, focusing on algorithmic implementations and improving
+            system documentation.
+          </p>
+        </section>
 
-    // Close menu when clicking on a nav link (mobile)
-    const navLinks = document.querySelectorAll('.nav-left a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+        <section id="contact">
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="mailto:typhoeusxoxo@gmail.com">Mail1</a></li>
+            <li><a href="mailto:thatonebipanda@gmail.com">Mail2</a></li>
+          </ul>
+        </section>
+
+        <section id="socials">
+          <h2>Socials</h2>
+          <ul>
+            <li><a href="https://codeberg.org/nirv">Codeberg</a></li>
+            <li><a href="https://github.com/anarchisthoneybun">GitHub</a></li>
+            <li>
+              <a href="https://letterboxd.com/thermitesinatra/">Letterboxd</a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/raj-rajeshwar-singh/"
+                >LinkedIn</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <hr />
+
+        <div class="badge-container">
+          <a
+            href="https://projecteuler.net/profile/nxrv"
+            target="_blank"
+            class="web1-badge"
+          >
+            <img
+              src="https://projecteuler.net/profile/nxrv.png"
+              alt="Project Euler Badge"
+              class="badge-image"
+            />
+          </a>
+          <a
+            href="https://leetcode.com/u/nirv_x"
+            target="_blank"
+            class="web1-badge"
+          >
+            <canvas
+              id="leetcode-badge"
+              class="badge-image"
+              width="200"
+              height="60"
+            ></canvas>
+          </a>
+        </div>
+      </article>
+    </main>
+
+    <script>
+      // Dark mode toggle functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.querySelector(".theme-toggle-text");
+      const body = document.body;
+
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      body.setAttribute("data-theme", currentTheme);
+      updateText(currentTheme);
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateText(newTheme);
       });
-    });
 
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
-          hamburger.classList.remove('active');
-          navLeft.classList.remove('active');
+      function updateText(theme) {
+        themeText.textContent = theme === "dark" ? "LIGHT MODE" : "DARK MODE";
+      }
+
+      // Hamburger menu functionality
+      const hamburger = document.getElementById("hamburger");
+      const navLeft = document.querySelector(".nav-left");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLeft.classList.toggle("active");
+      });
+
+      // Close menu when clicking on a nav link (mobile)
+      const navLinks = document.querySelectorAll(".nav-left a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        });
+      });
+
+      // Close menu when clicking outside (mobile)
+      document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navLeft.classList.remove("active");
+          }
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        }
+      });
+
+      // LeetCode Badge functionality
+      async function fetchLeetCodeData(username) {
+        try {
+          // Using a public LeetCode API proxy
+          const response = await fetch(
+            `https://leetcode-api-faisalshohag.vercel.app/${username}`
+          );
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error("Error fetching LeetCode data:", error);
+          return null;
         }
       }
-    });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+      function drawLeetCodeBadge(canvas, data) {
+        const ctx = canvas.getContext("2d");
+        const currentTheme = body.getAttribute("data-theme");
+
+        // Clear canvas
+        ctx.clearRect(0, 0, 200, 60);
+
+        // Background
+        ctx.fillStyle = currentTheme === "dark" ? "#1a1a1a" : "#263238";
+        ctx.fillRect(0, 0, 200, 60);
+
+        // LeetCode text (top left)
+        ctx.fillStyle = "#FFB800";
+        ctx.font = "bold 12px Arial, sans-serif";
+        ctx.fillText("LeetCode", 8, 15);
+
+        if (data) {
+          // Username
+          ctx.fillStyle = "#FFFFFF";
+          ctx.font = "10px Arial, sans-serif";
+          ctx.fillText(`@${data.username || "nirv_x"}`, 8, 32);
+
+          // Total problems solved
+          const totalSolved = data.totalSolved || 0;
+          ctx.fillText(`Total: ${totalSolved}`, 8, 46);
+
+          // Difficulty breakdown (right side)
+          const easy = data.easySolved || 0;
+          const medium = data.mediumSolved || 0;
+          const hard = data.hardSolved || 0;
+
+          ctx.font = "9px Arial, sans-serif";
+
+          // Easy
+          ctx.fillStyle = "#00C896";
+          ctx.fillText(`E: ${easy}`, 140, 20);
+
+          // Medium
+          ctx.fillStyle = "#FFB800";
+          ctx.fillText(`M: ${medium}`, 140, 32);
+
+          // Hard
+          ctx.fillStyle = "#FF375F";
+          ctx.fillText(`H: ${hard}`, 140, 44);
+        } else {
+          // Fallback if API fails
+          ctx.fillStyle = "#FFFFFF";
+          ctx.font = "10px Arial, sans-serif";
+          ctx.fillText("@nirv_x", 8, 32);
+          ctx.fillText("Loading...", 8, 46);
+        }
       }
-    });
 
-    // LeetCode Badge functionality
-    async function fetchLeetCodeData(username) {
-      try {
-        // Using a public LeetCode API proxy
-        const response = await fetch(`https://leetcode-api-faisalshohag.vercel.app/${username}`);
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error('Error fetching LeetCode data:', error);
-        return null;
-      }
-    }
-
-    function drawLeetCodeBadge(canvas, data) {
-      const ctx = canvas.getContext('2d');
-      const currentTheme = body.getAttribute('data-theme');
-      
-      // Clear canvas
-      ctx.clearRect(0, 0, 200, 60);
-      
-      // Background
-      ctx.fillStyle = currentTheme === 'dark' ? '#1a1a1a' : '#263238';
-      ctx.fillRect(0, 0, 200, 60);
-      
-      // LeetCode text (top left)
-      ctx.fillStyle = '#FFB800';
-      ctx.font = 'bold 12px Arial, sans-serif';
-      ctx.fillText('LeetCode', 8, 15);
-      
-      if (data) {
-        // Username
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '10px Arial, sans-serif';
-        ctx.fillText(`@${data.username || 'nirv_x'}`, 8, 32);
-        
-        // Total problems solved
-        const totalSolved = data.totalSolved || 0;
-        ctx.fillText(`Total: ${totalSolved}`, 8, 46);
-        
-        // Difficulty breakdown (right side)
-        const easy = data.easySolved || 0;
-        const medium = data.mediumSolved || 0;
-        const hard = data.hardSolved || 0;
-        
-        ctx.font = '9px Arial, sans-serif';
-        
-        // Easy
-        ctx.fillStyle = '#00C896';
-        ctx.fillText(`E: ${easy}`, 140, 20);
-        
-        // Medium
-        ctx.fillStyle = '#FFB800';
-        ctx.fillText(`M: ${medium}`, 140, 32);
-        
-        // Hard
-        ctx.fillStyle = '#FF375F';
-        ctx.fillText(`H: ${hard}`, 140, 44);
-      } else {
-        // Fallback if API fails
-        ctx.fillStyle = '#FFFFFF';
-        ctx.font = '10px Arial, sans-serif';
-        ctx.fillText('@nirv_x', 8, 32);
-        ctx.fillText('Loading...', 8, 46);
-      }
-    }
-
-    // Initialize LeetCode badge
-    async function initLeetCodeBadge() {
-      const canvas = document.getElementById('leetcode-badge');
-      if (canvas) {
-        const data = await fetchLeetCodeData('nirv_x');
-        drawLeetCodeBadge(canvas, data);
-        
-        // Redraw on theme change
-        const observer = new MutationObserver(() => {
+      // Initialize LeetCode badge
+      async function initLeetCodeBadge() {
+        const canvas = document.getElementById("leetcode-badge");
+        if (canvas) {
+          const data = await fetchLeetCodeData("nirv_x");
           drawLeetCodeBadge(canvas, data);
-        });
-        observer.observe(body, { attributes: true, attributeFilter: ['data-theme'] });
-      }
-    }
 
-    // Initialize after DOM is ready
-    initLeetCodeBadge();
-  </script>
-</body>
+          // Redraw on theme change
+          const observer = new MutationObserver(() => {
+            drawLeetCodeBadge(canvas, data);
+          });
+          observer.observe(body, {
+            attributes: true,
+            attributeFilter: ["data-theme"],
+          });
+        }
+      }
+
+      // Initialize after DOM is ready
+      initLeetCodeBadge();
+    </script>
+  </body>
 </html>

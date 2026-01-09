@@ -1,154 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interning at AMD | Notes from the Overground</title>
-  <link rel="stylesheet" href="../style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interning at AMD | Notes from the Overground</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
     <script src="../oneko/oneko_l2.js"></script>
     <nav>
-        <div class="nav-left">
-            <a href="../index.html">Home</a>
-            <a href="../blog.html">Blog</a>
-            <a href="../projects.html">Projects</a>
-            <a href="../oss.html">OSS</a>
-            <a href="../journal.html">Journal</a>
-            <a href="../status.html">Status</a>
-            <a href="../botched_hemline.html">botched_hemline</a>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-            <span class="theme-toggle-text">DARK MODE</span>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-        </button>
+      <div class="nav-left">
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../oss.html">OSS</a>
+        <a href="../journal.html">Journal</a>
+        <a href="../status.html">Status</a>
+        <!-- <a href="../botched_hemline.html">botched_hemline</a> -->
+      </div>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
+        <span class="theme-toggle-text">DARK MODE</span>
+      </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+      ></button>
     </nav>
 
-  <header>
-    <h1>Interning at AMD</h1>
-  </header>
+    <header>
+      <h1>Interning at AMD</h1>
+    </header>
 
-  <main>
-    <article>
+    <main>
+      <article>
         <section id="introduction">
           <h2>Introduction</h2>
           <p>
-            Wanted to do a short writeup about my time at AMD these past couple months. Not to be a LinkedIn poster, but honestly if I don't write about stuff more, I might completely lose the ability to. So here goes.
+            Wanted to do a short writeup about my time at AMD these past couple
+            months. Not to be a LinkedIn poster, but honestly if I don't write
+            about stuff more, I might completely lose the ability to. So here
+            goes.
           </p>
         </section>
 
         <section id="experience">
-            <h2>Experience</h2>
-            <p>
-                Got the notification that they'd be coming on campus towards the end of my vacation. Applied, sat through an hour-long interview where they grilled me on last summer's work at HAL and pretty much everything I've worked on so far. Did pretty well — got a positive reply a couple days later.
-            </p>
+          <h2>Experience</h2>
+          <p>
+            Got the notification that they'd be coming on campus towards the end
+            of my vacation. Applied, sat through an hour-long interview where
+            they grilled me on last summer's work at HAL and pretty much
+            everything I've worked on so far. Did pretty well — got a positive
+            reply a couple days later.
+          </p>
 
-            <p>
-                Moved out to Hyderabad for the duration of the internship. The office was pretty sweet, and my working area was especially cool — we had this experimental-ish vibe going on with sprawling desks, open GPUs scattered around, and cables everywhere. It was like passive smoking, but with bleeding-edge tech instead of cigarettes. Fortunately, my living situation worked out well, so I could get to the office by 7 AM to spend as much time as possible with the machines.
-            </p>
+          <p>
+            Moved out to Hyderabad for the duration of the internship. The
+            office was pretty sweet, and my working area was especially cool —
+            we had this experimental-ish vibe going on with sprawling desks,
+            open GPUs scattered around, and cables everywhere. It was like
+            passive smoking, but with bleeding-edge tech instead of cigarettes.
+            Fortunately, my living situation worked out well, so I could get to
+            the office by 7 AM to spend as much time as possible with the
+            machines.
+          </p>
 
-            <p>
-                Was assigned three machines in total, and for a while there I was working with four monitors. Really made me *feel* like a full-time corpo guy — god, it was fun. The first few weeks were mostly getting familiar with the codebase, build tools, and typical new hire stuff. Once I'd cut my teeth on that, they threw some bugs my way — mostly coverage issues in the new features. Things went well, though I did manage to escalate what should've been a 2-line fix into a full function refactor. (Pro tip: never make your if-else ladders too deep.)
-            </p>
+          <p>
+            Was assigned three machines in total, and for a while there I was
+            working with four monitors. Really made me *feel* like a full-time
+            corpo guy — god, it was fun. The first few weeks were mostly getting
+            familiar with the codebase, build tools, and typical new hire stuff.
+            Once I'd cut my teeth on that, they threw some bugs my way — mostly
+            coverage issues in the new features. Things went well, though I did
+            manage to escalate what should've been a 2-line fix into a full
+            function refactor. (Pro tip: never make your if-else ladders too
+            deep.)
+          </p>
 
-            <p>
-              The main project was where things got really interesting. They asked me to pick up where a previous intern had left off — an idea he couldn't complete before his term ended. The project was a VidPN network manager and log capturing mechanism for Windows systems, essentially letting us see all display resolution details in one place instead of hunting through Windows settings (which, let's be honest, keeps getting more mystifying by the day). 
-            </p>
-            
-            <p>
-              I ended up remaking the whole thing from scratch since the inherited codebase was pretty messy, then added some new features related to the *** mechanism. Most of the backend was in C++, with a main Node process orchestrating the data and frontend processes for the Electron app.
-            </p>
-            
-            <p>
-              Here's a fun tangent: did you know that by default, a C++ executable that prints to the terminal runs in line buffer mode when executed directly, printing each line as soon as it's ready? But if you run it through a pipe, it switches to block buffering — capturing 4-6KB of data before releasing it to the other end. I did not know this, and spent a couple days implementing every trick in the book on the frontend to make log capture real-time. I'm talking ring buffers on ring buffers handling real-time parsing and UI updates — it was a thing of beauty. When I finally figured out the actual issue, I felt pretty stupid. All you have to do is flush stdout immediately after printing to emulate line buffer mode even when piped.
-            </p>
-            
-            <p>
-              I did submit a proposal to rewrite the whole thing in a native GUI framework, but that would've taken considerable time. We decided it was better to have the whole thing working first before worrying about large-scale rewrites.
-            </p>
+          <p>
+            The main project was where things got really interesting. They asked
+            me to pick up where a previous intern had left off — an idea he
+            couldn't complete before his term ended. The project was a VidPN
+            network manager and log capturing mechanism for Windows systems,
+            essentially letting us see all display resolution details in one
+            place instead of hunting through Windows settings (which, let's be
+            honest, keeps getting more mystifying by the day).
+          </p>
 
-            <p>
-              Wrapped everything up nicely with a week to spare. Handled some last-minute updates, built the docs and work report, and delivered what I'd say was a pretty amazing final presentation.
-            </p>
-            
-            <p>
-              All in all, it was a phenomenal time. Learned a ton, got to work with some seriously cool hardware, and discovered that Windows display management is even more complex than I thought possible. (Ok, this is a lie. Windows structure is a mess and I was scared of it the moment they told me I'll be working on it; Microsoft please hire me I will write w12 from scratch and make it coherent I'm so serious.)
-            </p>
-          </section>
-      
+          <p>
+            I ended up remaking the whole thing from scratch since the inherited
+            codebase was pretty messy, then added some new features related to
+            the *** mechanism. Most of the backend was in C++, with a main Node
+            process orchestrating the data and frontend processes for the
+            Electron app.
+          </p>
 
-      <footer class="post-signature">
-  <svg width="650" height="200" xmlns="http://www.w3.org/2000/svg" class="signature-svg">
-    <path d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100" 
-          stroke="var(--signature-color)" 
-          stroke-width="3" 
-          fill="none" 
-          stroke-linecap="round" 
-          stroke-linejoin="round"/>
-  </svg>
-</footer>
-    </article>
-  </main>
-  <script>
-    // Dark mode toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeText = document.querySelector('.theme-toggle-text');
-    const body = document.body;
+          <p>
+            Here's a fun tangent: did you know that by default, a C++ executable
+            that prints to the terminal runs in line buffer mode when executed
+            directly, printing each line as soon as it's ready? But if you run
+            it through a pipe, it switches to block buffering — capturing 4-6KB
+            of data before releasing it to the other end. I did not know this,
+            and spent a couple days implementing every trick in the book on the
+            frontend to make log capture real-time. I'm talking ring buffers on
+            ring buffers handling real-time parsing and UI updates — it was a
+            thing of beauty. When I finally figured out the actual issue, I felt
+            pretty stupid. All you have to do is flush stdout immediately after
+            printing to emulate line buffer mode even when piped.
+          </p>
 
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    updateText(currentTheme);
+          <p>
+            I did submit a proposal to rewrite the whole thing in a native GUI
+            framework, but that would've taken considerable time. We decided it
+            was better to have the whole thing working first before worrying
+            about large-scale rewrites.
+          </p>
 
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateText(newTheme);
-    });
+          <p>
+            Wrapped everything up nicely with a week to spare. Handled some
+            last-minute updates, built the docs and work report, and delivered
+            what I'd say was a pretty amazing final presentation.
+          </p>
 
-    function updateText(theme) {
-      themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
-    }
+          <p>
+            All in all, it was a phenomenal time. Learned a ton, got to work
+            with some seriously cool hardware, and discovered that Windows
+            display management is even more complex than I thought possible.
+            (Ok, this is a lie. Windows structure is a mess and I was scared of
+            it the moment they told me I'll be working on it; Microsoft please
+            hire me I will write w12 from scratch and make it coherent I'm so
+            serious.)
+          </p>
+        </section>
 
-    // Hamburger menu functionality
-    const hamburger = document.getElementById('hamburger');
-    const navLeft = document.querySelector('.nav-left');
+        <footer class="post-signature">
+          <svg
+            width="650"
+            height="200"
+            xmlns="http://www.w3.org/2000/svg"
+            class="signature-svg"
+          >
+            <path
+              d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100"
+              stroke="var(--signature-color)"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </footer>
+      </article>
+    </main>
+    <script>
+      // Dark mode toggle functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.querySelector(".theme-toggle-text");
+      const body = document.body;
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLeft.classList.toggle('active');
-    });
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      body.setAttribute("data-theme", currentTheme);
+      updateText(currentTheme);
 
-    // Close menu when clicking on a nav link (mobile)
-    const navLinks = document.querySelectorAll('.nav-left a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateText(newTheme);
       });
-    });
 
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
-          hamburger.classList.remove('active');
-          navLeft.classList.remove('active');
+      function updateText(theme) {
+        themeText.textContent = theme === "dark" ? "LIGHT MODE" : "DARK MODE";
+      }
+
+      // Hamburger menu functionality
+      const hamburger = document.getElementById("hamburger");
+      const navLeft = document.querySelector(".nav-left");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLeft.classList.toggle("active");
+      });
+
+      // Close menu when clicking on a nav link (mobile)
+      const navLinks = document.querySelectorAll(".nav-left a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        });
+      });
+
+      // Close menu when clicking outside (mobile)
+      document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navLeft.classList.remove("active");
+          }
         }
-      }
-    });
+      });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
-      }
-    });
-  </script>
-</body>
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        }
+      });
+    </script>
+  </body>
 </html>

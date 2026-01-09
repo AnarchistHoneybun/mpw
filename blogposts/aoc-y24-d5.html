@@ -11,20 +11,27 @@
   <body>
     <script src="../oneko/oneko_l2.js"></script>
     <nav>
-        <div class="nav-left">
-            <a href="../index.html">Home</a>
-            <a href="../blog.html">Blog</a>
-            <a href="../projects.html">Projects</a>
-            <a href="../oss.html">OSS</a>
-            <a href="../journal.html">Journal</a>
-            <a href="../status.html">Status</a>
-            <a href="../botched_hemline.html">botched_hemline</a>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-            <span class="theme-toggle-text">DARK MODE</span>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-        </button>
+      <div class="nav-left">
+        <a href="../index.html">Home</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../oss.html">OSS</a>
+        <a href="../journal.html">Journal</a>
+        <a href="../status.html">Status</a>
+        <!-- <a href="../botched_hemline.html">botched_hemline</a> -->
+      </div>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
+        <span class="theme-toggle-text">DARK MODE</span>
+      </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+      ></button>
     </nav>
 
     <header>
@@ -79,7 +86,8 @@
     │75,29,13        │
     │...             │
     └────────────────┘
-        </pre>
+        </pre
+          >
         </section>
 
         <section id="solution">
@@ -221,7 +229,10 @@
 
           </pre>
 
-          <p>For example, with an invalid update [75,97,47,61,53], we first build a graph of just these pages and their applicable rules:</p>
+          <p>
+            For example, with an invalid update [75,97,47,61,53], we first build
+            a graph of just these pages and their applicable rules:
+          </p>
 
           <pre>
                    +----------+
@@ -287,7 +298,10 @@
               <p>Invalid update: [75, 97, 47, 61, 53]</p>
               <p>Topological Sort Process:</p>
               <p>Initial in-degrees: {97: 0, 75: 1, 47: 2, 53: 4, 61: 3}</p>
-              <p>Initial graph: {47: [53, 61], 97: [61, 47, 53, 75], 75: [53, 47, 61], 61: [53]}</p>
+              <p>
+                Initial graph: {47: [53, 61], 97: [61, 47, 53, 75], 75: [53, 47,
+                61], 61: [53]}
+              </p>
               <p>Queue: [97]</p>
               <p>Current result: []</p>
               <p>Processed 97 -> 61, new in-degree: 2</p>
@@ -303,7 +317,10 @@
               <p>Current result: [97, 75]</p>
               <p>Processed 47 -> 53, new in-degree: 1</p>
               <p>Processed 47 -> 61, new in-degree: 0</p>
-              <p>Queue: [61] Current result: [97, 75, 47] Processed 61 -> 53, new in-degree: 0</p>
+              <p>
+                Queue: [61] Current result: [97, 75, 47] Processed 61 -> 53, new
+                in-degree: 0
+              </p>
               <p>Queue: [53]</p>
               <p>Current result: [97, 75, 47, 61]</p>
               <p>Final order: [97, 75, 47, 61, 53]</p>
@@ -342,75 +359,81 @@
         </section>
 
         <footer class="post-signature">
-  <svg width="650" height="200" xmlns="http://www.w3.org/2000/svg" class="signature-svg">
-    <path d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100" 
-          stroke="var(--signature-color)" 
-          stroke-width="3" 
-          fill="none" 
-          stroke-linecap="round" 
-          stroke-linejoin="round"/>
-  </svg>
-</footer>
-
+          <svg
+            width="650"
+            height="200"
+            xmlns="http://www.w3.org/2000/svg"
+            class="signature-svg"
+          >
+            <path
+              d="M 403 160 L 478 40 L 238 40 L 283 160 L 73 100 L 403 160 L 73 100"
+              stroke="var(--signature-color)"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </footer>
       </article>
     </main>
     <script>
       // Dark mode toggle functionality
-      const themeToggle = document.getElementById('theme-toggle');
-      const themeText = document.querySelector('.theme-toggle-text');
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.querySelector(".theme-toggle-text");
       const body = document.body;
-  
+
       // Check for saved theme preference or default to light mode
-      const currentTheme = localStorage.getItem('theme') || 'light';
-      body.setAttribute('data-theme', currentTheme);
+      const currentTheme = localStorage.getItem("theme") || "light";
+      body.setAttribute("data-theme", currentTheme);
       updateText(currentTheme);
-  
-      themeToggle.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
         updateText(newTheme);
       });
-  
+
       function updateText(theme) {
-        themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
+        themeText.textContent = theme === "dark" ? "LIGHT MODE" : "DARK MODE";
       }
 
       // Hamburger menu functionality
-      const hamburger = document.getElementById('hamburger');
-      const navLeft = document.querySelector('.nav-left');
+      const hamburger = document.getElementById("hamburger");
+      const navLeft = document.querySelector(".nav-left");
 
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navLeft.classList.toggle('active');
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLeft.classList.toggle("active");
       });
 
       // Close menu when clicking on a nav link (mobile)
-      const navLinks = document.querySelectorAll('.nav-left a');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          hamburger.classList.remove('active');
-          navLeft.classList.remove('active');
+      const navLinks = document.querySelectorAll(".nav-left a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
         });
       });
 
       // Close menu when clicking outside (mobile)
-      document.addEventListener('click', (e) => {
+      document.addEventListener("click", (e) => {
         if (window.innerWidth <= 768) {
           if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
-            hamburger.classList.remove('active');
-            navLeft.classList.remove('active');
+            hamburger.classList.remove("active");
+            navLeft.classList.remove("active");
           }
         }
       });
 
       // Handle window resize
-      window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
         if (window.innerWidth > 768) {
-          hamburger.classList.remove('active');
-          navLeft.classList.remove('active');
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
         }
       });
     </script>

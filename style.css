@@ -1,14 +1,27 @@
+/* Google Fonts Import */
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap");
+
+/* Local Font - Fran Sans */
+@font-face {
+  font-family: "Fran Sans";
+  src: local("Fran Sans Solid"), local("FranSans_Solid"),
+    url("fonts/FranSans_Solid.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS Variables for theme colors */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #333333;
+  --bg-color: #e5e3d5;
+  --text-color: #171717;
   --border-color: #ddd;
   --light-border-color: #eee;
 }
 
 [data-theme="dark"] {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
+  --bg-color: #171717;
+  --text-color: #e5e3d5;
   --border-color: #444;
   --light-border-color: #333;
   --link-color: #66b3ff;
@@ -16,31 +29,32 @@
 }
 
 body {
-  font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', 'Liberation Mono', 'Courier New', monospace;
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   /* line-height: 1.6; */
 }
 
 /* Mobile-first responsive adjustments */
 @media (max-width: 768px) {
   body {
-    padding: 0.5rem;
+    padding: 0;
   }
-  
+
   h1 {
     font-size: 1.8rem;
   }
-  
+
   .badge-container {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
   }
-  
+
   .badge-image {
     max-width: 100%;
     height: auto;
@@ -49,18 +63,38 @@ body {
 
 /* Navigation */
 nav {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  margin: 0;
+  padding: 1rem;
+  border-bottom: 1px solid #000000;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
 }
 
 .nav-left {
   display: flex;
   gap: 1rem;
+  align-items: flex-end;
+}
+
+/* Navbar link styles */
+nav a {
+  transition: none;
+  color: #000000;
+  text-decoration: none;
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a.active {
+  font-size: 1.2em;
+  color: #ff7b30;
+  font-weight: 600;
 }
 
 /* Hamburger menu button - Web 1.0 style */
@@ -69,7 +103,7 @@ nav {
   border: 2px outset #cccccc;
   background: #f0f0f0;
   color: #000000;
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: "MS Sans Serif", sans-serif;
   font-size: 11px;
   font-weight: bold;
   padding: 4px 8px;
@@ -110,25 +144,29 @@ nav {
 }
 
 /* Instead of on body */
-p, li, blockquote {
+p,
+li,
+blockquote {
   line-height: 1.4;
 }
 
-/* And preserved tight spacing for code */
-pre, code, .ascii-art {
+/* Monospace font for code and technical content */
+pre,
+code,
+.ascii-art {
+  font-family: "Fira Mono", "Consolas", "Menlo", "Monaco", "Liberation Mono",
+    "Courier New", monospace;
+  font-size: 0.725rem; /* 14px equivalent, typical monospace size */
   line-height: normal; /* or even 1.0 for ASCII art */
 }
 
-nav a {
-  transition: none;
+/* Link colors for body text (main content only) */
+main a {
+  color: #24269b;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
-
-nav a.active {
-  font-weight: bold;
+main a:visited {
+  color: #24269b;
 }
 
 /* Custom link colors only in dark mode */
@@ -140,6 +178,31 @@ nav a.active {
   color: var(--visited-color);
 }
 
+/* Dark mode body text links */
+[data-theme="dark"] main a {
+  color: var(--link-color);
+}
+
+[data-theme="dark"] main a:visited {
+  color: var(--visited-color);
+}
+
+/* Dark mode navbar adjustments */
+[data-theme="dark"] nav {
+  border-bottom: 1px solid #ffffff;
+}
+
+[data-theme="dark"] nav a {
+  color: #ffffff;
+}
+
+[data-theme="dark"] nav a:visited {
+  color: #ffffff;
+}
+
+[data-theme="dark"] nav a.active {
+  color: #ff7b30;
+}
 
 /* Theme toggle button */
 .theme-toggle {
@@ -149,7 +212,7 @@ nav a.active {
   cursor: pointer;
   font-size: 11px;
   font-weight: bold;
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: "MS Sans Serif", sans-serif;
   transition: none;
   background: repeating-linear-gradient(
     45deg,
@@ -187,7 +250,7 @@ nav a.active {
 
 .theme-toggle:active {
   border: 3px inset #999999;
-  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .theme-toggle-text {
@@ -230,13 +293,13 @@ nav a.active {
     flex-direction: column;
     gap: 0;
     z-index: 1000;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 2px;
   }
 
   [data-theme="dark"] .nav-left {
     border: 2px inset #666666;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .nav-left.active {
@@ -318,14 +381,58 @@ nav a.active {
 }
 
 /* Header */
+header {
+  padding: 0 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+main {
+  padding: 0 1rem 1rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 h1 {
-  font-size: 2.2rem;
-  border-bottom: 1px solid var(--light-border-color);
+  font-size: 3rem;
+  border-bottom: 1px solid var(--text-color);
+  color: var(--text-color);
+}
+
+/* Index page title with Fran Sans */
+header h1 {
+  font-family: "Fran Sans", sans-serif;
+}
+
+/* Subheadings with Jost Semi-Bold */
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Jost", sans-serif;
+  font-weight: 600;
   color: var(--text-color);
 }
 
 h2 {
-  color: var(--text-color);
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.1rem;
+}
+
+h6 {
+  font-size: 1rem;
 }
 
 /* Table */
@@ -333,7 +440,8 @@ table {
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border: 1px solid var(--border-color);
   padding: 8px;
   text-align: left;
@@ -380,7 +488,7 @@ p {
 
 .track-name {
   flex: 1;
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
   color: var(--text-color);
   font-size: 14px;
 }
@@ -395,7 +503,7 @@ p {
   border: 2px outset #cccccc;
   background: #f0f0f0;
   color: #000000;
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: "MS Sans Serif", sans-serif;
   font-size: 11px;
   font-weight: bold;
   padding: 3px 8px;
@@ -518,7 +626,7 @@ p {
   font-size: 10px;
   color: var(--text-color);
   margin-top: 2px;
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
 }
 
 .now-playing {
@@ -606,7 +714,7 @@ p {
   border: 2px inset var(--border-color);
   padding: 8px;
   margin: 12px 0;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-size: 12px;
   font-weight: bold;
   overflow: hidden;
@@ -651,7 +759,7 @@ p {
   border: 1px outset var(--border-color);
   background: #c0c0c0;
   color: #000000;
-  font-family: 'MS Sans Serif', sans-serif;
+  font-family: "MS Sans Serif", sans-serif;
 }
 
 .status-indicator.playing {
@@ -666,8 +774,14 @@ p {
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0.3; }
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0.3;
+  }
 }
 
 .quote-container {
@@ -760,7 +874,7 @@ p {
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.1s ease;
-  box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
 }
 
@@ -768,7 +882,7 @@ p {
   border: 3px inset #c0c0c0;
   background: linear-gradient(135deg, #d0d0d0 0%, #b0b0b0 100%);
   transform: translateY(1px);
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .web1-badge:active {
@@ -812,17 +926,19 @@ p {
   border: 1px solid #505050;
 }
 
-#socials ul, #contact ul {
+#socials ul,
+#contact ul {
   display: grid;
   grid-template-columns: max-content max-content;
   grid-template-rows: auto auto;
-  column-gap: 50px; 
-  row-gap: 10px;    
+  column-gap: 50px;
+  row-gap: 10px;
   list-style: square;
   padding-left: 40px;
 }
 
-#socials li, #contacts li {
+#socials li,
+#contacts li {
   margin: 0;
 }
 
@@ -964,16 +1080,16 @@ p {
   border-top: 1px dotted #666;
 }
 
-.priority-high { 
-  border-left: 4px solid #cc0000 !important; 
+.priority-high {
+  border-left: 4px solid #cc0000 !important;
 }
 
-.priority-medium { 
-  border-left: 4px solid #ffcc00 !important; 
+.priority-medium {
+  border-left: 4px solid #ffcc00 !important;
 }
 
-.priority-low { 
-  border-left: 4px solid #00aa00 !important; 
+.priority-low {
+  border-left: 4px solid #00aa00 !important;
 }
 
 .last-updated {

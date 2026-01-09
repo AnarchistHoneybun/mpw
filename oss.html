@@ -1,173 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OSS | Notes from the Overground</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <script src="./oneko/oneko.js"></script>
-  <nav>
-    <div class="nav-left">
-    <a href="./index.html">Home</a>
-    <a href="./blog.html">Blog</a>
-    <a href="./projects.html">Projects</a>
-    <a href="./oss.html" class="active">OSS</a>
-    <a href="./journal.html">Journal</a>
-    <a href="./status.html">Status</a>
-    <a href="./botched_hemline.html">botched_hemline</a>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-toggle-text">DARK MODE</span>
-    </button>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-    </button>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSS | Notes from the Overground</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script src="./oneko/oneko.js"></script>
+    <nav>
+      <div class="nav-left">
+        <a href="./index.html">Home</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./projects.html">Projects</a>
+        <a href="./oss.html" class="active">OSS</a>
+        <a href="./journal.html">Journal</a>
+        <a href="./status.html">Status</a>
+        <!-- <a href="./botched_hemline.html">botched_hemline</a> -->
+      </div>
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+      >
+        <span class="theme-toggle-text">DARK MODE</span>
+      </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+      ></button>
+    </nav>
 
-  <header>
-    <h1>Open Source Contributions</h1>
-  </header>
+    <header>
+      <h1>Open Source Contributions</h1>
+    </header>
 
-  <main>
-    <article>
+    <main>
+      <article>
+        <section id="impact">
+          <p class="line-changes">
+            <span class="additions"> +11,451</span>
+            <span class="deletions"> -2,143</span>
+          </p>
+        </section>
 
-      <section id="impact">
-        <p class="line-changes">
-          <span class="additions"> +11,451</span> 
-          <span class="deletions"> -2,143</span>
-        </p>
-      </section>
+        <section id="contributions">
+          <ol>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/96"
+                >fix: stack overflow error when parsing large polynomials</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+4800</span>
+                <span class="deletions">-768</span></span
+              >
+            </li>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/36"
+                >feat: Parse polynomial from string</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+1777</span>
+                <span class="deletions">-195</span></span
+              >
+            </li>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/161"
+                >feat: implement directed and undirected cycle graphs</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+411</span>
+                <span class="deletions">-0</span></span
+              >
+            </li>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/81"
+                >feat: Implement TryInto for Rationals</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+196</span>
+                <span class="deletions">-0</span></span
+              >
+            </li>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/131"
+                >feat: add complete undirected graph implementation</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+151</span>
+                <span class="deletions">-14</span></span
+              >
+            </li>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/160"
+                >perf: implement faster jacobi symbol algorithm without
+                factorization</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+82</span>
+                <span class="deletions">-7</span></span
+              >
+            </li>
+            <li>
+              <strong>pishleback/Algebraeon</strong> →
+              <a href="https://github.com/pishleback/Algebraeon/pull/84"
+                >refactor exponent conversion to use the new TryInto methods</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+48</span>
+                <span class="deletions">-62</span></span
+              >
+            </li>
+            <li>
+              <strong>RustCrypto/hashes</strong> →
+              <a href="https://github.com/RustCrypto/hashes/pull/621"
+                >Kupyna: implemented hashing function</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+1339</span>
+                <span class="deletions">-2</span></span
+              >
+            </li>
+            <li>
+              <strong>RustCrypto/hashes</strong> →
+              <a href="https://github.com/RustCrypto/hashes/pull/693"
+                >refactor: Kupyna - replace byte-level operations with
+                word-level operations</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+163</span>
+                <span class="deletions">-235</span></span
+              >
+            </li>
+            <li>
+              <strong>oiwn/tarts</strong> →
+              <a href="https://github.com/oiwn/tarts/pull/46"
+                >feat: Pipes animation</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+478</span>
+                <span class="deletions">-63</span></span
+              >
+            </li>
+            <li>
+              <strong>oiwn/tarts</strong> →
+              <a href="https://github.com/oiwn/tarts/pull/42"
+                >feat: Rotating Donut anim</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+269</span>
+                <span class="deletions">-4</span></span
+              >
+            </li>
+            <li>
+              <strong>oiwn/tarts</strong> →
+              <a href="https://github.com/oiwn/tarts/pull/60"
+                >feat: Plasma Anim</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+186</span>
+                <span class="deletions">-1</span></span
+              >
+            </li>
+            <li>
+              <strong>oiwn/tarts</strong> →
+              <a href="https://github.com/oiwn/tarts/pull/59"
+                >Add a reset factor</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+29</span>
+                <span class="deletions">-0</span></span
+              >
+            </li>
+            <li>
+              <strong>petgraph/petgraph</strong> →
+              <a href="https://github.com/petgraph/petgraph/pull/830"
+                >refactor: add examples for scc algorithms and reorganize into
+                dedicated module</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+426</span>
+                <span class="deletions">-259</span></span
+              >
+            </li>
+            <li>
+              <strong>jkoudys/_kupyna</strong> →
+              <a href="https://github.com/jkoudys/_kupyna/pull/3"
+                >t_xor_l and t_plus_l functions added</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+357</span>
+                <span class="deletions">-63</span></span
+              >
+            </li>
+            <li>
+              <strong>jkoudys/_kupyna</strong> →
+              <a href="https://github.com/jkoudys/_kupyna/pull/2"
+                >Pad function edited</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+119</span>
+                <span class="deletions">-3</span></span
+              >
+            </li>
+            <li>
+              <strong>jkoudys/_kupyna</strong> →
+              <a href="https://github.com/jkoudys/_kupyna/pull/1"
+                >Extracted tests to a separate file</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+110</span>
+                <span class="deletions">-108</span></span
+              >
+            </li>
+            <li>
+              <strong>bgreenwell/doxx</strong> →
+              <a href="https://github.com/bgreenwell/doxx/pull/39"
+                >feat: implement mixed formatting within paragraphs</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+193</span>
+                <span class="deletions">-96</span></span
+              >
+            </li>
+            <li>
+              <strong>freeCodeCamp/freeCodeCamp</strong> →
+              <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/56452"
+                >feat(curriculum): add questions for JavaScript Audio and Video
+                quiz</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+110</span>
+                <span class="deletions">-100</span></span
+              >
+            </li>
+            <li>
+              <strong>freeCodeCamp/freeCodeCamp</strong> →
+              <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/56523"
+                >fix(curriculum): redundant initial newline in Pyramid Generator
+                output</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+82</span>
+                <span class="deletions">-82</span></span
+              >
+            </li>
+            <li>
+              <strong>uutils/coreutils</strong> →
+              <a href="https://github.com/uutils/coreutils/pull/8650"
+                >hashsum: fix help text to show actual utility name</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+59</span>
+                <span class="deletions"> -1</span></span
+              >
+            </li>
+            <li>
+              <strong>jkoudys/kupyna_hashes</strong> →
+              <a href="https://github.com/jkoudys/kupyna_hashes/pull/2"
+                >Resolving clippy warnings/errors</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+35</span>
+                <span class="deletions">-60</span></span
+              >
+            </li>
+            <li>
+              <strong>jkoudys/kupyna_hashes</strong> →
+              <a href="https://github.com/jkoudys/kupyna_hashes/pull/1"
+                >housekeeping changes</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+7</span>
+                <span class="deletions">-2</span></span
+              >
+            </li>
+            <li>
+              <strong>usgraphics/TR-100</strong> →
+              <a href="https://github.com/usgraphics/TR-100/pull/9"
+                >Multiple DNS ip support</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+18</span>
+                <span class="deletions">-3</span></span
+              >
+            </li>
+            <li>
+              <strong>dscsnu/ping-website-v1</strong> →
+              <a href="https://github.com/dscsnu/ping-website-v1/pull/1"
+                >navbar profile poi</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+14</span>
+                <span class="deletions">-6</span></span
+              >
+            </li>
+            <li>
+              <strong>hykilpikonna/hyfetch</strong> →
+              <a href="https://github.com/hykilpikonna/hyfetch/pull/309"
+                >xenogender flag preset added</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+11</span>
+                <span class="deletions">-0</span></span
+              >
+            </li>
+            <li>
+              <strong>typst/typst</strong> →
+              <a href="https://github.com/typst/typst/pull/4444"
+                >Reword docs for `math.cancel`</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+6</span>
+                <span class="deletions">-6</span></span
+              >
+            </li>
+            <li>
+              <strong>Aperocky/tascli</strong> →
+              <a href="https://github.com/Aperocky/tascli/pull/1"
+                >docs: update README to include `delete` command</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+2</span>
+                <span class="deletions">-1</span></span
+              >
+            </li>
+            <li>
+              <strong>ecashin/memoradical</strong> →
+              <a href="https://github.com/ecashin/memoradical/pull/40"
+                >Update help.html</a
+              >
+              <span class="line-changes"
+                ><span class="additions">+2</span>
+                <span class="deletions">-2</span></span
+              >
+            </li>
+          </ol>
+        </section>
+      </article>
+    </main>
+    <script>
+      // Dark mode toggle functionality
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeText = document.querySelector(".theme-toggle-text");
+      const body = document.body;
 
-      <section id="contributions">
-        <ol>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/96">fix: stack overflow error when parsing large polynomials</a> <span class="line-changes"><span class="additions">+4800</span> <span class="deletions">-768</span></span></li>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/36">feat: Parse polynomial from string</a> <span class="line-changes"><span class="additions">+1777</span> <span class="deletions">-195</span></span></li>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/161">feat: implement directed and undirected cycle graphs</a> <span class="line-changes"><span class="additions">+411</span> <span class="deletions">-0</span></span></li>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/81">feat: Implement TryInto for Rationals</a> <span class="line-changes"><span class="additions">+196</span> <span class="deletions">-0</span></span></li>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/131">feat: add complete undirected graph implementation</a> <span class="line-changes"><span class="additions">+151</span> <span class="deletions">-14</span></span></li>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/160">perf: implement faster jacobi symbol algorithm without factorization</a> <span class="line-changes"><span class="additions">+82</span> <span class="deletions">-7</span></span></li>
-          <li><strong>pishleback/Algebraeon</strong> → <a href="https://github.com/pishleback/Algebraeon/pull/84">refactor exponent conversion to use the new TryInto methods</a> <span class="line-changes"><span class="additions">+48</span> <span class="deletions">-62</span></span></li>
-          <li><strong>RustCrypto/hashes</strong> → <a href="https://github.com/RustCrypto/hashes/pull/621">Kupyna: implemented hashing function</a> <span class="line-changes"><span class="additions">+1339</span> <span class="deletions">-2</span></span></li>
-          <li><strong>RustCrypto/hashes</strong> → <a href="https://github.com/RustCrypto/hashes/pull/693">refactor: Kupyna - replace byte-level operations with word-level operations</a> <span class="line-changes"><span class="additions">+163</span> <span class="deletions">-235</span></span></li>
-          <li><strong>oiwn/tarts</strong> → <a href="https://github.com/oiwn/tarts/pull/46">feat: Pipes animation</a> <span class="line-changes"><span class="additions">+478</span> <span class="deletions">-63</span></span></li>
-          <li><strong>oiwn/tarts</strong> → <a href="https://github.com/oiwn/tarts/pull/42">feat: Rotating Donut anim</a> <span class="line-changes"><span class="additions">+269</span> <span class="deletions">-4</span></span></li>
-          <li><strong>oiwn/tarts</strong> → <a href="https://github.com/oiwn/tarts/pull/60">feat: Plasma Anim</a> <span class="line-changes"><span class="additions">+186</span> <span class="deletions">-1</span></span></li>
-          <li><strong>oiwn/tarts</strong> → <a href="https://github.com/oiwn/tarts/pull/59">Add a reset factor</a> <span class="line-changes"><span class="additions">+29</span> <span class="deletions">-0</span></span></li>
-          <li><strong>petgraph/petgraph</strong> → <a href="https://github.com/petgraph/petgraph/pull/830">refactor: add examples for scc algorithms and reorganize into dedicated module</a> <span class="line-changes"><span class="additions">+426</span> <span class="deletions">-259</span></span></li>
-          <li><strong>jkoudys/_kupyna</strong> → <a href="https://github.com/jkoudys/_kupyna/pull/3">t_xor_l and t_plus_l functions added</a> <span class="line-changes"><span class="additions">+357</span> <span class="deletions">-63</span></span></li>
-          <li><strong>jkoudys/_kupyna</strong> → <a href="https://github.com/jkoudys/_kupyna/pull/2">Pad function edited</a> <span class="line-changes"><span class="additions">+119</span> <span class="deletions">-3</span></span></li>
-          <li><strong>jkoudys/_kupyna</strong> → <a href="https://github.com/jkoudys/_kupyna/pull/1">Extracted tests to a separate file</a> <span class="line-changes"><span class="additions">+110</span> <span class="deletions">-108</span></span></li>
-          <li><strong>bgreenwell/doxx</strong> → <a href="https://github.com/bgreenwell/doxx/pull/39">feat: implement mixed formatting within paragraphs</a> <span class="line-changes"><span class="additions">+193</span> <span class="deletions">-96</span></span></li>
-          <li><strong>freeCodeCamp/freeCodeCamp</strong> → <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/56452">feat(curriculum): add questions for JavaScript Audio and Video quiz</a> <span class="line-changes"><span class="additions">+110</span> <span class="deletions">-100</span></span></li>
-          <li><strong>freeCodeCamp/freeCodeCamp</strong> → <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/56523">fix(curriculum): redundant initial newline in Pyramid Generator output</a> <span class="line-changes"><span class="additions">+82</span> <span class="deletions">-82</span></span></li>
-          <li><strong>uutils/coreutils</strong> → <a href="https://github.com/uutils/coreutils/pull/8650">hashsum: fix help text to show actual utility name</a> <span class="line-changes"><span class="additions">+59</span> <span class="deletions"> -1</span></span></li>
-          <li><strong>jkoudys/kupyna_hashes</strong> → <a href="https://github.com/jkoudys/kupyna_hashes/pull/2">Resolving clippy warnings/errors</a> <span class="line-changes"><span class="additions">+35</span> <span class="deletions">-60</span></span></li>
-          <li><strong>jkoudys/kupyna_hashes</strong> → <a href="https://github.com/jkoudys/kupyna_hashes/pull/1">housekeeping changes</a> <span class="line-changes"><span class="additions">+7</span> <span class="deletions">-2</span></span></li>
-          <li><strong>usgraphics/TR-100</strong> → <a href="https://github.com/usgraphics/TR-100/pull/9">Multiple DNS ip support</a> <span class="line-changes"><span class="additions">+18</span> <span class="deletions">-3</span></span></li>
-          <li><strong>dscsnu/ping-website-v1</strong> → <a href="https://github.com/dscsnu/ping-website-v1/pull/1">navbar profile poi</a> <span class="line-changes"><span class="additions">+14</span> <span class="deletions">-6</span></span></li>
-          <li><strong>hykilpikonna/hyfetch</strong> → <a href="https://github.com/hykilpikonna/hyfetch/pull/309">xenogender flag preset added</a> <span class="line-changes"><span class="additions">+11</span> <span class="deletions">-0</span></span></li>
-          <li><strong>typst/typst</strong> → <a href="https://github.com/typst/typst/pull/4444">Reword docs for `math.cancel`</a> <span class="line-changes"><span class="additions">+6</span> <span class="deletions">-6</span></span></li>
-          <li><strong>Aperocky/tascli</strong> → <a href="https://github.com/Aperocky/tascli/pull/1">docs: update README to include `delete` command</a> <span class="line-changes"><span class="additions">+2</span> <span class="deletions">-1</span></span></li>
-          <li><strong>ecashin/memoradical</strong> → <a href="https://github.com/ecashin/memoradical/pull/40">Update help.html</a> <span class="line-changes"><span class="additions">+2</span> <span class="deletions">-2</span></span></li>
-        </ol>
-      </section>
-    </article>
-  </main>
-  <script>
-    // Dark mode toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeText = document.querySelector('.theme-toggle-text');
-    const body = document.body;
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      body.setAttribute("data-theme", currentTheme);
+      updateText(currentTheme);
 
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    body.setAttribute('data-theme', currentTheme);
-    updateText(currentTheme);
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = body.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateText(newTheme);
-    });
-
-    function updateText(theme) {
-      themeText.textContent = theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
-    }
-
-    // Hamburger menu functionality
-    const hamburger = document.getElementById('hamburger');
-    const navLeft = document.querySelector('.nav-left');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLeft.classList.toggle('active');
-    });
-
-    // Close menu when clicking on a nav link (mobile)
-    const navLinks = document.querySelectorAll('.nav-left a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+        body.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateText(newTheme);
       });
-    });
 
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
-          hamburger.classList.remove('active');
-          navLeft.classList.remove('active');
+      function updateText(theme) {
+        themeText.textContent = theme === "dark" ? "LIGHT MODE" : "DARK MODE";
+      }
+
+      // Hamburger menu functionality
+      const hamburger = document.getElementById("hamburger");
+      const navLeft = document.querySelector(".nav-left");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLeft.classList.toggle("active");
+      });
+
+      // Close menu when clicking on a nav link (mobile)
+      const navLinks = document.querySelectorAll(".nav-left a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        });
+      });
+
+      // Close menu when clicking outside (mobile)
+      document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          if (!hamburger.contains(e.target) && !navLeft.contains(e.target)) {
+            hamburger.classList.remove("active");
+            navLeft.classList.remove("active");
+          }
         }
+      });
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          hamburger.classList.remove("active");
+          navLeft.classList.remove("active");
+        }
+      });
+    </script>
+
+    <style>
+      .line-changes {
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        margin-left: 0.5rem;
       }
-    });
 
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 768) {
-        hamburger.classList.remove('active');
-        navLeft.classList.remove('active');
+      .additions {
+        color: #09a953;
       }
-    });
-  </script>
-  
-  <style>
-    .line-changes {
-      font-family: 'Courier New', monospace;
-      font-weight: bold;
-      margin-left: 0.5rem;
-    }
 
-    .additions {
-      color: #28a745;
-    }
+      .deletions {
+        color: #db1f1e;
+      }
 
-    .deletions {
-      color: #dc3545;
-    }
+      #impact .line-changes {
+        font-size: 1.2rem;
+        margin-left: 0;
+      }
 
-    #impact .line-changes {
-      font-size: 1.2rem;
-      margin-left: 0;
-    }
+      #contributions ol li {
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
 
-    #contributions ol li {
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
+      /* Dark mode adjustments */
+      [data-theme="dark"] .additions {
+        color: #09a953;
+      }
 
-    /* Dark mode adjustments */
-    [data-theme="dark"] .additions {
-      color: #40d15e;
-    }
-
-    [data-theme="dark"] .deletions {
-      color: #f85149;
-    }
-  </style>
-</body>
+      [data-theme="dark"] .deletions {
+        color: #db1f1e;
+      }
+    </style>
+  </body>
 </html>
