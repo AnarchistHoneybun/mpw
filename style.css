@@ -11,6 +11,16 @@
   font-display: swap;
 }
 
+/* Local Font - Schneidler Mediaeval */
+@font-face {
+  font-family: "Schneidler Mediaeval SC T";
+  src: local("Schneidler Mediaeval SC T"),
+    url("fonts/SchneidlerMedSCT_Regu.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS Variables for theme colors */
 :root {
   --bg-color: #e5e3d5;
@@ -189,7 +199,7 @@ main a {
 }
 
 main a:visited {
-  color: #d4a017; /* Goldenrod - progression toward yellow */
+  color: #c9940d; /* Brighter goldenrod - better contrast on beige */
 }
 
 main a:hover {
@@ -867,9 +877,10 @@ p {
 }
 
 .quote-text {
+  font-family: "Schneidler Mediaeval SC T", Georgia, serif;
   font-style: italic;
   font-size: 1.1rem;
-  color: #555;
+  color: #2a2a2a;
   margin: 0 0 0.5rem 0;
   position: relative;
 }
@@ -890,6 +901,16 @@ p {
 
 .quote-author::before {
   content: "~ ";
+}
+
+/* Figure captions */
+figcaption {
+  font-family: "Schneidler Mediaeval SC T", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 .post-signature {
@@ -917,7 +938,7 @@ p {
 
 /* Dark mode compatibility */
 [data-theme="dark"] .quote-text {
-  color: #ccc;
+  color: #e0e0e0;
 }
 
 [data-theme="dark"] .quote-author {
