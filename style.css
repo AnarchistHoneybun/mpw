@@ -127,45 +127,46 @@ nav a.active {
   font-weight: 600;
 }
 
-/* Hamburger menu button - Web 1.0 style */
+/* Hamburger menu button - Bauhaus style */
 .hamburger {
   display: none;
-  border: 2px outset #cccccc;
-  background: #f0f0f0;
-  color: #000000;
-  font-family: "MS Sans Serif", sans-serif;
+  border: none;
+  background: #24269b;
+  color: #e5e3d5;
+  font-family: "Jost", sans-serif;
   font-size: 11px;
-  font-weight: bold;
-  padding: 4px 8px;
+  font-weight: 600;
+  padding: 8px 16px;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.1em;
   transition: none;
   z-index: 1001;
 }
 
 [data-theme="dark"] .hamburger {
-  border: 2px outset #888888;
-  background: #404040;
-  color: #ffffff;
+  background: #ffbd17;
+  color: #171717;
 }
 
 .hamburger:hover {
-  border: 2px inset #cccccc;
+  background: #db1f1e;
+  color: #ffffff;
 }
 
 [data-theme="dark"] .hamburger:hover {
-  border: 2px inset #888888;
+  background: #db1f1e;
+  color: #ffffff;
 }
 
 .hamburger:active {
-  border: 2px inset #999999;
-  background: #e0e0e0;
+  background: #171717;
+  color: #ffffff;
 }
 
 [data-theme="dark"] .hamburger:active {
-  border: 2px inset #333333;
-  background: #303030;
+  background: #171717;
+  color: #ffffff;
 }
 
 /* Simple text-based hamburger icon */
@@ -304,8 +305,8 @@ main a:hover {
 
   .theme-toggle {
     order: 2;
-    font-size: 10px;
-    padding: 3px 8px;
+    font-size: 11px;
+    padding: 8px 16px;
   }
 
   .nav-left {
@@ -315,18 +316,17 @@ main a:hover {
     left: 0;
     right: 0;
     background-color: var(--bg-color);
-    border: 2px inset var(--border-color);
-    border-top: 1px solid var(--border-color);
+    border-top: 2px solid #171717;
+    border-bottom: 2px solid #171717;
     flex-direction: column;
     gap: 0;
     z-index: 1000;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 2px;
   }
 
   [data-theme="dark"] .nav-left {
-    border: 2px inset #666666;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-top: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
   }
 
   .nav-left.active {
@@ -334,76 +334,57 @@ main a:hover {
   }
 
   .nav-left a {
-    padding: 8px 12px;
-    border-bottom: 1px solid var(--light-border-color);
-    border-left: 1px outset #cccccc;
-    border-right: 1px outset #cccccc;
-    border-top: 1px outset #cccccc;
-    width: calc(100% - 26px);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    width: calc(100% - 32px);
     text-align: left;
     display: block;
-    background: #f0f0f0;
+    background: var(--bg-color);
     text-decoration: none;
-    font-weight: normal;
+    font-weight: 400;
+    font-family: "Jost", sans-serif;
+    color: var(--text-color);
     transition: none;
   }
 
   [data-theme="dark"] .nav-left a {
-    background: #404040;
-    border-left: 1px outset #666666;
-    border-right: 1px outset #666666;
-    border-top: 1px outset #666666;
+    background: var(--bg-color);
+    color: var(--text-color);
   }
 
   .nav-left a:last-child {
-    border-bottom: 1px outset #cccccc;
-  }
-
-  [data-theme="dark"] .nav-left a:last-child {
-    border-bottom: 1px outset #666666;
+    border-bottom: none;
   }
 
   .nav-left a:hover {
-    border-left: 1px inset #cccccc;
-    border-right: 1px inset #cccccc;
-    border-top: 1px inset #cccccc;
-    background-color: #e0e0e0;
+    background-color: #ffbd17;
+    color: #171717;
   }
 
   [data-theme="dark"] .nav-left a:hover {
-    border-left: 1px inset #666666;
-    border-right: 1px inset #666666;
-    border-top: 1px inset #666666;
-    background-color: #303030;
+    background-color: #ffbd17;
+    color: #171717;
   }
 
   .nav-left a:active {
-    border-left: 1px inset #999999;
-    border-right: 1px inset #999999;
-    border-top: 1px inset #999999;
-    background-color: #d0d0d0;
+    background-color: #db1f1e;
+    color: #ffffff;
   }
 
   [data-theme="dark"] .nav-left a:active {
-    border-left: 1px inset #333333;
-    border-right: 1px inset #333333;
-    border-top: 1px inset #333333;
-    background-color: #202020;
+    background-color: #db1f1e;
+    color: #ffffff;
   }
 
   .nav-left a.active {
-    font-weight: bold;
-    background-color: #ffffff;
-    border-left: 1px inset #999999;
-    border-right: 1px inset #999999;
-    border-top: 1px inset #999999;
+    font-weight: 600;
+    color: #ff7b30;
+    background-color: var(--bg-color);
   }
 
   [data-theme="dark"] .nav-left a.active {
+    color: #ff7b30;
     background-color: var(--bg-color);
-    border-left: 1px inset #333333;
-    border-right: 1px inset #333333;
-    border-top: 1px inset #333333;
   }
 }
 
@@ -548,6 +529,7 @@ article > ul > li > strong {
 p {
   color: var(--text-color);
 }
+
 /* Web 1.0 Music Player Styles */
 .music-container {
   background-color: var(--bg-color);
