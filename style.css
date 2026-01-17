@@ -4,7 +4,9 @@
 /* Local Font - Fran Sans */
 @font-face {
   font-family: "Fran Sans";
-  src: local("Fran Sans Solid"), local("FranSans_Solid"),
+  src:
+    local("Fran Sans Solid"),
+    local("FranSans_Solid"),
     url("fonts/FranSans_Solid.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
@@ -14,7 +16,8 @@
 /* Local Font - Schneidler Mediaeval */
 @font-face {
   font-family: "Schneidler Mediaeval SC T";
-  src: local("Schneidler Mediaeval SC T"),
+  src:
+    local("Schneidler Mediaeval SC T"),
     url("fonts/SchneidlerMedSCT_Regu.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -43,7 +46,9 @@ body {
   font-weight: 400;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   margin: 0;
   padding: 0;
   /* line-height: 1.6; */
@@ -185,7 +190,8 @@ blockquote {
 pre,
 code,
 .ascii-art {
-  font-family: "Fira Mono", "Consolas", "Menlo", "Monaco", "Liberation Mono",
+  font-family:
+    "Fira Mono", "Consolas", "Menlo", "Monaco", "Liberation Mono",
     "Courier New", monospace;
   font-size: 0.725rem; /* 14px equivalent, typical monospace size */
   line-height: normal; /* or even 1.0 for ASCII art */
@@ -528,6 +534,13 @@ article > ul > li > strong {
 /* Paragraphs */
 p {
   color: var(--text-color);
+}
+
+/* Highlight name on index page */
+.highlight-name {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #ff7b30;
 }
 
 /* Web 1.0 Music Player Styles */
